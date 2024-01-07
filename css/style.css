@@ -1849,6 +1849,11 @@ button:focus {
   font-size: 18px;
 }
 
+.nav-text-logo {
+  font-size: 32px;
+  font-family: Rubik, sans-serif;
+}
+
 .section-top-border {
   padding: 25px 0;
   border-top: 1px dotted #eee;
@@ -3742,6 +3747,10 @@ h6 {
     padding: 0px;
   }
 
+  .nav-text-logo {
+    color: #fff !important;
+  }
+
   .header_area .navbar .nav .nav-item .nav-link {
     line-height: 40px;
     margin-right: 0px;
@@ -3905,9 +3914,6 @@ h6 {
 
   .home_banner_area .banner_inner .banner_content {
     margin-top: 0px;
-  }
-  .home_banner_area .banner_inner .banner_content .primary_btn {
-    display: none;
   }
 
   /* Blog Page Area css
@@ -4141,7 +4147,6 @@ h6 {
   font-size: 20px;
   color: #000000;
   margin-top: 35px;
-  text-transform: uppercase;
 }
 .footer_area .footer_social {
   text-align: center;
