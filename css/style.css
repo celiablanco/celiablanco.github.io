@@ -440,16 +440,31 @@ button:focus {
   display: flex;
 }
 
+
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
   z-index: 1;
-  background: url(../img/banner/home-banner.png) no-repeat top center;
+  background: url(../img/banner/stars3.png) no-repeat top center;
   background-position: center;
   background-size: cover;
+  position: relative; /* Ensure the pseudo-element positions relative to this container */
 }
+
+.home_banner_area::before {
+  content: ""; /* Necessary for pseudo-elements */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the last value (opacity) as needed */
+  z-index: -1; /* Positions the overlay behind the content but above the background image */
+}
+
 .home_banner_area .banner_inner {
   width: 100%;
 }
@@ -3661,6 +3676,7 @@ h6 {
   ============================================================================================ */
   /* Home Banner Area css
   ============================================================================================ */
+  
   .home_banner_area .banner_inner {
     padding: 100px 0px;
   }
