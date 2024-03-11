@@ -211,6 +211,25 @@ button:focus {
   -webkit-text-fill-color: transparent;
 }
 
+.contact_info {
+  display: inline-block; /* Align items */
+}
+
+.info_item {
+  margin: 0 auto; /* Center each item */
+  display: block; /* Stack them */
+}
+
+.info_item i {
+  vertical-align: middle; /* Align icons with the text */
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.info_item h6 {
+  display: inline; /* Keep icon and text on the same line */
+  margin: 0; /* Adjust spacing as needed */
+}
+
 
 /* End Gradient Area css
 ============================================================================================ */
@@ -607,6 +626,24 @@ button:focus {
 .banner_area .banner_inner .banner_content .page_link a:last-child:before {
   display: none;
 }
+
+/* Default behavior */
+.text-uppercase.text-white,
+.text-uppercase.text-yellow {
+    white-space: normal; /* Allows text to wrap on smaller screens */
+    text-align: center; /* Ensures text is centered */
+    padding: 0 15px; /* Adds padding on smaller screens for some breathing room */
+}
+
+/* Large screens */
+@media (min-width: 992px) { /* Adjust this breakpoint as needed */
+    .text-uppercase.text-white,
+    .text-uppercase.text-yellow {
+        white-space: nowrap; /* Prevents wrapping on large screens */
+    }
+}
+
+
 
 /* End Home Banner Area css
 ============================================================================================ */
@@ -4028,6 +4065,34 @@ h6 {
   .home_banner_area .banner_inner .banner_content h5 {
     margin-top: 0px;
   }
+
+  .home_banner_area {
+    z-index: 1;
+    background: url('../img/banner/stars3.png') no-repeat top center;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .home_banner_area .banner_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 15px;
+    text-align: center;
+  }
+
+  .home_banner_area .banner_content h1,
+.home_banner_area .banner_content h2 {
+  font-size: 4.5vw; /* Dynamically adjust the text size */
+  white-space: normal; /* Allows text wrapping */
+  max-width: 100%; /* Ensure text doesn't exceed the container width */
+}
+
+/* Adjust the font size
+
+
 
   /* End Home Banner Area css
   ============================================================================================ */
