@@ -632,7 +632,7 @@ button:focus {
 .text-uppercase.text-yellow {
     white-space: normal; /* Allows text to wrap on smaller screens */
     text-align: center; /* Ensures text is centered */
-    padding: 0 15px; /* Adds padding on smaller screens for some breathing room */
+    padding: 0 0px; /* Adds padding on smaller screens for some breathing room */
 }
 
 /* Large screens */
@@ -1934,6 +1934,15 @@ button:focus {
   box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.75);
   -webkit-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 5px 5px 4px 0px rgba(0,0,0,0.75);
+}
+
+.image-source {
+  font-size: 0.8rem; /* Smaller font size */
+  text-align: right; /* Center align the text */
+  color: #666; /* Lighter text color for subtlety */
+  margin-top: 0px; /* Space between the image and the source text */
+  font-style: italic; /* Italicize text */
+  padding-right: 250px; /* Add padding on the right side */
 }
 
 .text-white {
