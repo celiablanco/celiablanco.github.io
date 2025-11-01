@@ -17,6 +17,35 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/preloader.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* === Mobile fixes for banner name cutoff === */
+      @media (max-width: 767.98px) {
+        .home_banner_area .banner_inner {
+          padding: 80px 0 60px; /* reduce top/bottom padding */
+        }
+
+        .banner_content h1 {
+          white-space: normal !important; /* allow wrapping on small screens */
+          font-size: 2rem; /* scale down for phones */
+          line-height: 1.2;
+          text-align: center;
+        }
+
+        .banner_content h2 {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+
+        .banner_content {
+          text-align: center;
+        }
+
+        .banner_content .primary_btn {
+          display: inline-block;
+          margin-top: 15px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="preloader-active">
@@ -70,7 +99,7 @@
           <div class="row align-items-left"> <!-- Ensure items are vertically centered -->
             <div class="col-lg-6">
               <div class="banner_content"> <!-- Keep the content aligned to the left -->
-                <h1 class="text-uppercase text-white text-nowrap">Dr. Celia Blanco</h1>
+                <h1 class="text-uppercase text-white">Dr. Celia Blanco</h1>
                 <h2 class="text-uppercase text-yellow">Theoretical Physicist and Astrobiologist</h2>
                 <a class="primary_btn tr-bg text-nowrap mb-10" href="contact.html">
                   <span>Contact Me</span>
