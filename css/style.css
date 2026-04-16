@@ -473,7 +473,7 @@ button:focus {
 ============================================================================================ */
 .home_banner_area {
   z-index: 1;
-  background: url(../img/banner/stars3.png) no-repeat top center;
+  background: url(../img/banner/stars3.jpeg) no-repeat top center;
   background-position: center;
   background-size: cover;
   position: relative; /* Ensure the pseudo-element positions relative to this container */
@@ -4077,7 +4077,7 @@ h6 {
 
   .home_banner_area {
     z-index: 1;
-    background: url('../img/banner/stars3.png') no-repeat top center;
+    background: url('../img/banner/stars3.jpeg') no-repeat top center;
     background-position: center;
     background-size: cover;
     position: relative;
