@@ -4286,4 +4286,107 @@ h6 {
 ============================================================================================ */
 /*---------------------------------------------------- */
 
+/* Responsive Design Improvements
+============================================================================================ */
+
+/* Prevent horizontal overflow on all pages */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Publications blockquotes - prevent long URLs from overflowing */
+.generic-blockquote {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile fixes for banner (moved from index.html inline styles) */
+@media (max-width: 767.98px) {
+  .home_banner_area .banner_inner {
+    padding: 80px 0 60px;
+  }
+
+  .banner_content h1 {
+    white-space: normal !important;
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .banner_content h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .banner_content {
+    text-align: center;
+  }
+
+  .banner_content .primary_btn {
+    display: inline-block;
+    margin-top: 15px;
+  }
+
+  /* Research images - center when stacked on mobile */
+  .research-img {
+    display: block;
+    margin: 0 auto 15px auto;
+  }
+
+  /* Research section text padding */
+  .section-top-border .col-md-9 {
+    padding: 0 15px;
+  }
+
+  /* Publications - slightly smaller text for readability */
+  .generic-blockquote {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Footer social links - wrap and space on small screens */
+  .footer_area .footer_social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer_area .footer_social a {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 414px) {
+  .generic-blockquote {
+    font-size: 13px;
+    padding: 20px 10px 20px 20px;
+  }
+
+  .footer_area .footer_social a {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .sample-text-area h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 768px) and (max-width: 991px) {
+  .research-img {
+    display: block;
+    margin: 0 auto 15px auto;
+  }
+
+  .footer_area .footer_social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
