@@ -3,9 +3,7 @@
 // atmospheric layer. The image is darkened so text stays legible everywhere;
 // it should read as "cosmos in the background" rather than wallpaper.
 ---
-<div class="bg" aria-hidden="true">
-  <div class="bg-stars"></div>
-</div>
+<div class="bg" aria-hidden="true"></div>
 
 <style>
   .bg {
@@ -15,21 +13,5 @@
     background:
       radial-gradient(ellipse 80% 60% at 50% 0%, #0c1232 0%, transparent 60%),
       linear-gradient(180deg, #060818 0%, #04061a 100%);
-    overflow: hidden;
-  }
-
-  .bg-stars {
-    position: absolute;
-    inset: 0;
-    background-image: url('/img/banner/stars3.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    opacity: 0.22;
-    /* Strongest at the top of the viewport, fades out below — keeps the hero
-       atmospheric and the rest of the page calm */
-    mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, transparent 90%);
-    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, transparent 90%);
-    filter: contrast(1.05) brightness(0.85);
   }
 </style>
