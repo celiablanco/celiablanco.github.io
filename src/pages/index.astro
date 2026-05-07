@@ -181,7 +181,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
     height: auto;
     display: block;
-    filter: grayscale(100%) contrast(1.05);
+    /* B&W base, then warm sepia tint pushed toward gold */
+    filter: grayscale(100%) sepia(60%) saturate(150%) hue-rotate(-8deg) brightness(1.05) contrast(1.05);
   }
 
   @media (max-width: 880px) {
