@@ -111,41 +111,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
   /* ============= HERO ============= */
   .hero {
-    position: relative;
     padding: var(--space-5) 0 var(--space-5);
-    overflow: hidden;
-  }
-
-  /* Astrobiology illustration as the hero backdrop. Strong on the right side
-     (behind/around the portrait), fading out toward the left so the text
-     stays clearly legible against the dark navy. */
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('/img/banner/stars3.jpeg');
-    background-size: cover;
-    background-position: center right;
-    background-repeat: no-repeat;
-    opacity: 0.55;
-    z-index: 0;
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,1) 60%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,1) 60%);
-  }
-
-  /* Soft dark overlay over the image area so it never overwhelms the text */
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(6,8,24,0.92) 0%, rgba(6,8,24,0.55) 45%, rgba(6,8,24,0.25) 100%);
-    z-index: 0;
-    pointer-events: none;
   }
 
   .hero-grid {
-    position: relative;
-    z-index: 1;
     display: grid;
     grid-template-columns: 1.8fr 1fr;
     gap: var(--space-6);
