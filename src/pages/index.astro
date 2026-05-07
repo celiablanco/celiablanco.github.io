@@ -172,8 +172,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
     height: auto;
     display: block;
-    /* Subtle drop-shadow so the cut-out portrait still feels grounded */
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    /* B&W → warm sepia → pushed toward gold, plus a soft drop-shadow */
+    filter:
+      grayscale(100%)
+      sepia(60%)
+      saturate(150%)
+      hue-rotate(-8deg)
+      brightness(1.05)
+      contrast(1.05)
+      drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
   }
 
   @media (max-width: 880px) {
