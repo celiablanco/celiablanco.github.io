@@ -20,9 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="hero-portrait">
-        <div class="portrait-frame">
-          <img src="/img/profile2025.jpeg" alt="Portrait of Dr. Celia Blanco" />
-        </div>
+        <img src="/img/profile-nobg.png" alt="Portrait of Dr. Celia Blanco" />
       </div>
     </div>
   </section>
@@ -170,19 +168,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
   }
 
-  .hero-portrait .portrait-frame {
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
-  }
-
   .hero-portrait img {
     width: 100%;
     height: auto;
     display: block;
-    /* B&W base, then warm sepia tint pushed toward gold */
-    filter: grayscale(100%) sepia(60%) saturate(150%) hue-rotate(-8deg) brightness(1.05) contrast(1.05);
+    /* Subtle drop-shadow so the cut-out portrait still feels grounded */
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
   }
 
   @media (max-width: 880px) {
