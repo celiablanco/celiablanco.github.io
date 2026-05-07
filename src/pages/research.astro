@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const research = [
   {
     n: '01',
+    slug: 'origins',
     title: 'Origins of Life & Prebiotic Chemistry',
     img: '/img/research/fitness_landscapes.png',
     body: `<p>How did life emerge from non-living matter? This is the central question driving my research. I am fascinated by the transition from simple chemistry to the complex, self-sustaining systems we call life. My work explores how prebiotic environments could have given rise to biological complexity — from the formation of early informational molecules to the emergence of functional systems capable of evolution.</p>
@@ -12,6 +13,7 @@ const research = [
   },
   {
     n: '02',
+    slug: 'evolution',
     title: 'Molecular Evolution & the Genetic Code',
     img: '/img/research/evolution_of_the_genetic_code.png',
     body: `<p>How do biological molecules evolve, and how did the genetic code come to be? I study these questions through the lens of fitness landscapes — the rugged terrain that evolution navigates as it searches for functional sequences. Using high-coverage sequencing data, I develop computational methods to <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-biophys-052118-115333" target="_blank" rel="noopener"><strong>visualize and analyze molecular fitness landscapes</strong></a>, revealing the paths and constraints that shape evolutionary outcomes.</p>
@@ -19,6 +21,7 @@ const research = [
   },
   {
     n: '03',
+    slug: 'chirality',
     title: 'Chirality & Mirror Symmetry Breaking',
     img: '/img/research/molecular_homochirality.png',
     body: `<p>Why does life exclusively use left-handed amino acids and right-handed sugars? The emergence of this molecular homochirality remains one of the deepest mysteries in origin of life research. My doctoral work and early career were dedicated to understanding the <strong>fundamental mechanisms behind the onset, amplification, and transmission of chiral asymmetry</strong> at the molecular and supramolecular levels.</p>
@@ -27,6 +30,7 @@ const research = [
   },
   {
     n: '04',
+    slug: 'computational',
     title: 'Computational & Mathematical Biology',
     img: '/img/research/bioinformatics.png',
     body: `<p>I am passionate about applying mathematics, computation, and increasingly AI-driven approaches to understand biological systems. My work spans mathematical modeling of processes ranging from protocells to <a href="https://iopscience.iop.org/article/10.1088/1478-3975/ab2ea0" target="_blank" rel="noopener"><strong>phage-bacteria interactions</strong></a>, development of bioinformatics pipelines, and exploration of modern machine learning techniques for biological data.</p>
@@ -34,6 +38,7 @@ const research = [
   },
   {
     n: '05',
+    slug: 'astrobiology',
     title: 'Astrobiology & Space Exploration',
     img: '/img/research/astrobiology_space.jpg',
     body: `<p>My research sits at the heart of astrobiology — the study of life's origins, distribution, and future in the universe. I am interested in how our understanding of life on Earth can inform the search for life elsewhere, and how space exploration can in turn advance our knowledge of biology.</p>
@@ -57,7 +62,7 @@ const research = [
       {research.map((item, i) => {
         const isPhoto = item.img.endsWith('.jpg') || item.img.endsWith('.jpeg');
         return (
-          <article class:list={["research-item", "reveal", { reverse: i % 2 === 1 }]}>
+          <article id={item.slug} class:list={["research-item", "reveal", { reverse: i % 2 === 1 }]}>
             <div class="research-figure">
               <div class:list={["figure-frame", { 'is-photo': isPhoto }]}>
                 <img src={item.img} alt={item.title} loading="lazy" />
