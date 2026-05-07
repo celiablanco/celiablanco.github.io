@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const research = [
+  {
+    n: '01',
+    title: 'Origins of Life & Prebiotic Chemistry',
+    img: '/img/research/fitness_landscapes.png',
+    body: `<p>How did life emerge from non-living matter? This is the central question driving my research. I am fascinated by the transition from simple chemistry to the complex, self-sustaining systems we call life. My work explores how prebiotic environments could have given rise to biological complexity — from the formation of early informational molecules to the emergence of functional systems capable of evolution.</p>
+    <p>My current work investigates how <strong>shared environmental modulation can drive correlated behavior in uncoupled prebiotic systems</strong>, and how chemistry transitions from rule-taking to rule-making as complexity increases.</p>
+    <p>Check out our recent two-part collaboration with the Origins of Life Early-career Network (OoLEN), reviewing <a href="https://doi.org/10.1016/j.xcrp.2026.103212" target="_blank" rel="noopener"><strong>experimental</strong></a> and <a href="https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(26)00117-7" target="_blank" rel="noopener"><strong>theoretical</strong></a> methods for studying the origins of life.</p>`,
+  },
+  {
+    n: '02',
+    title: 'Molecular Evolution & the Genetic Code',
+    img: '/img/research/evolution_of_the_genetic_code.png',
+    body: `<p>How do biological molecules evolve, and how did the genetic code come to be? I study these questions through the lens of fitness landscapes — the rugged terrain that evolution navigates as it searches for functional sequences. Using high-coverage sequencing data, I develop computational methods to <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-biophys-052118-115333" target="_blank" rel="noopener"><strong>visualize and analyze molecular fitness landscapes</strong></a>, revealing the paths and constraints that shape evolutionary outcomes.</p>
+    <p>My work on the genetic code explores how its earliest stages may have been shaped by pressures unrelated to protein translation. We recently showed that <a href="https://academic.oup.com/gbe/advance-article/doi/10.1093/gbe/evag012/8430695" target="_blank" rel="noopener"><strong>molecular complexity constrained early amino acid recruitment</strong></a>, with structurally simple amino acids occupying basal positions and complex residues appearing later. I have also studied <a href="https://www.cell.com/current-biology/fulltext/S0960-9822%2818%2930016-2" target="_blank" rel="noopener"><strong>evolutionarily independent protein-RNA complexes</strong></a> to evaluate prebiotic scenarios, and contributed to understanding the <a href="https://www.sciencedirect.com/science/article/pii/S0960982215006818" target="_blank" rel="noopener"><strong>RNA World</strong></a> as a model for early life.</p>`,
+  },
+  {
+    n: '03',
+    title: 'Chirality & Mirror Symmetry Breaking',
+    img: '/img/research/molecular_homochirality.png',
+    body: `<p>Why does life exclusively use left-handed amino acids and right-handed sugars? The emergence of this molecular homochirality remains one of the deepest mysteries in origin of life research. My doctoral work and early career were dedicated to understanding the <strong>fundamental mechanisms behind the onset, amplification, and transmission of chiral asymmetry</strong> at the molecular and supramolecular levels.</p>
+    <p>Through mathematical modeling and simulations, I have explored <a href="https://pubs.rsc.org/en/content/articlelanding/2011/cp/c0cp00992j" target="_blank" rel="noopener"><strong>chiral polymerization</strong></a>, <a href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cphc.201300699" target="_blank" rel="noopener"><strong>spontaneous mirror symmetry breaking</strong></a>, and <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcb.6b10705" target="_blank" rel="noopener"><strong>mechanically induced homochirality</strong></a>, building a theoretical framework for how the symmetry of prebiotic chemistry could have been broken.</p>
+    <p>Read my PhD thesis: <a href="https://eprints.ucm.es/27238/" target="_blank" rel="noopener">Models for chiral amplification in spontaneous mirror symmetry breaking</a>.</p>`,
+  },
+  {
+    n: '04',
+    title: 'Computational & Mathematical Biology',
+    img: '/img/research/bioinformatics.png',
+    body: `<p>I am passionate about applying mathematics, computation, and increasingly AI-driven approaches to understand biological systems. My work spans mathematical modeling of processes ranging from protocells to <a href="https://iopscience.iop.org/article/10.1088/1478-3975/ab2ea0" target="_blank" rel="noopener"><strong>phage-bacteria interactions</strong></a>, development of bioinformatics pipelines, and exploration of modern machine learning techniques for biological data.</p>
+    <p>I develop open-source tools for the community, including <a href="https://link.springer.com/article/10.1007/s00239-025-10244-w" target="_blank" rel="noopener"><strong>EasyDIVER+</strong></a> for processing high-throughput sequencing data from in vitro evolution experiments, <a href="https://github.com/ichen-lab-ucsb/ClusterBOSS" target="_blank" rel="noopener"><strong>ClusterBOSS</strong></a> for clustering biological sequences, and <a href="https://github.com/ichen-lab-ucsb/DeCatCounter" target="_blank" rel="noopener"><strong>DeCatCounter</strong></a> for decatenation counting in sequencing data. More recently, I have been exploring how <a href="https://doi.org/10.1162/ISAL.a.851" target="_blank" rel="noopener"><strong>DNA tokenization</strong></a> can efficiently compress genomic information while preserving phylogenetic relationships — bridging bioinformatics with artificial intelligence.</p>`,
+  },
+  {
+    n: '05',
+    title: 'Astrobiology & Space Exploration',
+    img: '/img/research/astrobiology_space.jpg',
+    body: `<p>My research sits at the heart of astrobiology — the study of life's origins, distribution, and future in the universe. I am interested in how our understanding of life on Earth can inform the search for life elsewhere, and how space exploration can in turn advance our knowledge of biology.</p>
+    <p>I have explored the <a href="https://doi.org/10.1016/j.spacepol.2025.101727" target="_blank" rel="noopener"><strong>connections between space settlement and astrobiology</strong></a>, investigating how these fields can mutually advance each other. In collaboration with <a href="https://futures.bmsis.org/" target="_blank" rel="noopener"><strong>Project Janus</strong></a>, I recently studied the long-term trajectory of technological civilizations. Our work on <a href="https://arxiv.org/abs/2604.13774" target="_blank" rel="noopener"><strong>civilization collapse-recovery dynamics and detectability</strong></a> uses simulation modeling to explore how resource consumption and recovery rates shape the persistence of technospheres, with implications for both humanity's resilience and the search for extraterrestrial intelligence.</p>`,
+  },
+];
+---
+<BaseLayout title="Research — Dr. Celia Blanco" description="Research areas of Dr. Celia Blanco: origins of life, molecular evolution, chirality, computational biology, and astrobiology.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Research</h1>
+      <p class="lede">
+        My work spans prebiotic chemistry, molecular evolution, chirality,
+        computational biology, and astrobiology. Five connected areas, organized below.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {research.map((item, i) => {
+        const isPhoto = item.img.endsWith('.jpg') || item.img.endsWith('.jpeg');
+        return (
+          <article class:list={["research-item", "reveal", { reverse: i % 2 === 1 }]}>
+            <div class="research-figure">
+              <div class:list={["figure-frame", { 'is-photo': isPhoto }]}>
+                <img src={item.img} alt={item.title} loading="lazy" />
+              </div>
+            </div>
+            <div class="research-text">
+              <h2>{item.title}</h2>
+              <div class="prose" set:html={item.body} />
+            </div>
+          </article>
+        );
+      })}
+
+      <div class="cta-block reveal">
+        <p>
+          Don't hesitate to get in touch if there's anything you'd like to
+          discuss. I'm always open to new ideas and collaborations.
+        </p>
+        <a class="btn" href="/contact"><span>Contact me</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 640px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .research-item {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .research-item:first-of-type {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .research-item.reverse {
+    grid-template-columns: 6fr 4fr;
+  }
+
+  .research-item.reverse .research-figure {
+    order: 2;
+  }
+
+  .research-figure {
+    position: relative;
+  }
+
+  .figure-frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    /* Light background for figures with transparency (PNG diagrams) */
+    background: #f5f3ec;
+    padding: var(--space-2);
+  }
+
+  .figure-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Photo (JPG) figures should fill the frame edge-to-edge, no padding */
+  .figure-frame.is-photo {
+    background: var(--color-bg-elevated);
+    padding: 0;
+  }
+
+  .cta-block {
+    margin-top: var(--space-6);
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .cta-block p {
+    max-width: 540px;
+    margin: 0 auto var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .research-text h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: 400;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: var(--space-2);
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose a {
+    color: var(--color-gold-bright);
+  }
+
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .cta-block {
+    text-align: center;
+    padding: var(--space-5) 0 var(--space-3);
+  }
+
+  .cta-block h3 {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .cta-block p {
+    margin-bottom: var(--space-4);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 880px) {
+    .research-item,
+    .research-item.reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .research-item.reverse .research-figure {
+      order: 0;
+    }
+
+    .research-num {
+      top: -0.5rem;
+      left: -0.5rem;
+      font-size: 3.5rem;
+    }
+  }
+</style>

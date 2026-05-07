@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout>
+  <!-- ============= HERO ============= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1 class="hero-name">Dr. Celia Blanco</h1>
+      <p class="hero-title">Theoretical Physicist &amp; Astrobiologist</p>
+      <p class="hero-affil">Ramón y Cajal Fellow · Centro de Astrobiología (CAB, CSIC-INTA)</p>
+      <p class="hero-lede">
+        I study the origins and evolution of life in the universe — from
+        prebiotic chemistry and molecular evolution to the long-term trajectory
+        of technological civilizations.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="/research"><span>Research</span></a>
+        <a class="btn btn-ghost" href="/publications"><span>Publications</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= ABOUT ============= -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-portrait reveal">
+          <div class="portrait-frame">
+            <img src="/img/profile2025.jpeg" alt="Portrait of Dr. Celia Blanco" />
+          </div>
+        </div>
+
+        <div class="about-text reveal">
+          <h2>About</h2>
+          <p>
+            Welcome to my corner of the web! I'm a theoretical physicist
+            fascinated by the big questions in astrobiology. If it has to do
+            with the origins or evolution of life in the universe, I'm all in.
+          </p>
+          <p>
+            After more than a decade of research in the U.S., I've come full
+            circle — back at the <strong>Centro de Astrobiología (CAB, CSIC-INTA)</strong>,
+            where it all started. I'm joining CAB as a Ramón y Cajal Fellow,
+            after years of working with inspiring colleagues at UCLA, UC Santa
+            Barbara, and the Blue Marble Space Institute of Science.
+          </p>
+          <p>
+            My research sits at the intersection of biophysics and biomolecular
+            evolution. I use theoretical and computational approaches to study
+            the mechanisms that drive the emergence and evolution of complex
+            biological systems. If any of this sparks an idea or you'd like to
+            chat about potential collaborations, don't hesitate to reach out!
+          </p>
+          <div class="btn-row" style="margin-top: var(--space-4);">
+            <a class="btn" href="/contact"><span>Get in touch</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= RESEARCH AREAS PREVIEW ============= -->
+  <section class="section interests">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="eyebrow">Research</span>
+        <h2>Research areas</h2>
+      </div>
+
+      <ul class="interest-grid">
+        <li class="interest-item reveal">
+          <h3>Origins of Life &amp; Prebiotic Chemistry</h3>
+          <p>How chemistry transitions from rule-taking to rule-making as complexity grows.</p>
+        </li>
+        <li class="interest-item reveal">
+          <h3>Molecular Evolution &amp; the Genetic Code</h3>
+          <p>Fitness landscapes, sequence-function maps, and the early shape of the genetic code.</p>
+        </li>
+        <li class="interest-item reveal">
+          <h3>Chirality &amp; Mirror Symmetry Breaking</h3>
+          <p>Theoretical models for the onset and amplification of molecular handedness.</p>
+        </li>
+        <li class="interest-item reveal">
+          <h3>Computational &amp; Mathematical Biology</h3>
+          <p>Open-source tools, ML on biological sequences, models of biological dynamics.</p>
+        </li>
+        <li class="interest-item reveal">
+          <h3>Astrobiology &amp; Space Exploration</h3>
+          <p>Civilization trajectories, technosphere dynamics, and the search for life.</p>
+        </li>
+      </ul>
+
+      <div class="text-center" style="margin-top: var(--space-5);">
+        <a class="btn" href="/research"><span>Read more</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ============= HERO ============= */
+  .hero {
+    position: relative;
+    min-height: calc(80vh - 76px);
+    display: flex;
+    align-items: center;
+    padding: var(--space-6) 0 var(--space-6);
+    text-align: left;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 760px;
+  }
+
+  .hero-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    color: var(--color-text);
+  }
+
+  .hero-title {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 0 0 var(--space-1);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-affil {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--color-text-subtle);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lede {
+    margin: 0 0 var(--space-5);
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ============= ABOUT ============= */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .about-portrait {
+    position: sticky;
+    top: 110px;
+  }
+
+  .portrait-frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.5);
+  }
+
+  .portrait-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 111, 0.06));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: auto;
+    filter: saturate(0.92) contrast(1.02);
+  }
+
+  .portrait-caption {
+    margin-top: var(--space-3);
+    text-align: left;
+  }
+
+  .caption-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin: 0 0 0.25rem;
+  }
+
+  .caption-role {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin: 0 0 0.25rem;
+  }
+
+  .caption-affil {
+    font-size: 0.85rem;
+    color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  .about-text .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .about-text h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    margin-bottom: var(--space-3);
+    font-weight: 400;
+    color: var(--color-text);
+  }
+
+  /* visually hide eyebrow when h2 reads "About" — keep for screen readers */
+  .about-text .eyebrow + h2 {
+    margin-top: 0;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+  }
+
+  /* ============= INTERESTS ============= */
+  .interest-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--color-border-subtle);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .interest-item {
+    background: var(--color-bg);
+    padding: var(--space-4);
+    transition: background 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    position: relative;
+  }
+
+  .interest-item:hover {
+    background: var(--color-bg-elevated);
+  }
+
+  .interest-num {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-gold);
+    margin-bottom: var(--space-2);
+    letter-spacing: 0.04em;
+  }
+
+  .interest-item h3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: var(--space-2);
+    font-weight: 400;
+  }
+
+  .interest-item p {
+    font-size: 0.95rem;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 880px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .about-portrait {
+      position: static;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .portrait-caption {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      min-height: calc(100vh - 76px);
+      padding: var(--space-5) 0 var(--space-6);
+    }
+
+    .hero-title .rule {
+      max-width: 30px;
+    }
+
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>
