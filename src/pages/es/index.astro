@@ -1,26 +1,26 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 <BaseLayout>
   <!-- ============= HERO ============= -->
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-text">
-        <h1 class="hero-name">Dr. Celia Blanco</h1>
-        <p class="hero-title">Theoretical Physicist &amp; Astrobiologist</p>
-        <p class="hero-affil">Ramón y Cajal Fellow · Centro de Astrobiología (CAB, CSIC-INTA)</p>
+        <h1 class="hero-name">Dra. Celia Blanco</h1>
+        <p class="hero-title">Física Teórica y Astrobióloga</p>
+        <p class="hero-affil">Investigadora Ramón y Cajal · Centro de Astrobiología (CAB, CSIC-INTA)</p>
         <p class="hero-lede">
-          I study the origins and evolution of life in the universe — from
-          prebiotic chemistry and molecular evolution to the long-term trajectory
-          of technological civilizations.
+          Estudio el origen y la evolución de la vida en el universo: de la
+          química prebiótica y la evolución molecular a la trayectoria a largo
+          plazo de las civilizaciones tecnológicas.
         </p>
         <div class="hero-actions">
-          <a class="btn" href="/research"><span>Research</span></a>
-          <a class="btn btn-ghost" href="/publications"><span>Publications</span></a>
+          <a class="btn" href="/es/research"><span>Investigación</span></a>
+          <a class="btn btn-ghost" href="/es/publications"><span>Publicaciones</span></a>
         </div>
       </div>
       <div class="hero-portrait">
-        <img src="/img/profile-nobg.png" alt="Portrait of Dr. Celia Blanco" />
+        <img src="/img/profile-nobg.png" alt="Retrato de la Dra. Celia Blanco" />
       </div>
     </div>
   </section>
@@ -30,29 +30,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="about-prose">
         <div class="about-text reveal">
-          <h2>About</h2>
+          <h2>Sobre mí</h2>
           <p>
-            Welcome to my corner of the web! I'm a theoretical physicist
-            fascinated by the big questions in astrobiology. If it has to do
-            with the origins or evolution of life in the universe, I'm all in.
+            ¡Bienvenidos a mi rincón de la web! Soy física teórica y me apasionan
+            las grandes preguntas de la astrobiología. Si tiene que ver con el
+            origen o la evolución de la vida en el universo, me interesa.
           </p>
           <p>
-            My path started at the <strong>Centro de Astrobiología (CAB,
-            CSIC-INTA)</strong>, then took me across the U.S. for more than a
-            decade, with stops at UCLA, UC Santa Barbara, and the Blue Marble
-            Space Institute of Science, where I had the privilege of working
-            with some of the brightest minds I've ever met. Now I've come full
-            circle, back at CAB as a Ramón y Cajal Fellow.
+            Mi camino empezó en el <strong>Centro de Astrobiología (CAB,
+            CSIC-INTA)</strong> y me llevó a Estados Unidos durante más de una
+            década, con paradas en UCLA, UC Santa Barbara y el Blue Marble Space
+            Institute of Science, donde tuve la suerte de trabajar con algunas
+            de las mentes más brillantes que he conocido. Ahora he cerrado el
+            círculo y vuelvo al CAB como investigadora Ramón y Cajal.
           </p>
           <p>
-            My research sits at the intersection of biophysics and biomolecular
-            evolution. I use theoretical and computational approaches to study
-            the mechanisms that drive the emergence and evolution of complex
-            biological systems. If any of this sparks an idea or you'd like to
-            chat about potential collaborations, don't hesitate to reach out!
+            Mi investigación se sitúa en la intersección entre la biofísica y
+            la evolución biomolecular. Utilizo enfoques teóricos y
+            computacionales para estudiar los mecanismos que impulsan la
+            aparición y evolución de los sistemas biológicos complejos. Si
+            algo de esto te resuena o te apetece charlar sobre posibles
+            colaboraciones, ¡no dudes en escribirme!
           </p>
           <div class="btn-row" style="margin-top: var(--space-4);">
-            <a class="btn" href="/contact"><span>Get in touch</span></a>
+            <a class="btn" href="/es/contact"><span>Contacta conmigo</span></a>
           </div>
         </div>
       </div>
@@ -63,45 +64,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section interests">
     <div class="container">
       <div class="section-title reveal">
-        <span class="eyebrow">Research</span>
-        <h2>Research areas</h2>
+        <span class="eyebrow">Investigación</span>
+        <h2>Áreas de investigación</h2>
       </div>
 
       <ul class="interest-grid">
         <li class="interest-item reveal">
-          <a class="interest-link" href="/research#origins">
-            <h3>Origins of Life &amp; Prebiotic Chemistry</h3>
-            <p>How chemistry transitions from rule-taking to rule-making as complexity grows.</p>
+          <a class="interest-link" href="/es/research#origins">
+            <h3>Origen de la vida y química prebiótica</h3>
+            <p>Cómo la química pasa de seguir reglas a generarlas a medida que crece la complejidad.</p>
           </a>
         </li>
         <li class="interest-item reveal">
-          <a class="interest-link" href="/research#evolution">
-            <h3>Molecular Evolution &amp; the Genetic Code</h3>
-            <p>Fitness landscapes, sequence-function maps, and the early shape of the genetic code.</p>
+          <a class="interest-link" href="/es/research#evolution">
+            <h3>Evolución molecular y código genético</h3>
+            <p>Paisajes de aptitud, mapas secuencia–función y la forma temprana del código genético.</p>
           </a>
         </li>
         <li class="interest-item reveal">
-          <a class="interest-link" href="/research#chirality">
-            <h3>Chirality &amp; Mirror Symmetry Breaking</h3>
-            <p>Theoretical models for the onset and amplification of molecular handedness.</p>
+          <a class="interest-link" href="/es/research#chirality">
+            <h3>Quiralidad y ruptura de simetría especular</h3>
+            <p>Modelos teóricos para el origen y la amplificación de la quiralidad molecular.</p>
           </a>
         </li>
         <li class="interest-item reveal">
-          <a class="interest-link" href="/research#computational">
-            <h3>Computational &amp; Mathematical Biology</h3>
-            <p>Open-source tools, ML on biological sequences, models of biological dynamics.</p>
+          <a class="interest-link" href="/es/research#computational">
+            <h3>Biología computacional y matemática</h3>
+            <p>Herramientas de código abierto, ML aplicado a secuencias biológicas y modelos de dinámica biológica.</p>
           </a>
         </li>
         <li class="interest-item reveal">
-          <a class="interest-link" href="/research#astrobiology">
-            <h3>Astrobiology &amp; Space Exploration</h3>
-            <p>Civilization trajectories, technosphere dynamics, and the search for life.</p>
+          <a class="interest-link" href="/es/research#astrobiology">
+            <h3>Astrobiología y exploración espacial</h3>
+            <p>Trayectorias de civilizaciones, dinámica de la tecnosfera y la búsqueda de vida.</p>
           </a>
         </li>
       </ul>
 
       <div class="text-center" style="margin-top: var(--space-5);">
-        <a class="btn" href="/research"><span>Read more</span></a>
+        <a class="btn" href="/es/research"><span>Leer más</span></a>
       </div>
     </div>
   </section>
@@ -214,7 +215,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text);
   }
 
-  /* visually hide eyebrow when h2 reads "About" — keep for screen readers */
   .about-text .eyebrow + h2 {
     margin-top: 0;
   }
@@ -260,7 +260,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transform: translateY(-2px);
   }
 
-  /* second row: 2 cards each take 3/6 cols, centered together */
   .interest-item:nth-child(4),
   .interest-item:nth-child(5) {
     grid-column: span 3;

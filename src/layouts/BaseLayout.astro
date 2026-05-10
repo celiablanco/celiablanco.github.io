@@ -7,23 +7,45 @@ import Starfield from '../components/Starfield.astro';
 interface Props {
   title?: string;
   description?: string;
+  lang?: 'en' | 'es';
 }
 
+const { pathname } = Astro.url;
+const detectedLang: 'en' | 'es' =
+  pathname === '/es' || pathname === '/es/' || pathname.startsWith('/es/') ? 'es' : 'en';
+
+const defaultsByLang = {
+  en: {
+    title: 'Dr. Celia Blanco — Theoretical Physicist & Astrobiologist',
+    description:
+      'Theoretical physicist and astrobiologist exploring the origins and evolution of life in the universe. Ramón y Cajal Fellow at the Centro de Astrobiología (CAB, CSIC-INTA).',
+  },
+  es: {
+    title: 'Dra. Celia Blanco — Física Teórica y Astrobióloga',
+    description:
+      'Física teórica y astrobióloga, dedicada al estudio del origen y la evolución de la vida en el universo. Investigadora Ramón y Cajal en el Centro de Astrobiología (CAB, CSIC-INTA).',
+  },
+};
+
 const {
-  title = 'Dr. Celia Blanco — Theoretical Physicist & Astrobiologist',
-  description = 'Theoretical physicist and astrobiologist exploring the origins and evolution of life in the universe. Ramón y Cajal Fellow at the Centro de Astrobiología (CAB, CSIC-INTA).',
+  title,
+  description,
+  lang = detectedLang,
 } = Astro.props;
+
+const finalTitle = title ?? defaultsByLang[lang].title;
+const finalDescription = description ?? defaultsByLang[lang].description;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/img/favicon.png" type="image/png" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#060818" />
 
@@ -36,7 +58,7 @@ const {
   </head>
   <body>
     <Starfield />
-    <a href="#main" class="skip-link">Skip to content</a>
+    <a href="#main" class="skip-link">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
     <Header />
     <main id="main">
       <slot />
