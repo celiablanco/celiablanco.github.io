@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const emails = [
+  { user: 'celia.blanco', domain: 'cab.inta-csic.es', label: 'Centro de Astrobiología (CAB, CSIC-INTA)' },
+  { user: 'celia.blanco', domain: 'bmsis.org', label: 'Blue Marble Space Institute of Science' },
+];
+---
+<BaseLayout title="Contacto — Dra. Celia Blanco" description="Ponte en contacto con la Dra. Celia Blanco — Centro de Astrobiología (CAB, CSIC-INTA) y BMSIS.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Contacto</h1>
+      <p class="lede">
+        No dudes en escribirme si hay algo de lo que podamos hablar:
+        colaboraciones de investigación, dudas sobre algún artículo o
+        simplemente charlar sobre el origen de la vida. Siempre estoy abierta
+        a nuevas ideas.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-card panel reveal">
+          <h3>Email</h3>
+          <ul class="email-list">
+            {emails.map((e) => (
+              <li>
+                <a
+                  class="email-link"
+                  href="#"
+                  data-user={e.user}
+                  data-domain={e.domain}
+                  aria-label={`Email en ${e.domain}`}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+                    <path d="M4 6h16v12H4z"/>
+                    <polyline points="4 7 12 13 20 7"/>
+                  </svg>
+                  <span class="email-text">{e.user}<span class="at" aria-hidden="true"> [at] </span>{e.domain}</span>
+                </a>
+                <p class="email-affil">{e.label}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="contact-card panel reveal">
+          <h3>Afiliación</h3>
+          <address class="affil">
+            <p class="affil-name">Dra. Celia Blanco</p>
+            <p class="affil-title">Investigadora Ramón y Cajal</p>
+            <p>
+              Centro de Astrobiología (CAB)<br />
+              CSIC – INTA<br />
+              Ctra. de Ajalvir km 4<br />
+              28850 Torrejón de Ardoz<br />
+              Madrid, España
+            </p>
+          </address>
+        </div>
+
+        <div class="contact-card panel reveal">
+          <h3>Perfiles</h3>
+          <ul class="profile-list">
+            <li>
+              <a href="https://scholar.google.com/citations?user=nzOjUiUAAAAJ&hl=en" target="_blank" rel="noopener">
+                <span class="profile-name">Google Scholar</span>
+                <span class="profile-arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://orcid.org/0000-0003-1536-1493" target="_blank" rel="noopener">
+                <span class="profile-name">ORCID</span>
+                <span class="profile-arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.researchgate.net/profile/Celia-Blanco" target="_blank" rel="noopener">
+                <span class="profile-name">ResearchGate</span>
+                <span class="profile-arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/celiablanco/" target="_blank" rel="noopener">
+                <span class="profile-name">LinkedIn</span>
+                <span class="profile-arrow">→</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll<HTMLAnchorElement>('a.email-link').forEach((a) => {
+      const user = a.dataset.user;
+      const domain = a.dataset.domain;
+      if (user && domain) {
+        a.href = `mailto:${user}@${domain}`;
+        const text = a.querySelector('.email-text');
+        if (text) {
+          text.textContent = `${user}@${domain}`;
+        }
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 580px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .contact-card {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-card h3 {
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .email-list,
+  .profile-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .email-list li {
+    margin-bottom: var(--space-3);
+  }
+
+  .email-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-text);
+    background-image: none;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s var(--ease);
+  }
+
+  .email-link svg {
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .email-link:hover {
+    color: var(--color-gold-bright);
+  }
+
+  .email-text {
+    word-break: break-all;
+  }
+
+  .email-affil {
+    margin: 0 0 0 1.65rem;
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+  }
+
+  .affil {
+    font-style: normal;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .affil p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .affil-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-text) !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .affil-title {
+    color: var(--color-gold) !important;
+    font-size: 0.82rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .profile-list li {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .profile-list li:last-child {
+    border-bottom: none;
+  }
+
+  .profile-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    color: var(--color-text);
+    background-image: none;
+    transition: color 0.3s var(--ease), padding 0.3s var(--ease-out);
+  }
+
+  .profile-list a:hover {
+    color: var(--color-gold-bright);
+    padding-left: 0.4rem;
+  }
+
+  .profile-name {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .profile-arrow {
+    color: var(--color-gold);
+    transition: transform 0.3s var(--ease-out);
+    font-family: var(--font-serif);
+  }
+
+  .profile-list a:hover .profile-arrow {
+    transform: translateX(4px);
+  }
+
+  .quote {
+    text-align: center;
+    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+    font-weight: 300;
+    color: var(--color-text);
+    max-width: 720px;
+    margin: var(--space-5) auto 0;
+    line-height: 1.4;
+  }
+
+  .quote-attr {
+    display: block;
+    margin-top: var(--space-2);
+    font-style: normal;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-gold);
+  }
+</style>

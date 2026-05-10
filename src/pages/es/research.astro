@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const research = [
+  {
+    n: '01',
+    slug: 'origins',
+    title: 'Origen de la vida y química prebiótica',
+    img: '/img/research/fitness_landscapes.png',
+    body: `<p>¿Cómo emergió la vida a partir de materia inerte? Esa es la pregunta central que mueve mi investigación. Me apasiona la transición de una química simple a los sistemas complejos y autosostenidos que llamamos vida. Mi trabajo explora cómo los entornos prebióticos pudieron dar lugar a la complejidad biológica, desde la formación de las primeras moléculas portadoras de información hasta la aparición de sistemas funcionales capaces de evolucionar.</p>
+    <p>Mi investigación actual estudia cómo <strong>la modulación ambiental compartida puede inducir comportamientos correlacionados en sistemas prebióticos no acoplados</strong>, y cómo la química transita de seguir reglas a generarlas conforme aumenta la complejidad.</p>
+    <p>Echa un vistazo a nuestra reciente colaboración en dos partes con la Origins of Life Early-career Network (OoLEN), que revisa los métodos <a href="https://doi.org/10.1016/j.xcrp.2026.103212" target="_blank" rel="noopener"><strong>experimentales</strong></a> y <a href="https://www.cell.com/cell-reports-physical-science/fulltext/S2666-3864(26)00117-7" target="_blank" rel="noopener"><strong>teóricos</strong></a> para el estudio del origen de la vida.</p>`,
+  },
+  {
+    n: '02',
+    slug: 'evolution',
+    title: 'Evolución molecular y código genético',
+    img: '/img/research/evolution_of_the_genetic_code.png',
+    body: `<p>¿Cómo evolucionan las moléculas biológicas y cómo surgió el código genético? Estudio estas preguntas a través de los paisajes de aptitud (fitness landscapes), el terreno irregular que la evolución debe recorrer en su búsqueda de secuencias funcionales. Empleando datos de secuenciación de alta cobertura, desarrollo métodos computacionales para <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-biophys-052118-115333" target="_blank" rel="noopener"><strong>visualizar y analizar paisajes de aptitud moleculares</strong></a>, revelando los caminos y las restricciones que dan forma a los resultados evolutivos.</p>
+    <p>Mi trabajo sobre el código genético explora cómo sus etapas más tempranas pudieron estar moldeadas por presiones ajenas a la traducción de proteínas. Recientemente mostramos que <a href="https://academic.oup.com/gbe/advance-article/doi/10.1093/gbe/evag012/8430695" target="_blank" rel="noopener"><strong>la complejidad molecular condicionó el reclutamiento temprano de aminoácidos</strong></a>, con aminoácidos estructuralmente simples ocupando posiciones basales y residuos complejos apareciendo más tarde. También he estudiado <a href="https://www.cell.com/current-biology/fulltext/S0960-9822%2818%2930016-2" target="_blank" rel="noopener"><strong>complejos proteína-ARN evolutivamente independientes</strong></a> para evaluar escenarios prebióticos, y he contribuido a la comprensión del <a href="https://www.sciencedirect.com/science/article/pii/S0960982215006818" target="_blank" rel="noopener"><strong>mundo ARN</strong></a> como modelo para la vida temprana.</p>`,
+  },
+  {
+    n: '03',
+    slug: 'chirality',
+    title: 'Quiralidad y ruptura de simetría especular',
+    img: '/img/research/molecular_homochirality.png',
+    body: `<p>¿Por qué la vida utiliza exclusivamente aminoácidos levógiros y azúcares dextrógiros? La aparición de esta homoquiralidad molecular es uno de los misterios más profundos en la investigación sobre el origen de la vida. Mi tesis doctoral y mis primeros años de carrera se dedicaron a entender los <strong>mecanismos fundamentales detrás del origen, la amplificación y la transmisión de la asimetría quiral</strong> a nivel molecular y supramolecular.</p>
+    <p>A través de modelos matemáticos y simulaciones, he explorado la <a href="https://pubs.rsc.org/en/content/articlelanding/2011/cp/c0cp00992j" target="_blank" rel="noopener"><strong>polimerización quiral</strong></a>, la <a href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cphc.201300699" target="_blank" rel="noopener"><strong>ruptura espontánea de simetría especular</strong></a> y la <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcb.6b10705" target="_blank" rel="noopener"><strong>homoquiralidad inducida mecánicamente</strong></a>, construyendo un marco teórico para entender cómo pudo haberse roto la simetría de la química prebiótica.</p>
+    <p>Lee mi tesis doctoral: <a href="https://eprints.ucm.es/27238/" target="_blank" rel="noopener">Models for chiral amplification in spontaneous mirror symmetry breaking</a>.</p>`,
+  },
+  {
+    n: '04',
+    slug: 'computational',
+    title: 'Biología computacional y matemática',
+    img: '/img/research/bioinformatics.png',
+    body: `<p>Me apasiona aplicar las matemáticas, la computación y, cada vez más, técnicas basadas en IA para entender los sistemas biológicos. Mi trabajo abarca desde el modelado matemático de procesos —desde protocélulas hasta <a href="https://iopscience.iop.org/article/10.1088/1478-3975/ab2ea0" target="_blank" rel="noopener"><strong>interacciones fago-bacteria</strong></a>— hasta el desarrollo de pipelines bioinformáticos y la exploración de técnicas modernas de aprendizaje automático para datos biológicos.</p>
+    <p>Desarrollo herramientas de código abierto para la comunidad, entre ellas <a href="https://link.springer.com/article/10.1007/s00239-025-10244-w" target="_blank" rel="noopener"><strong>EasyDIVER+</strong></a> para procesar datos de secuenciación masiva de experimentos de evolución <em>in vitro</em>, <a href="https://github.com/ichen-lab-ucsb/ClusterBOSS" target="_blank" rel="noopener"><strong>ClusterBOSS</strong></a> para la agrupación de secuencias biológicas y <a href="https://github.com/ichen-lab-ucsb/DeCatCounter" target="_blank" rel="noopener"><strong>DeCatCounter</strong></a> para el conteo de decatenación en datos de secuenciación. Más recientemente, exploro cómo la <a href="https://doi.org/10.1162/ISAL.a.851" target="_blank" rel="noopener"><strong>tokenización de ADN</strong></a> permite comprimir información genómica preservando relaciones filogenéticas, tendiendo un puente entre la bioinformática y la inteligencia artificial.</p>`,
+  },
+  {
+    n: '05',
+    slug: 'astrobiology',
+    title: 'Astrobiología y exploración espacial',
+    img: '/img/research/astrobiology_space.jpg',
+    body: `<p>Mi investigación se sitúa en el corazón de la astrobiología: el estudio del origen, distribución y futuro de la vida en el universo. Me interesa cómo nuestra comprensión de la vida en la Tierra puede orientar la búsqueda de vida en otros lugares, y cómo la exploración espacial puede, a su vez, ampliar nuestro conocimiento de la biología.</p>
+    <p>He explorado las <a href="https://doi.org/10.1016/j.spacepol.2025.101727" target="_blank" rel="noopener"><strong>conexiones entre el asentamiento espacial y la astrobiología</strong></a>, investigando cómo ambos campos pueden enriquecerse mutuamente. En colaboración con <a href="https://futures.bmsis.org/" target="_blank" rel="noopener"><strong>Project Janus</strong></a>, recientemente he estudiado la trayectoria a largo plazo de las civilizaciones tecnológicas. Nuestro trabajo sobre la <a href="https://arxiv.org/abs/2604.13774" target="_blank" rel="noopener"><strong>dinámica de colapso y recuperación de civilizaciones y su detectabilidad</strong></a> utiliza modelos de simulación para explorar cómo el consumo de recursos y las tasas de recuperación condicionan la persistencia de las tecnosferas, con implicaciones tanto para la resiliencia de la humanidad como para la búsqueda de inteligencia extraterrestre.</p>`,
+  },
+];
+---
+<BaseLayout title="Investigación — Dra. Celia Blanco" description="Áreas de investigación de la Dra. Celia Blanco: origen de la vida, evolución molecular, quiralidad, biología computacional y astrobiología.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Investigación</h1>
+      <p class="lede">
+        Mi trabajo abarca la química prebiótica, la evolución molecular, la
+        quiralidad, la biología computacional y la astrobiología. Cinco áreas
+        conectadas, organizadas a continuación.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {research.map((item, i) => {
+        const isPhoto = item.img.endsWith('.jpg') || item.img.endsWith('.jpeg');
+        return (
+          <article id={item.slug} class:list={["research-item", "reveal", { reverse: i % 2 === 1 }]}>
+            <div class="research-figure">
+              <div class:list={["figure-frame", { 'is-photo': isPhoto }]}>
+                <img src={item.img} alt={item.title} loading="lazy" />
+              </div>
+            </div>
+            <div class="research-text">
+              <h2>{item.title}</h2>
+              <div class="prose" set:html={item.body} />
+            </div>
+          </article>
+        );
+      })}
+
+      <div class="cta-block reveal">
+        <p>
+          No dudes en escribirme si hay algo de lo que te gustaría hablar.
+          Siempre estoy abierta a nuevas ideas y colaboraciones.
+        </p>
+        <a class="btn" href="/es/contact"><span>Contacta conmigo</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 640px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .research-item {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .research-item:first-of-type {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .research-item.reverse {
+    grid-template-columns: 6fr 4fr;
+  }
+
+  .research-item.reverse .research-figure {
+    order: 2;
+  }
+
+  .research-figure {
+    position: relative;
+  }
+
+  .figure-frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle);
+    background: #f5f3ec;
+    padding: var(--space-2);
+  }
+
+  .figure-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .figure-frame.is-photo {
+    background: var(--color-bg-elevated);
+    padding: 0;
+  }
+
+  .cta-block {
+    margin-top: var(--space-6);
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .cta-block p {
+    max-width: 540px;
+    margin: 0 auto var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .research-text h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: 400;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: var(--space-2);
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose a {
+    color: var(--color-gold-bright);
+  }
+
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .cta-block {
+    text-align: center;
+    padding: var(--space-5) 0 var(--space-3);
+  }
+
+  .cta-block h3 {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .cta-block p {
+    margin-bottom: var(--space-4);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 880px) {
+    .research-item,
+    .research-item.reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .research-item.reverse .research-figure {
+      order: 0;
+    }
+
+    .research-num {
+      top: -0.5rem;
+      left: -0.5rem;
+      font-size: 3.5rem;
+    }
+  }
+</style>

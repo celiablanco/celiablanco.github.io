@@ -1,0 +1,615 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type Pub = {
+  authors: string;
+  title: string;
+  venue: string;
+  href?: string;
+  extras?: { label: string; href: string }[];
+};
+
+const inProgress: Pub[] = [
+  {
+    authors: 'C. Blanco, J. Haqq-Misra, G. Profitiliotis',
+    title: 'Projections of Earth\'s Technosphere: Civilization Collapse-Recovery Dynamics and Detectability',
+    venue: 'En revisión',
+  },
+  {
+    authors: 'C. Blanco, A. Berea, A. Mohanty, A. Poddar, R.B. Gupta',
+    title: 'Astrobiology Before, During, and After Crewed Space Missions',
+    venue: 'En revisión',
+  },
+  {
+    authors: 'C. Blanco',
+    title: 'From Rule-Taking to Rule-Making Chemistry',
+    venue: 'En revisión',
+  },
+];
+
+const groups: { year: string; pubs: Pub[] }[] = [
+  {
+    year: '2026',
+    pubs: [
+      {
+        authors: 'S. Rajamani, C. Mathis, S. Asche, D. Boulesteix, C. Blanco, O. Markovitch, A. Champagne-Ruel, C. Bautista, Z. Peng',
+        title: 'Better origin(s) of life research through collaboration across disciplines',
+        venue: 'Cell Reports Physical Science',
+        href: 'https://doi.org/10.1016/j.xcrp.2026.103220',
+      },
+      {
+        authors: 'C. Blanco',
+        title: 'Context Without Contact: Top-Down Information Flow from Shared Modulation in Uncoupled Prebiotic Systems',
+        venue: 'Royal Society Open Science, 13(4), 251750',
+        href: 'https://doi.org/10.1098/rsos.251750',
+      },
+      {
+        authors: 'S.A. Hashmi, H. Chok, R. Cabrera, C. Blanco',
+        title: 'Molecular Complexity Constrained Early Amino Acid Recruitment into the Genetic Code',
+        venue: 'Genome Biology and Evolution, 18(3), evag012',
+        href: 'https://doi.org/10.1093/gbe/evag012',
+      },
+      {
+        authors: 'OoLEN et al.',
+        title: 'What it takes to solve the origin of life: An integrated review. Part 1 — Experimental methods and data repositories',
+        venue: 'Cell Reports Physical Science, 7(4), 103212',
+        href: 'https://doi.org/10.1016/j.xcrp.2026.103212',
+      },
+      {
+        authors: 'OoLEN et al.',
+        title: 'What it takes to solve the origin of life: An integrated review. Part 2 — Theoretical methods and emerging trends',
+        venue: 'Cell Reports Physical Science',
+        href: 'https://doi.org/10.1016/j.xcrp.2026.103211',
+      },
+    ],
+  },
+  {
+    year: '2025',
+    pubs: [
+      {
+        authors: 'T. Noll-Walker, K. Elasri, C. Balkan, E. Jo, H.J. Cleaves II, M. Sandora, C. Blanco',
+        title: 'DNA tokenization efficiently compresses information and reflects phylogenetic relationships',
+        venue: 'Proceedings of the Artificial Life Conference 2025 (ALIFE 2025), MIT Press',
+        href: 'https://doi.org/10.1162/ISAL.a.851',
+      },
+      {
+        authors: 'A. Berea, C. Blanco, J. Haqq-Misra, S. Som, G. Profitiliotis, G. Lau',
+        title: 'Space Settlement and Astrobiology — Connections and Overlaps',
+        venue: 'Space Policy, 101727',
+        href: 'https://doi.org/10.1016/j.spacepol.2025.101727',
+      },
+      {
+        authors: 'C. Blanco, A. Tee, P. Sharma, M.S. Newton, K. Lee, S.E. Erickson, B. Seelig, I.A. Chen',
+        title: 'EasyDIVER+: An Advanced Tool for Analyzing High Throughput Sequencing Data from In Vitro Evolution of Nucleic Acids or Amino Acids',
+        venue: 'J Mol Evol, 93(2), 229–237',
+        href: 'https://doi.org/10.1007/s00239-025-10244-w',
+      },
+    ],
+  },
+  {
+    year: '2024',
+    pubs: [
+      {
+        authors: 'C. Blanco, T. Buhse, P. Cintas, I. Herreros, J.-C. Micheau, F. Moran, J. Perez-Mercader, J.M. Ribo, M. Stich, C. Viedma',
+        title: 'In Memoriam: David Hochberg (1957–2023)',
+        venue: 'Astrobiology',
+        href: 'https://doi.org/10.1089/ast.2024.0030',
+      },
+    ],
+  },
+  {
+    year: '2022',
+    pubs: [
+      {
+        authors: 'C.H. Tran, R. Saha, C. Blanco, D. Bagchi, I.A. Chen',
+        title: 'Modulation of α-synuclein aggregation in vitro by a DNA aptamer',
+        venue: 'Biochemistry, 61(17), 1757–1765',
+        href: 'https://doi.org/10.1021/acs.biochem.2c00207',
+      },
+      {
+        authors: 'E. Janzen, Y. Shen, A. Vázquez-Salazar, Z. Liu, C. Blanco, J. Kenchel, I.A. Chen',
+        title: 'Emergent properties as by-products of prebiotic evolution of aminoacylation ribozymes',
+        venue: 'Nature Communications, 13(1), 1–12',
+        href: 'https://doi.org/10.1038/s41467-022-31387-0',
+      },
+    ],
+  },
+  {
+    year: '2021',
+    pubs: [
+      {
+        authors: 'N. Kanwar, C. Blanco, I.A. Chen, B. Seelig',
+        title: 'PacBio sequencing output increased through uniform and directional fivefold concatenation',
+        venue: 'Scientific Reports, 11(1), 1–13',
+        href: 'https://doi.org/10.1038/s41598-021-96829-z',
+        extras: [
+          { label: 'Artículo en GenomeWeb', href: 'https://www.genomeweb.com/sequencing/new-pacbio-library-prep-method-helps-cover-death-valley-between-short-and-long-reads' },
+        ],
+      },
+    ],
+  },
+  {
+    year: '2020',
+    pubs: [
+      {
+        authors: 'C. Blanco, S. Verbanic, B. Seelig, I.A. Chen',
+        title: 'EasyDIVER: a pipeline for assembling and counting high throughput sequencing data from in vitro evolution of nucleic acids or peptides',
+        venue: 'J. Mol. Evol., 88, 477–481',
+        href: 'https://doi.org/10.1007/s00239-020-09954-0',
+      },
+      {
+        authors: 'E. Janzen, C. Blanco, H. Peng, J. Kenchel, I.A. Chen',
+        title: 'Promiscuous ribozymes and their proposed role in prebiotic evolution',
+        venue: 'Chem. Rev., 120(11), 4879–4897',
+        href: 'https://doi.org/10.1021/acs.chemrev.9b00620',
+      },
+      {
+        authors: 'C. Blanco, S. Verbanic, B. Seelig, I.A. Chen',
+        title: 'High-throughput sequencing of in vitro selections of mRNA-displayed peptides: data analysis and applications',
+        venue: 'Phys. Chem. Chem. Phys., 22, 6492–6506',
+        href: 'https://doi.org/10.1039/c9cp05912a',
+        extras: [
+          { label: 'PCCP HOT article', href: 'https://pubs.rsc.org/en/journals/articlecollectionlanding?sercode=cp&themeid=82b7cc99-4e0c-4c4a-bb00-a57a776e3a9c' },
+        ],
+      },
+    ],
+  },
+  {
+    year: '2019',
+    pubs: [
+      {
+        authors: 'C. Blanco, I.A. Chen',
+        title: 'Phage therapy administered noninvasively could be effective in thin tubes subject to episodic flow despite washout: a simulation study',
+        venue: 'Phys. Biol., 16(5), 054001',
+        href: 'https://doi.org/10.1088/1478-3975/ab2ea0',
+      },
+      {
+        authors: 'C. Blanco, E. Janzen, A. Pressman, R. Saha, I.A. Chen',
+        title: 'Molecular fitness landscapes from high-coverage sequence profiling',
+        venue: 'Annual Review of Biophysics, 48, 1–18',
+        href: 'https://doi.org/10.1146/annurev-biophys-052118-115333',
+      },
+      {
+        authors: 'A.D. Pressman, Z. Liu, E. Janzen, C. Blanco, U.F. Müller, G.F. Joyce, R. Pascal, I.A. Chen',
+        title: 'Mapping a systematic ribozyme fitness landscape reveals a frustrated evolutionary network for self-aminoacylating RNA',
+        venue: 'J. Am. Chem. Soc., 141(15), 6213–6223',
+        href: 'https://doi.org/10.1021/jacs.8b13298',
+      },
+      {
+        authors: 'D. Hochberg, C. Blanco, M. Stich',
+        title: 'Spontaneous mirror symmetry breaking from recycling in enantioselective polymerization',
+        venue: 'In: Biological Systems: Nonlinear Dynamics Approach. SEMA SIMAI Springer Series, vol. 20',
+        href: 'https://doi.org/10.1007/978-3-030-16585-7_3',
+      },
+    ],
+  },
+  {
+    year: '2018',
+    pubs: [
+      {
+        authors: 'C. Blanco, M. Bayas, F. Yan, I.A. Chen',
+        title: 'Analysis of evolutionarily independent protein-RNA complexes yields a criterion to evaluate the relevance of prebiotic scenarios',
+        venue: 'Current Biology, 28(4), 526–537.e5',
+        href: 'https://doi.org/10.1016/j.cub.2018.01.014',
+        extras: [
+          { label: 'phys.org', href: 'https://phys.org/news/2018-02-amino-acid-arginine-important-role.html' },
+          { label: 'ScienceDaily', href: 'https://www.sciencedaily.com/releases/2018/02/180206115111.htm' },
+          { label: 'UCSB The Current', href: 'https://www.news.ucsb.edu/2018/018694/recipe-life' },
+          { label: 'Daily Nexus', href: 'https://dailynexus.com/2018-02-22/arginines-larger-in-life-role/' },
+          { label: 'Dispatch perspective', href: 'https://www.sciencedirect.com/science/article/pii/S0960982218300885' },
+        ],
+      },
+      {
+        authors: 'C. Blanco, I.A. Chen',
+        title: 'Connections Between Mathematical Models of Prebiotic Evolution and Homochirality',
+        venue: 'In: Prebiotic Chemistry and Chemical Evolution of Nucleic Acids. Nucleic Acids and Molecular Biology, vol. 35',
+        href: 'https://doi.org/10.1007/978-3-319-93584-3_9',
+      },
+    ],
+  },
+  {
+    year: '2017',
+    pubs: [
+      {
+        authors: 'C. Blanco, M. Stich, D. Hochberg',
+        title: 'Mechanically induced homochirality in nucleated enantioselective polymerization',
+        venue: 'J. Phys. Chem. B, 121(5), 942–955',
+        href: 'https://doi.org/10.1021/acs.jpcb.6b10705',
+      },
+    ],
+  },
+  {
+    year: '2015',
+    pubs: [
+      {
+        authors: 'A. Pressman, C. Blanco, I.A. Chen',
+        title: 'The RNA World as a model system to study the origin of life',
+        venue: 'Current Biology, 25(19), R953–R963',
+        href: 'https://doi.org/10.1016/j.cub.2015.06.016',
+      },
+      {
+        authors: 'C. Blanco, J.M. Ribo, D. Hochberg',
+        title: 'Modeling spontaneous chiral symmetry breaking and deracemization phenomena: discrete versus continuum approaches',
+        venue: 'Phys. Rev. E, 91(2), 022801',
+        href: 'https://doi.org/10.1103/PhysRevE.91.022801',
+      },
+    ],
+  },
+  {
+    year: '2014',
+    pubs: [
+      {
+        authors: 'J.M. Ribó, C. Blanco, J. Crusats, Z. El-Hachemi, D. Hochberg, A. Moyano',
+        title: 'Absolute asymmetric synthesis in enantioselective autocatalytic reaction networks: theoretical games, speculations on chemical evolution and perhaps a synthetic option',
+        venue: 'Chem. A Eur. J., 20(52), 17250–17271',
+        href: 'https://doi.org/10.1002/chem.201404534',
+      },
+    ],
+  },
+  {
+    year: '2013',
+    pubs: [
+      {
+        authors: 'C. Blanco, J. Crusats, Z. El-Hachemi, A. Moyano, S. Veintemillas-Verdaguer, D. Hochberg, J.M. Ribó',
+        title: 'The Viedma deracemization of racemic conglomerate mixtures as a paradigm of spontaneous mirror symmetry breaking in aggregation and polymerization',
+        venue: 'Chem. Phys. Chem., 14(17), 3982–3993',
+        href: 'https://doi.org/10.1002/cphc.201300699',
+      },
+      {
+        authors: 'C. Blanco, J. Crusats, Z. El-Hachemi, A. Moyano, D. Hochberg, J.M. Ribó',
+        title: 'Spontaneous emergence of chirality in the limited enantioselectivity model: autocatalytic cycle driven by an external reagent',
+        venue: 'Chem. Phys. Chem., 14(11), 2432',
+        href: 'https://doi.org/10.1002/cphc.201300350',
+      },
+      {
+        authors: 'J.M. Ribó, J. Crusats, Z. El-Hachemi, A. Moyano, C. Blanco, D. Hochberg',
+        title: 'Spontaneous mirror symmetry breaking in the limited enantioselective autocatalysis model: abyssal hydrothermal vents as scenario for the emergence of chirality in prebiotic chemistry',
+        venue: 'Astrobiology, 13(2), 132',
+        href: 'https://doi.org/10.1089/ast.2012.0904',
+      },
+      {
+        authors: 'C. Blanco, J.M. Ribó, J. Crusats, Z. El-Hachemi, A. Moyano, D. Hochberg',
+        title: 'Mirror symmetry breaking with limited enantioselective autocatalysis and temperature gradients: a stability survey',
+        venue: 'Phys. Chem. Chem. Phys., 15(5), 1546',
+        href: 'https://doi.org/10.1039/c2cp43488a',
+      },
+      {
+        authors: 'M. Stich, C. Blanco, D. Hochberg',
+        title: 'Chiral and chemical oscillations in a simple dimerization model',
+        venue: 'Phys. Chem. Chem. Phys., 15(1), 255',
+        href: 'https://doi.org/10.1039/c2cp42620j',
+      },
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Stochastic mirror symmetry breaking: theoretical models and simulation of experiments',
+        venue: 'Topics in Current Chemistry, 333, 157',
+        href: 'https://doi.org/10.1007/128_2012_362',
+      },
+    ],
+  },
+  {
+    year: '2012',
+    pubs: [
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Models for mirror symmetry breaking via β-sheet-controlled copolymerization: (i) mass balance and (ii) probabilistic treatment',
+        venue: 'J. Phys. Chem. B, 116(48), 13953',
+        href: 'https://doi.org/10.1021/jp305627m',
+      },
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Induced mirror symmetry breaking via template-controlled copolymerization',
+        venue: 'Chem. Commun., 48(30), 3659',
+        href: 'https://doi.org/10.1039/c2cc18045f',
+      },
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Multi-state transitions and quantum oscillations of optical activity',
+        venue: 'Phys. Rev. A, 85(2), 022114',
+        href: 'https://doi.org/10.1103/PhysRevA.85.022114',
+      },
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Homochiral oligopeptides by chiral amplification: interpretation of experimental data with a copolymerization model',
+        venue: 'Phys. Chem. Chem. Phys., 14(7), 2301',
+        href: 'https://doi.org/10.1039/c2cp22813k',
+      },
+    ],
+  },
+  {
+    year: '2011',
+    pubs: [
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Chiral symmetry breaking via crystallization of the glycine and α-amino acids system: a mathematical model',
+        venue: 'Phys. Chem. Chem. Phys., 13(28), 12920',
+        href: 'https://doi.org/10.1039/c1cp21011d',
+      },
+      {
+        authors: 'C. Blanco, M. Stich, D. Hochberg',
+        title: 'Temporary mirror symmetry breaking and chiral excursions in open and closed systems',
+        venue: 'Chem. Phys. Lett., 505(4), 140',
+        href: 'https://doi.org/10.1016/j.cplett.2011.02.032',
+      },
+      {
+        authors: 'C. Blanco, D. Hochberg',
+        title: 'Chiral polymerization: symmetry breaking and entropy production in closed systems',
+        venue: 'Phys. Chem. Chem. Phys., 13(3), 839',
+        href: 'https://doi.org/10.1039/c0cp00992j',
+        extras: [
+          { label: 'PCCP HOT paper', href: 'https://blogs.rsc.org/cp/2010/11/09/modelling-chiral-polymerization/' },
+        ],
+      },
+    ],
+  },
+];
+---
+<BaseLayout title="Publicaciones — Dra. Celia Blanco" description="Publicaciones revisadas por pares y preprints de la Dra. Celia Blanco.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Publicaciones</h1>
+      <p class="lede">
+        Artículos revisados por pares, preprints y capítulos de libro. Para
+        recuentos de citas y el registro actualizado, visita
+        <a href="https://scholar.google.com/citations?user=nzOjUiUAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section pubs">
+    <div class="container">
+      <!-- En curso -->
+      <div class="year-block reveal">
+        <div class="year-marker">
+          <span class="year-num">En&nbsp;curso</span>
+          <span class="year-rule"></span>
+        </div>
+        <ul class="pub-list">
+          {inProgress.map((p) => (
+            <li class="pub">
+              <p class="pub-title">{p.title}</p>
+              <p class="pub-meta">
+                <span class="authors">{p.authors}</span>
+                <span class="sep">·</span>
+                <span class="venue">{p.venue}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {groups.map((g) => (
+        <div class="year-block reveal" id={`y-${g.year}`}>
+          <div class="year-marker">
+            <span class="year-num">{g.year}</span>
+            <span class="year-rule"></span>
+          </div>
+          <ul class="pub-list">
+            {g.pubs.map((p) => (
+              <li class="pub">
+                <p class="pub-title">
+                  {p.href ? <a href={p.href} target="_blank" rel="noopener">{p.title}</a> : p.title}
+                </p>
+                <p class="pub-meta">
+                  <span class="authors" set:html={p.authors.replace(/(C\.\s?Blanco)/g, '<mark>$1</mark>')} />
+                  <span class="sep">·</span>
+                  <span class="venue">{p.venue}</span>
+                </p>
+                {p.extras && (
+                  <p class="pub-extras">
+                    {p.extras.map((e, i) => (
+                      <>
+                        {i > 0 && <span class="dot"> · </span>}
+                        <a href={e.href} target="_blank" rel="noopener">{e.label}</a>
+                      </>
+                    ))}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="cta-block reveal">
+        <p>
+          No dudes en escribirme si hay algo de lo que te gustaría hablar.
+          Siempre estoy abierta a nuevas ideas y colaboraciones.
+        </p>
+        <a class="btn" href="/es/contact"><span>Contacta conmigo</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 640px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .pubs {
+    padding-top: var(--space-4);
+  }
+
+  .year-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    align-items: start;
+  }
+
+  .year-marker {
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .year-num {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-text-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .year-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pub {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .pub:last-child {
+    border-bottom: none;
+  }
+
+  .pub-title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--color-text);
+    margin: 0 0 0.4rem;
+  }
+
+  .pub-title a {
+    color: var(--color-text);
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out), color 0.2s ease;
+  }
+
+  .pub-title a:hover,
+  .pub-title a:focus-visible {
+    background-size: 100% 1px;
+    color: var(--color-gold-bright);
+  }
+
+  .pub-meta {
+    font-size: 0.92rem;
+    color: var(--color-text-subtle);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .pub-meta .authors {
+    color: var(--color-text-muted);
+  }
+
+  .pub-meta :global(mark) {
+    background: transparent;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .pub-meta .sep {
+    margin: 0 0.6em;
+    color: var(--color-text-subtle);
+  }
+
+  .pub-meta .venue {
+    font-style: italic;
+  }
+
+  .pub-extras {
+    margin: 0.4rem 0 0;
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+  }
+
+  .pub-extras a {
+    color: var(--color-cyan);
+    background-image: none;
+  }
+
+  .pub-extras a:hover {
+    color: var(--color-gold-bright);
+  }
+
+  .pub-extras .dot {
+    color: var(--color-text-subtle);
+  }
+
+  .cta-block {
+    text-align: center;
+    padding: var(--space-5) 0 var(--space-3);
+  }
+
+  .cta-block h3 {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-weight: 300;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .cta-block p {
+    margin-bottom: var(--space-4);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-block {
+    margin-top: var(--space-5);
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .cta-block p {
+    max-width: 540px;
+    margin: 0 auto var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 700px) {
+    .year-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+
+    .year-marker {
+      position: static;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .year-rule {
+      flex: 1;
+    }
+
+    .pub-title {
+      font-size: 1.05rem;
+    }
+  }
+</style>

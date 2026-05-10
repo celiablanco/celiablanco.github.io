@@ -1,0 +1,321 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout>
+  <!-- ============= HERO ============= -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1 class="hero-name">Dra. Celia Blanco</h1>
+        <p class="hero-title">Física Teórica y Astrobióloga</p>
+        <p class="hero-affil">Investigadora Ramón y Cajal · Centro de Astrobiología (CAB, CSIC-INTA)</p>
+        <p class="hero-lede">
+          Estudio el origen y la evolución de la vida en el universo: de la
+          química prebiótica y la evolución molecular a la trayectoria a largo
+          plazo de las civilizaciones tecnológicas.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="/es/research"><span>Investigación</span></a>
+          <a class="btn btn-ghost" href="/es/publications"><span>Publicaciones</span></a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <img src="/img/profile-nobg.png" alt="Retrato de la Dra. Celia Blanco" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= ABOUT ============= -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="about-prose">
+        <div class="about-text reveal">
+          <h2>Sobre mí</h2>
+          <p>
+            ¡Bienvenidos a mi rincón de la web! Soy física teórica, fascinada
+            por las grandes preguntas de la astrobiología. Si tiene que ver
+            con el origen o la evolución de la vida en el universo, me
+            interesa.
+          </p>
+          <p>
+            Tras más de una década de investigación en Estados Unidos, he
+            cerrado el círculo: vuelvo al <strong>Centro de Astrobiología
+            (CAB, CSIC-INTA)</strong>, donde todo empezó. Me incorporo al CAB
+            como investigadora Ramón y Cajal, después de varios años trabajando
+            con colegas inspiradores en UCLA, UC Santa Barbara y el Blue
+            Marble Space Institute of Science.
+          </p>
+          <p>
+            Mi investigación se sitúa en la intersección entre la biofísica y
+            la evolución biomolecular. Utilizo enfoques teóricos y
+            computacionales para estudiar los mecanismos que impulsan la
+            aparición y evolución de los sistemas biológicos complejos. Si
+            algo de esto te resuena o te apetece charlar sobre posibles
+            colaboraciones, ¡no dudes en escribirme!
+          </p>
+          <div class="btn-row" style="margin-top: var(--space-4);">
+            <a class="btn" href="/es/contact"><span>Contacta conmigo</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= RESEARCH AREAS PREVIEW ============= -->
+  <section class="section interests">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="eyebrow">Investigación</span>
+        <h2>Áreas de investigación</h2>
+      </div>
+
+      <ul class="interest-grid">
+        <li class="interest-item reveal">
+          <a class="interest-link" href="/es/research#origins">
+            <h3>Origen de la vida y química prebiótica</h3>
+            <p>Cómo la química pasa de seguir reglas a generarlas a medida que crece la complejidad.</p>
+          </a>
+        </li>
+        <li class="interest-item reveal">
+          <a class="interest-link" href="/es/research#evolution">
+            <h3>Evolución molecular y código genético</h3>
+            <p>Paisajes de aptitud, mapas secuencia–función y la forma temprana del código genético.</p>
+          </a>
+        </li>
+        <li class="interest-item reveal">
+          <a class="interest-link" href="/es/research#chirality">
+            <h3>Quiralidad y ruptura de simetría especular</h3>
+            <p>Modelos teóricos para el origen y la amplificación de la quiralidad molecular.</p>
+          </a>
+        </li>
+        <li class="interest-item reveal">
+          <a class="interest-link" href="/es/research#computational">
+            <h3>Biología computacional y matemática</h3>
+            <p>Herramientas de código abierto, ML aplicado a secuencias biológicas y modelos de dinámica biológica.</p>
+          </a>
+        </li>
+        <li class="interest-item reveal">
+          <a class="interest-link" href="/es/research#astrobiology">
+            <h3>Astrobiología y exploración espacial</h3>
+            <p>Trayectorias de civilizaciones, dinámica de la tecnosfera y la búsqueda de vida.</p>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-center" style="margin-top: var(--space-5);">
+        <a class="btn" href="/es/research"><span>Leer más</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ============= HERO ============= */
+  .hero {
+    padding: var(--space-5) 0 var(--space-5);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .hero-text {
+    max-width: 620px;
+  }
+
+  .hero-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2);
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    color: var(--color-text);
+  }
+
+  .hero-title {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 0 0 var(--space-1);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-affil {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--color-text-subtle);
+    margin: 0 0 var(--space-4);
+  }
+
+  .hero-lede {
+    margin: 0 0 var(--space-4);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-portrait {
+    max-width: 320px;
+    margin-left: auto;
+    width: 100%;
+  }
+
+  .hero-portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .hero-portrait {
+      max-width: 260px;
+      margin: 0 auto;
+      order: -1;
+    }
+  }
+
+  /* ============= ABOUT ============= */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .about-text .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .about-text h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    margin-bottom: var(--space-3);
+    font-weight: 400;
+    color: var(--color-text);
+  }
+
+  .about-text .eyebrow + h2 {
+    margin-top: 0;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+  }
+
+  /* ============= INTERESTS — 3 on top, 2 on bottom (centered) ============= */
+  .interest-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-2);
+  }
+
+  .interest-item {
+    grid-column: span 2;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius);
+    text-align: center;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease-out);
+  }
+
+  .interest-link {
+    display: block;
+    padding: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+  }
+
+  .interest-link:hover,
+  .interest-link:focus-visible {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .interest-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .interest-item:nth-child(4),
+  .interest-item:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  .interest-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-border);
+  }
+
+  .interest-item h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-bottom: var(--space-2);
+    font-weight: 500;
+    font-family: var(--font-sans);
+  }
+
+  .interest-item p {
+    font-size: 0.92rem;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 760px) {
+    .interest-grid {
+      grid-template-columns: 1fr;
+    }
+    .interest-item,
+    .interest-item:nth-child(4),
+    .interest-item:nth-child(5) {
+      grid-column: span 1;
+    }
+  }
+
+  /* ============= RESPONSIVE ============= */
+  @media (max-width: 880px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      min-height: calc(100vh - 76px);
+      padding: var(--space-5) 0 var(--space-6);
+    }
+
+    .hero-title .rule {
+      max-width: 30px;
+    }
+
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>

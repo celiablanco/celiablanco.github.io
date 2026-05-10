@@ -23,6 +23,9 @@ const profiles = [
 ];
 
 const year = new Date().getFullYear();
+
+const { pathname } = Astro.url;
+const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWith('/es/');
 ---
 <footer class="site-footer">
   <div class="container footer-inner">
@@ -51,6 +54,11 @@ const year = new Date().getFullYear();
     </ul>
     <p class="footer-meta">
       &copy; {year} Celia Blanco · Centro de Astrobiología (CAB, CSIC-INTA)
+    </p>
+    <p class="footer-meta footer-langnote">
+      {isSpanish
+        ? <>Also available in <a href="/">English</a>.</>
+        : <>También disponible en <a href="/es">español</a>.</>}
     </p>
   </div>
 </footer>
@@ -111,6 +119,24 @@ const year = new Date().getFullYear();
     color: var(--color-text-subtle);
     font-size: 0.82rem;
     margin: 0;
+  }
+
+  .footer-langnote {
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+  }
+
+  .footer-langnote a {
+    color: var(--color-text-muted);
+    background-image: none;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-subtle);
+    text-underline-offset: 3px;
+  }
+
+  .footer-langnote a:hover {
+    color: var(--color-gold-bright);
+    text-decoration-color: var(--color-gold);
   }
 
   @media (max-width: 600px) {
