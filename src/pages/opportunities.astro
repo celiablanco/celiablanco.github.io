@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 type Opportunity = {
   title: string;
   href?: string;
-  audience: ('undergrad' | 'phd' | 'postdoc' | 'early-career')[];
+  audience: ('undergrad' | 'phd' | 'postdoc')[];
   location: string;
   description: string;
   deadline?: string;
@@ -62,7 +62,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
       {
         title: 'BMSIS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
-        audience: ['phd', 'postdoc', 'early-career'],
+        audience: ['phd', 'postdoc'],
         location: 'International (remote)',
         description:
           'One-year unpaid research appointments at BMSIS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMSIS YSP alumni. A good complement to a primary affiliation — fully remote and renewable. I am a BMSIS mentor and can supervise projects in my research areas.',
@@ -99,7 +99,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['phd'],
         location: 'Spain & Portugal',
         description:
-          'Highly competitive fellowships for doctoral studies at centers of excellence in Spain and Portugal. The Incoming track is open to any nationality; the Retaining track targets those already in Spain/Portugal. CAB is eligible as a Severo Ochoa–accredited center.',
+          'Highly competitive fellowships for doctoral studies at centers of excellence in Spain and Portugal. The Incoming track is open to any nationality; the Retaining track targets those already in Spain/Portugal. CAB is eligible as a María de Maeztu–accredited center.',
         deadline: 'Typically opens in autumn',
       },
       {
@@ -133,7 +133,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['postdoc'],
         location: 'EU · International',
         description:
-          'European fellowships for experienced researchers to carry out 1–2 year projects at a European host institution. Open to any nationality. I have successfully supervised MSCA fellows and am happy to support strong applicants with the proposal — contact me well before the deadline.',
+          'European fellowships for experienced researchers to carry out 1–2 year projects at a European host institution. Open to any nationality. I am happy to support strong applicants with the proposal — contact me well before the deadline.',
         deadline: 'Typically September',
       },
       {
@@ -142,50 +142,8 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['postdoc'],
         location: 'Spain & Portugal',
         description:
-          'Prestigious 3-year postdoctoral fellowships for researchers at accredited Spanish or Portuguese institutions. The Incoming track is open to any nationality; the Retaining track targets those already based in Spain/Portugal. CAB is eligible as a Severo Ochoa center.',
+          'Prestigious 3-year postdoctoral fellowships for researchers at accredited Spanish or Portuguese institutions. The Incoming track is open to any nationality; the Retaining track targets those already based in Spain/Portugal. CAB is eligible as a María de Maeztu center.',
         deadline: 'Typically opens in spring',
-      },
-    ],
-  },
-  {
-    id: 'schools',
-    label: 'Schools, Workshops & Community',
-    sublabel: 'Key venues for building your network and staying current in astrobiology and origins of life research.',
-    items: [
-      {
-        title: 'AbGradCon — Astrobiology Graduate Conference',
-        href: 'http://www.abgradcon.org/',
-        audience: ['phd', 'postdoc'],
-        location: 'International',
-        description:
-          'Annual conference organized by and for graduate students and early-career astrobiologists. A supportive, non-hierarchical space to present work and build community. Highly recommended for anyone starting in the field.',
-        deadline: 'Typically spring',
-      },
-      {
-        title: 'EANA Workshops & Astrobiology Schools',
-        href: 'https://www.eana-net.eu',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'Europe',
-        description:
-          'The European Astrobiology Network Association organizes annual workshops and training schools, often with travel grants for early-career participants. A key networking venue for European astrobiologists.',
-        deadline: 'Varies by year',
-      },
-      {
-        title: 'AbSciCon — Astrobiology Science Conference',
-        href: 'https://science.nasa.gov/astrobiology/abscicon/',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'USA',
-        description:
-          'The primary astrobiology meeting in the US, held biennially. Features early-career travel grants and dedicated early-career programming. Worth attending if you can — broad, interdisciplinary community.',
-        deadline: 'Biennial (even years)',
-      },
-      {
-        title: 'OoLEN — Origins of Life Early-career Network',
-        audience: ['phd', 'postdoc'],
-        location: 'International',
-        description:
-          'Network supporting early-career researchers working on the origins of life across theory and experiment. Organizes workshops, seminars, and collaborative initiatives. Search "OoLEN" for current events.',
-        deadline: 'Ongoing events throughout the year',
       },
     ],
   },
@@ -195,7 +153,6 @@ const audienceLabel: Record<string, string> = {
   undergrad: 'Undergrad',
   phd: 'PhD',
   postdoc: 'Postdoc',
-  'early-career': 'Early Career',
 };
 ---
 
@@ -240,7 +197,6 @@ const audienceLabel: Record<string, string> = {
           <button class="filter-btn" data-filter="undergrad">Undergrad</button>
           <button class="filter-btn" data-filter="phd">PhD</button>
           <button class="filter-btn" data-filter="postdoc">Postdoc</button>
-          <button class="filter-btn" data-filter="early-career">Early Career</button>
         </div>
       </div>
 
@@ -522,12 +478,6 @@ const audienceLabel: Record<string, string> = {
     background: rgba(167, 139, 250, 0.12);
     color: #c4b5fd;
     border: 1px solid rgba(167, 139, 250, 0.25);
-  }
-
-  .tag-early-career {
-    background: rgba(110, 231, 183, 0.1);
-    color: #6ee7b7;
-    border: 1px solid rgba(110, 231, 183, 0.22);
   }
 
   .tag-loc {

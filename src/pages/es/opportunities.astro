@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 type Opportunity = {
   title: string;
   href?: string;
-  audience: ('undergrad' | 'phd' | 'postdoc' | 'early-career')[];
+  audience: ('undergrad' | 'phd' | 'postdoc')[];
   location: string;
   description: string;
   deadline?: string;
@@ -62,7 +62,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
       {
         title: 'BMSIS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
-        audience: ['phd', 'postdoc', 'early-career'],
+        audience: ['phd', 'postdoc'],
         location: 'Internacional (remoto)',
         description:
           'Nombramientos de investigadora visitante no remunerados de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable. Soy mentora del BMSIS y puedo supervisar proyectos en mis áreas de investigación.',
@@ -99,7 +99,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['phd'],
         location: 'España y Portugal',
         description:
-          'Becas muy competitivas para realizar un doctorado en centros de excelencia de España y Portugal. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro Severo Ochoa.',
+          'Becas muy competitivas para realizar un doctorado en centros de excelencia de España y Portugal. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro María de Maeztu.',
         deadline: 'Suele abrirse en otoño',
       },
       {
@@ -133,7 +133,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['postdoc'],
         location: 'UE · Internacional',
         description:
-          'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. He supervisado becarios MSCA y puedo apoyar candidatos sólidos en la elaboración de la propuesta — contáctame con antelación.',
+          'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. Puedo apoyar candidatos sólidos en la elaboración de la propuesta — contáctame con antelación.',
         deadline: 'Normalmente en septiembre',
       },
       {
@@ -142,50 +142,8 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         audience: ['postdoc'],
         location: 'España y Portugal',
         description:
-          'Becas postdoctorales de 3 años para investigadores en centros acreditados españoles o portugueses. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro Severo Ochoa.',
+          'Becas postdoctorales de 3 años para investigadores en centros acreditados españoles o portugueses. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro María de Maeztu.',
         deadline: 'Suele abrirse en primavera',
-      },
-    ],
-  },
-  {
-    id: 'schools',
-    label: 'Escuelas, Talleres y Comunidad',
-    sublabel: 'Espacios clave para construir tu red y mantenerte al día en astrobiología e investigación sobre el origen de la vida.',
-    items: [
-      {
-        title: 'AbGradCon — Astrobiology Graduate Conference',
-        href: 'http://www.abgradcon.org/',
-        audience: ['phd', 'postdoc'],
-        location: 'Internacional',
-        description:
-          'Conferencia anual organizada por y para estudiantes de doctorado e investigadores en inicio de carrera en astrobiología. Un espacio de apoyo y sin jerarquías para presentar el trabajo y construir comunidad. Muy recomendable para quienes se inician en el campo.',
-        deadline: 'Normalmente en primavera',
-      },
-      {
-        title: 'EANA — Talleres y Escuelas de Astrobiología',
-        href: 'https://www.eana-net.eu',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'Europa',
-        description:
-          'La Red Europea de Astrobiología (EANA) organiza talleres anuales y escuelas de formación, a menudo con ayudas de viaje para investigadores en etapas tempranas. Una red de contactos fundamental para los astrobiólogos europeos.',
-        deadline: 'Varía según el año',
-      },
-      {
-        title: 'AbSciCon — Astrobiology Science Conference',
-        href: 'https://science.nasa.gov/astrobiology/abscicon/',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'EE. UU.',
-        description:
-          'El principal congreso de astrobiología en Estados Unidos, de periodicidad bienal. Cuenta con ayudas de viaje para investigadores en etapas tempranas y sesiones específicas para jóvenes científicos. Vale la pena asistir — comunidad amplia e interdisciplinar.',
-        deadline: 'Bienal (años pares)',
-      },
-      {
-        title: 'OoLEN — Origins of Life Early-career Network',
-        audience: ['phd', 'postdoc'],
-        location: 'Internacional',
-        description:
-          'Red de apoyo a investigadores en etapas tempranas que trabajan en el origen de la vida, desde la teoría hasta el experimento. Organiza talleres, seminarios e iniciativas colaborativas. Busca "OoLEN" para ver los eventos actuales.',
-        deadline: 'Actividades durante todo el año',
       },
     ],
   },
@@ -195,7 +153,6 @@ const audienceLabel: Record<string, string> = {
   undergrad: 'Grado',
   phd: 'Doctorado',
   postdoc: 'Postdoc',
-  'early-career': 'Inicio de carrera',
 };
 ---
 
@@ -240,7 +197,6 @@ const audienceLabel: Record<string, string> = {
           <button class="filter-btn" data-filter="undergrad">Grado</button>
           <button class="filter-btn" data-filter="phd">Doctorado</button>
           <button class="filter-btn" data-filter="postdoc">Postdoc</button>
-          <button class="filter-btn" data-filter="early-career">Inicio de carrera</button>
         </div>
       </div>
 
@@ -518,12 +474,6 @@ const audienceLabel: Record<string, string> = {
     background: rgba(167, 139, 250, 0.12);
     color: #c4b5fd;
     border: 1px solid rgba(167, 139, 250, 0.25);
-  }
-
-  .tag-early-career {
-    background: rgba(110, 231, 183, 0.1);
-    color: #6ee7b7;
-    border: 1px solid rgba(110, 231, 183, 0.22);
   }
 
   .tag-loc {
