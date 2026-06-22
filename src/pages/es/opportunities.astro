@@ -5,7 +5,6 @@ type Opportunity = {
   title: string;
   href?: string;
   audience: ('undergrad' | 'phd' | 'postdoc')[];
-  location: string;
   description: string;
   deadline?: string;
 };
@@ -20,7 +19,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'FPI — Formación de Personal Investigador',
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
-        location: 'España',
         description:
           'Contratos predoctorales vinculados a proyectos de investigación financiados por el Ministerio de Ciencia español. Cuando dispongo de una línea FPI en mi proyecto, anuncio la posición — el contrato es con mi grupo en el CAB. Consulta el tablón de empleo del CSIC o escríbeme directamente.',
         deadline: 'Se anuncia cuando el proyecto tiene una plaza FPI abierta',
@@ -29,7 +27,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'CSIC JAE-Predoc',
         href: 'https://www.csic.es',
         audience: ['phd'],
-        location: 'España · CSIC',
         description:
           'Becas predoctorales competitivas del Consejo Superior de Investigaciones Científicas (CSIC) para realizar una tesis doctoral en institutos del CSIC. Puedo participar como supervisora en el CAB. Busca "JAE Predoc" en la web del CSIC para la convocatoria vigente.',
         deadline: 'Suele abrirse en primavera',
@@ -38,7 +35,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'CSIC JAE-Intro',
         href: 'https://www.csic.es',
         audience: ['undergrad'],
-        location: 'España · CSIC',
         description:
           'Prácticas de investigación estivales para estudiantes de grado en institutos del CSIC. Puedo acoger estudiantes en el CAB para proyectos de 2–3 meses en astrobiología, química prebiótica o biología computacional. Contáctame antes de que se abra la convocatoria. Busca "JAE Intro" en la web del CSIC.',
         deadline: 'Suele abrirse en primavera',
@@ -54,7 +50,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'BMSIS Young Scientist Program',
         href: 'https://bmsis.org/ysp/',
         audience: ['undergrad'],
-        location: 'Internacional (remoto)',
         description:
           'Programa de investigación mentorizada del Blue Marble Space Institute of Science para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea y sin remuneración; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMSIS. Soy mentora del BMSIS y puedo tener proyectos disponibles.',
         deadline: 'Normalmente en primavera (junio–agosto)',
@@ -63,7 +58,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'BMSIS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
         audience: ['phd', 'postdoc'],
-        location: 'Internacional (remoto)',
         description:
           'Nombramientos de investigadora visitante no remunerados de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable. Soy mentora del BMSIS y puedo supervisar proyectos en mis áreas de investigación.',
         deadline: 'Convocatoria continua (contactar con un Research Scientist del BMSIS)',
@@ -79,7 +73,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Comunidad de Madrid — Contratos de Personal Investigador Predoctoral',
         href: 'https://sede.comunidad.madrid/ayudas-becas-subvenciones/personal-investigador-predoctoral',
         audience: ['phd'],
-        location: 'Madrid · España',
         description:
           'Financiación predoctoral regional de la Comunidad de Madrid para centros de investigación de la región. El CAB es una institución elegible. Se solicita de forma conjunta entre el estudiante y el supervisor — no requiero financiación de proyecto propia. Contáctame si quieres solicitarlo juntos.',
         deadline: 'Suele anunciarse en otoño',
@@ -88,7 +81,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'FPU — Formación de Profesorado Universitario',
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
-        location: 'España',
         description:
           'Becas predoctorales del Ministerio de Ciencia para estudiantes que realizan o planean realizar un doctorado en una universidad o centro de investigación español. Incluyen 4 años de contrato. Se solicitan de forma independiente y luego se formaliza un acuerdo con el supervisor.',
         deadline: 'Suele abrirse en otoño',
@@ -97,7 +89,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: '"la Caixa" Foundation — Becas Doctorales INPhINIT',
         href: 'https://fundacionlacaixa.org/en/inphinit-doctoral-fellowships-incoming',
         audience: ['phd'],
-        location: 'España y Portugal',
         description:
           'Becas muy competitivas para realizar un doctorado en centros de excelencia de España y Portugal. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro María de Maeztu.',
         deadline: 'Suele abrirse en otoño',
@@ -106,7 +97,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Fundación Ramón Areces — Becas para Tesis Doctorales en Ciencias de la Vida y de la Materia',
         href: 'https://www.fundacionareces.es/fundacionareces/en/call-of-grants/scholarships-and-grants/',
         audience: ['phd'],
-        location: 'España',
         description:
           'Becas doctorales anuales de la Fundación Ramón Areces para estudiantes que realizan una tesis en universidades o centros de investigación españoles en el ámbito de las ciencias de la vida y de la materia (biología, química, física, biomedicina). Competitivas y bien financiadas.',
         deadline: 'Suele abrirse en otoño',
@@ -122,7 +112,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Juan de la Cierva — Formación e Incorporación',
         href: 'https://www.ciencia.gob.es',
         audience: ['postdoc'],
-        location: 'España',
         description:
           '"Formación" ofrece contratos de 2 años para investigadores hasta 2 años tras la defensa; "Incorporación" ofrece contratos de 3 años para investigadores con entre 2 y 5 años de experiencia postdoctoral. Se solicitan con una institución de acogida — puedo actuar como anfitriona en el CAB.',
         deadline: 'Suele abrirse en otoño',
@@ -131,7 +120,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Becas Postdoctorales Marie Skłodowska-Curie (MSCA-PF)',
         href: 'https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships',
         audience: ['postdoc'],
-        location: 'UE · Internacional',
         description:
           'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. Puedo apoyar candidatos sólidos en la elaboración de la propuesta — contáctame con antelación.',
         deadline: 'Normalmente en septiembre',
@@ -140,7 +128,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: '"la Caixa" — Becas Postdoctorales Junior Leader',
         href: 'https://fundacionlacaixa.org/en/postdoctoral-fellowships-junior-leader-incoming',
         audience: ['postdoc'],
-        location: 'España y Portugal',
         description:
           'Becas postdoctorales de 3 años para investigadores en centros acreditados españoles o portugueses. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro María de Maeztu.',
         deadline: 'Suele abrirse en primavera',
@@ -224,7 +211,6 @@ const audienceLabel: Record<string, string> = {
                     {item.audience.map((a) => (
                       <span class:list={['tag', `tag-${a}`]}>{audienceLabel[a]}</span>
                     ))}
-                    <span class="tag tag-loc">{item.location}</span>
                   </div>
                 </div>
                 <p class="opp-desc">{item.description}</p>
@@ -474,12 +460,6 @@ const audienceLabel: Record<string, string> = {
     background: rgba(167, 139, 250, 0.12);
     color: #c4b5fd;
     border: 1px solid rgba(167, 139, 250, 0.25);
-  }
-
-  .tag-loc {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--color-text-subtle);
-    border: 1px solid var(--color-border-subtle);
   }
 
   .opp-desc {

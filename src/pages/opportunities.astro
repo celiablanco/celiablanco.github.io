@@ -5,7 +5,6 @@ type Opportunity = {
   title: string;
   href?: string;
   audience: ('undergrad' | 'phd' | 'postdoc')[];
-  location: string;
   description: string;
   deadline?: string;
 };
@@ -20,7 +19,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'FPI — Formación de Personal Investigador',
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
-        location: 'Spain',
         description:
           'Predoctoral contracts tied to specific research projects funded by the Spanish Ministry of Science. When I have an FPI-eligible grant, I advertise the position — the contract is with my group at CAB. Keep an eye on the CSIC job board or contact me directly.',
         deadline: 'Advertised when a project has an open FPI slot',
@@ -29,7 +27,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'CSIC JAE-Predoc',
         href: 'https://www.csic.es',
         audience: ['phd'],
-        location: 'Spain · CSIC',
         description:
           'Competitive predoctoral fellowships from the Spanish National Research Council (CSIC) to carry out a PhD thesis at CSIC institutes. I can participate as thesis supervisor at CAB. Search "JAE Predoc" on the CSIC website for the current call.',
         deadline: 'Typically opens in spring',
@@ -38,7 +35,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'CSIC JAE-Intro',
         href: 'https://www.csic.es',
         audience: ['undergrad'],
-        location: 'Spain · CSIC',
         description:
           'Summer research internships for undergraduate students at CSIC institutes. I can host students at CAB for a 2–3 month project in astrobiology, prebiotic chemistry, or computational biology. Contact me before the call opens. Search "JAE Intro" on the CSIC website for the current call.',
         deadline: 'Typically opens in spring',
@@ -54,7 +50,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'BMSIS Young Scientist Program',
         href: 'https://bmsis.org/ysp/',
         audience: ['undergrad'],
-        location: 'International (remote)',
         description:
           'Blue Marble Space Institute of Science mentored research program for undergraduate students and recent undergrads not yet in graduate school. Fully remote and unpaid; participants work on astrobiology and space science projects with BMSIS researchers. I am a BMSIS mentor and may have projects available.',
         deadline: 'Typically spring (June–August)',
@@ -63,7 +58,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'BMSIS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
         audience: ['phd', 'postdoc'],
-        location: 'International (remote)',
         description:
           'One-year unpaid research appointments at BMSIS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMSIS YSP alumni. A good complement to a primary affiliation — fully remote and renewable. I am a BMSIS mentor and can supervise projects in my research areas.',
         deadline: 'Rolling (contact a BMSIS Research Scientist)',
@@ -79,7 +73,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Comunidad de Madrid — Predoctoral Research Personnel Contracts',
         href: 'https://sede.comunidad.madrid/ayudas-becas-subvenciones/personal-investigador-predoctoral',
         audience: ['phd'],
-        location: 'Madrid · Spain',
         description:
           'Regional predoctoral funding from the Comunidad de Madrid for research centers in the Madrid region. CAB is an eligible host institution. Applied for jointly by the student and the supervisor — no existing project funding required from my side. Contact me if you want to apply together.',
         deadline: 'Typically announced in autumn',
@@ -88,7 +81,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'FPU — Formación de Profesorado Universitario',
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
-        location: 'Spain',
         description:
           'Spanish Ministry of Science predoctoral fellowships for students enrolled in or planning a PhD at a Spanish university or research center. Provides a 4-year stipend. Applicants apply independently and then formalize a host agreement with a supervisor.',
         deadline: 'Typically opens in autumn',
@@ -97,7 +89,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: '"la Caixa" Foundation INPhINIT Doctoral Fellowships',
         href: 'https://fundacionlacaixa.org/en/inphinit-doctoral-fellowships-incoming',
         audience: ['phd'],
-        location: 'Spain & Portugal',
         description:
           'Highly competitive fellowships for doctoral studies at centers of excellence in Spain and Portugal. The Incoming track is open to any nationality; the Retaining track targets those already in Spain/Portugal. CAB is eligible as a María de Maeztu–accredited center.',
         deadline: 'Typically opens in autumn',
@@ -106,7 +97,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Fundación Ramón Areces — Doctoral Fellowships in Life & Matter Sciences',
         href: 'https://www.fundacionareces.es/fundacionareces/en/call-of-grants/scholarships-and-grants/',
         audience: ['phd'],
-        location: 'Spain',
         description:
           'Annual doctoral fellowships from the Ramón Areces Foundation for students pursuing a PhD at Spanish universities or research centers in the life and matter sciences (biology, chemistry, physics, biomedicine). Competitive and well-funded.',
         deadline: 'Typically opens in autumn',
@@ -122,7 +112,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Juan de la Cierva — Formación & Incorporación',
         href: 'https://www.ciencia.gob.es',
         audience: ['postdoc'],
-        location: 'Spain',
         description:
           '"Formación" supports 2-year training contracts for early postdocs (up to 2 years post-PhD); "Incorporación" supports 3-year contracts for more experienced researchers (2–5 years post-PhD). Applicants apply with a host institution — I can host at CAB.',
         deadline: 'Typically opens in autumn',
@@ -131,7 +120,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: 'Marie Skłodowska-Curie Postdoctoral Fellowships (MSCA-PF)',
         href: 'https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships',
         audience: ['postdoc'],
-        location: 'EU · International',
         description:
           'European fellowships for experienced researchers to carry out 1–2 year projects at a European host institution. Open to any nationality. I am happy to support strong applicants with the proposal — contact me well before the deadline.',
         deadline: 'Typically September',
@@ -140,7 +128,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         title: '"la Caixa" Junior Leader Postdoctoral Fellowships',
         href: 'https://fundacionlacaixa.org/en/postdoctoral-fellowships-junior-leader-incoming',
         audience: ['postdoc'],
-        location: 'Spain & Portugal',
         description:
           'Prestigious 3-year postdoctoral fellowships for researchers at accredited Spanish or Portuguese institutions. The Incoming track is open to any nationality; the Retaining track targets those already based in Spain/Portugal. CAB is eligible as a María de Maeztu center.',
         deadline: 'Typically opens in spring',
@@ -224,7 +211,6 @@ const audienceLabel: Record<string, string> = {
                     {item.audience.map((a) => (
                       <span class:list={['tag', `tag-${a}`]}>{audienceLabel[a]}</span>
                     ))}
-                    <span class="tag tag-loc">{item.location}</span>
                   </div>
                 </div>
                 <p class="opp-desc">{item.description}</p>
@@ -478,12 +464,6 @@ const audienceLabel: Record<string, string> = {
     background: rgba(167, 139, 250, 0.12);
     color: #c4b5fd;
     border: 1px solid rgba(167, 139, 250, 0.25);
-  }
-
-  .tag-loc {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--color-text-subtle);
-    border: 1px solid var(--color-border-subtle);
   }
 
   .opp-desc {
