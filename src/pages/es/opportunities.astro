@@ -1,0 +1,612 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+type Opportunity = {
+  title: string;
+  href?: string;
+  audience: ('undergrad' | 'phd' | 'postdoc' | 'early-career')[];
+  location: string;
+  description: string;
+  deadline?: string;
+};
+
+const categories: { id: string; label: string; sublabel: string; items: Opportunity[] }[] = [
+  {
+    id: 'offered',
+    label: 'Posiciones que ofrezco',
+    sublabel: 'Cuando dispongo de financiación o capacidad, recluto a través de estos programas. Consulta el tablón de empleo del CSIC o contáctame para expresar tu interés.',
+    items: [
+      {
+        title: 'FPI — Formación de Personal Investigador',
+        href: 'https://www.ciencia.gob.es',
+        audience: ['phd'],
+        location: 'España',
+        description:
+          'Contratos predoctorales vinculados a proyectos de investigación financiados por el Ministerio de Ciencia español. Cuando dispongo de una línea FPI en mi proyecto, anuncio la posición — el contrato es con mi grupo en el CAB. Consulta el tablón de empleo del CSIC o escríbeme directamente.',
+        deadline: 'Se anuncia cuando el proyecto tiene una plaza FPI abierta',
+      },
+      {
+        title: 'CSIC JAE-Predoc',
+        href: 'https://www.csic.es',
+        audience: ['phd'],
+        location: 'España · CSIC',
+        description:
+          'Becas predoctorales competitivas del Consejo Superior de Investigaciones Científicas (CSIC) para realizar una tesis doctoral en institutos del CSIC. Puedo participar como supervisora en el CAB. Busca "JAE Predoc" en la web del CSIC para la convocatoria vigente.',
+        deadline: 'Suele abrirse en primavera',
+      },
+      {
+        title: 'CSIC JAE-Intro',
+        href: 'https://www.csic.es',
+        audience: ['undergrad'],
+        location: 'España · CSIC',
+        description:
+          'Prácticas de investigación estivales para estudiantes de grado en institutos del CSIC. Puedo acoger estudiantes en el CAB para proyectos de 2–3 meses en astrobiología, química prebiótica o biología computacional. Contáctame antes de que se abra la convocatoria. Busca "JAE Intro" en la web del CSIC.',
+        deadline: 'Suele abrirse en primavera',
+      },
+    ],
+  },
+  {
+    id: 'phd',
+    label: 'Becas de Doctorado',
+    sublabel: 'Las solicitas tú de forma independiente y, si las consigues, eliges el grupo de acogida. Puedo ser supervisora en el CAB — contáctame antes de presentar la solicitud.',
+    items: [
+      {
+        title: 'FPU — Formación de Profesorado Universitario',
+        href: 'https://www.ciencia.gob.es',
+        audience: ['phd'],
+        location: 'España',
+        description:
+          'Becas predoctorales del Ministerio de Ciencia para estudiantes que realizan o planean realizar un doctorado en una universidad o centro de investigación español. Incluyen 4 años de contrato. Se solicitan de forma independiente y luego se formaliza un acuerdo con el supervisor.',
+        deadline: 'Suele abrirse en otoño',
+      },
+      {
+        title: '"la Caixa" Foundation — Becas Doctorales INPhINIT',
+        href: 'https://fundacionlacaixa.org/en/inphinit-doctoral-fellowships-incoming',
+        audience: ['phd'],
+        location: 'España y Portugal',
+        description:
+          'Becas muy competitivas para realizar un doctorado en centros de excelencia de España y Portugal. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro Severo Ochoa.',
+        deadline: 'Suele abrirse en otoño',
+      },
+      {
+        title: 'Fundación Ramón Areces — Becas para Tesis Doctorales en Ciencias de la Vida y de la Materia',
+        href: 'https://www.fundacionareces.es/fundacionareces/en/call-of-grants/scholarships-and-grants/',
+        audience: ['phd'],
+        location: 'España',
+        description:
+          'Becas doctorales anuales de la Fundación Ramón Areces para estudiantes que realizan una tesis en universidades o centros de investigación españoles en el ámbito de las ciencias de la vida y de la materia (biología, química, física, biomedicina). Competitivas y bien financiadas.',
+        deadline: 'Suele abrirse en otoño',
+      },
+    ],
+  },
+  {
+    id: 'postdoc',
+    label: 'Becas Postdoctorales',
+    sublabel: 'Se solicitan con un investigador anfitrión. Puedo actuar como IP anfitriona en el CAB — contáctame con tiempo para desarrollar juntas el proyecto.',
+    items: [
+      {
+        title: 'Juan de la Cierva — Formación e Incorporación',
+        href: 'https://www.ciencia.gob.es',
+        audience: ['postdoc'],
+        location: 'España',
+        description:
+          '"Formación" ofrece contratos de 2 años para investigadores hasta 2 años tras la defensa; "Incorporación" ofrece contratos de 3 años para investigadores con entre 2 y 5 años de experiencia postdoctoral. Se solicitan con una institución de acogida — puedo actuar como anfitriona en el CAB.',
+        deadline: 'Suele abrirse en otoño',
+      },
+      {
+        title: 'Becas Postdoctorales Marie Skłodowska-Curie (MSCA-PF)',
+        href: 'https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships',
+        audience: ['postdoc'],
+        location: 'UE · Internacional',
+        description:
+          'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. He supervisado becarios MSCA y puedo apoyar candidatos sólidos en la elaboración de la propuesta — contáctame con antelación.',
+        deadline: 'Normalmente en septiembre',
+      },
+      {
+        title: '"la Caixa" — Becas Postdoctorales Junior Leader',
+        href: 'https://fundacionlacaixa.org/en/postdoctoral-fellowships-junior-leader-incoming',
+        audience: ['postdoc'],
+        location: 'España y Portugal',
+        description:
+          'Becas postdoctorales de 3 años para investigadores en centros acreditados españoles o portugueses. La modalidad Incoming está abierta a cualquier nacionalidad; la modalidad Retaining está dirigida a quienes ya residen en España o Portugal. El CAB es elegible como centro Severo Ochoa.',
+        deadline: 'Suele abrirse en primavera',
+      },
+      {
+        title: 'Ramón y Cajal',
+        href: 'https://www.ciencia.gob.es',
+        audience: ['early-career'],
+        location: 'España',
+        description:
+          'Programa del Ministerio de Ciencia que ofrece contratos de 5 años de tipo tenure-track para investigadores destacados en instituciones españolas. Para investigadores en inicio de carrera que deseen establecer una línea independiente en el CAB, puedo proporcionar el aval institucional.',
+        deadline: 'Suele abrirse en primavera',
+      },
+    ],
+  },
+  {
+    id: 'schools',
+    label: 'Escuelas, Talleres y Comunidad',
+    sublabel: 'Espacios clave para construir tu red y mantenerte al día en astrobiología e investigación sobre el origen de la vida.',
+    items: [
+      {
+        title: 'AbGradCon — Astrobiology Graduate Conference',
+        href: 'http://www.abgradcon.org/',
+        audience: ['phd', 'postdoc'],
+        location: 'Internacional',
+        description:
+          'Conferencia anual organizada por y para estudiantes de doctorado e investigadores en inicio de carrera en astrobiología. Un espacio de apoyo y sin jerarquías para presentar el trabajo y construir comunidad. Muy recomendable para quienes se inician en el campo.',
+        deadline: 'Normalmente en primavera',
+      },
+      {
+        title: 'EANA — Talleres y Escuelas de Astrobiología',
+        href: 'https://www.eana-net.eu',
+        audience: ['phd', 'postdoc', 'early-career'],
+        location: 'Europa',
+        description:
+          'La Red Europea de Astrobiología (EANA) organiza talleres anuales y escuelas de formación, a menudo con ayudas de viaje para investigadores en etapas tempranas. Una red de contactos fundamental para los astrobiólogos europeos.',
+        deadline: 'Varía según el año',
+      },
+      {
+        title: 'AbSciCon — Astrobiology Science Conference',
+        href: 'https://science.nasa.gov/astrobiology/abscicon/',
+        audience: ['phd', 'postdoc', 'early-career'],
+        location: 'EE. UU.',
+        description:
+          'El principal congreso de astrobiología en Estados Unidos, de periodicidad bienal. Cuenta con ayudas de viaje para investigadores en etapas tempranas y sesiones específicas para jóvenes científicos. Vale la pena asistir — comunidad amplia e interdisciplinar.',
+        deadline: 'Bienal (años pares)',
+      },
+      {
+        title: 'OoLEN — Origins of Life Early-career Network',
+        audience: ['phd', 'postdoc'],
+        location: 'Internacional',
+        description:
+          'Red de apoyo a investigadores en etapas tempranas que trabajan en el origen de la vida, desde la teoría hasta el experimento. Organiza talleres, seminarios e iniciativas colaborativas. Busca "OoLEN" para ver los eventos actuales.',
+        deadline: 'Actividades durante todo el año',
+      },
+      {
+        title: 'BMSIS Young Scientist Program',
+        href: 'https://bmsis.org/ysp/',
+        audience: ['undergrad'],
+        location: 'Internacional (remoto)',
+        description:
+          'Programa de investigación mentorizada del Blue Marble Space Institute of Science para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMSIS. Algunas plazas son remuneradas.',
+        deadline: 'Normalmente en primavera (junio–agosto)',
+      },
+      {
+        title: 'BMSIS Visiting Scholars Program',
+        href: 'https://bmsis.org/visitingscholars/',
+        audience: ['phd', 'postdoc', 'early-career'],
+        location: 'Internacional (remoto)',
+        description:
+          'Nombramientos de investigador visitante voluntario de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable.',
+        deadline: 'Convocatoria continua (contactar con un Research Scientist del BMSIS)',
+      },
+    ],
+  },
+];
+
+const audienceLabel: Record<string, string> = {
+  undergrad: 'Grado',
+  phd: 'Doctorado',
+  postdoc: 'Postdoc',
+  'early-career': 'Inicio de carrera',
+};
+---
+
+<BaseLayout
+  title="Oportunidades — Dra. Celia Blanco"
+  description="Becas, convocatorias y eventos para estudiantes e investigadores en etapas tempranas interesados en incorporarse al grupo o desarrollar su carrera en astrobiología."
+>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Oportunidades</h1>
+      <p class="lede">
+        Becas, convocatorias y eventos relevantes para incorporarse al grupo o
+        desarrollar una carrera en astrobiología e investigación sobre el origen
+        de la vida. Organizadas según quién anuncia la plaza — yo, o tú. Los
+        plazos cambian cada año; verifica siempre en la web oficial.
+      </p>
+    </div>
+  </section>
+
+  <section class="section opp-section">
+    <div class="container">
+
+      <!-- Únete al grupo -->
+      <div class="join-block reveal">
+        <div class="join-inner">
+          <p class="join-eyebrow">¿Te interesa unirte al grupo?</p>
+          <p class="join-body">
+            Recibo con gusto consultas de estudiantes e investigadores en cualquier
+            etapa. Si buscas un doctorado, una estancia postdoctoral o una visita
+            de investigación, escríbeme — y menciona la beca a la que piensas
+            presentarte.
+          </p>
+          <a class="btn btn-ghost" href="/es/contact">Contáctame</a>
+        </div>
+      </div>
+
+      <!-- Filtro -->
+      <div class="filter-bar reveal">
+        <span class="filter-label">Filtrar por:</span>
+        <div class="filter-btns" role="group" aria-label="Filtrar oportunidades por destinatario">
+          <button class="filter-btn active" data-filter="all">Todas</button>
+          <button class="filter-btn" data-filter="undergrad">Grado</button>
+          <button class="filter-btn" data-filter="phd">Doctorado</button>
+          <button class="filter-btn" data-filter="postdoc">Postdoc</button>
+          <button class="filter-btn" data-filter="early-career">Inicio de carrera</button>
+        </div>
+      </div>
+
+      <!-- Categorías -->
+      {categories.map((cat) => (
+        <div class="cat-block reveal" id={cat.id} data-category={cat.id}>
+          <div class="cat-marker">
+            <span class="cat-label">{cat.label}</span>
+            <span class="cat-rule"></span>
+            <p class="cat-sublabel">{cat.sublabel}</p>
+          </div>
+          <ul class="opp-list">
+            {cat.items.map((item) => (
+              <li
+                class="opp-item"
+                data-audience={item.audience.join(' ')}
+              >
+                <div class="opp-header">
+                  <p class="opp-title">
+                    {item.href
+                      ? <a href={item.href} target="_blank" rel="noopener">{item.title}</a>
+                      : item.title}
+                  </p>
+                  <div class="opp-tags">
+                    {item.audience.map((a) => (
+                      <span class:list={['tag', `tag-${a}`]}>{audienceLabel[a]}</span>
+                    ))}
+                    <span class="tag tag-loc">{item.location}</span>
+                  </div>
+                </div>
+                <p class="opp-desc">{item.description}</p>
+                {item.deadline && (
+                  <p class="opp-deadline">
+                    <span class="deadline-icon" aria-hidden="true">⟳</span>
+                    {item.deadline}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="cta-block reveal">
+        <p>
+          ¿Conoces alguna convocatoria relevante que debería aparecer aquí? Escríbeme.
+        </p>
+        <a class="btn" href="/es/contact"><span>Contáctame</span></a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 660px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .opp-section {
+    padding-top: var(--space-4);
+  }
+
+  .join-block {
+    margin-bottom: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    background: linear-gradient(135deg, rgba(212, 175, 111, 0.06), rgba(125, 211, 252, 0.04));
+    border: 1px solid rgba(212, 175, 111, 0.2);
+    border-radius: var(--radius-lg);
+  }
+
+  .join-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .join-body {
+    max-width: 620px;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+    font-size: 0.97rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .filter-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-subtle);
+  }
+
+  .filter-btns {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.35rem 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .filter-btn.active {
+    background: var(--color-gold-soft);
+    border-color: var(--color-gold);
+    color: var(--color-gold-bright);
+  }
+
+  .cat-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    align-items: start;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .cat-marker {
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .cat-label {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cat-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .cat-sublabel {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    line-height: 1.55;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .opp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .opp-item {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    transition: opacity 0.25s var(--ease);
+  }
+
+  .opp-item:last-child {
+    border-bottom: none;
+  }
+
+  .opp-item.hidden {
+    display: none;
+  }
+
+  .opp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem var(--space-2);
+    margin-bottom: 0.5rem;
+  }
+
+  .opp-title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .opp-title a {
+    color: var(--color-text);
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    transition: background-size 0.4s var(--ease-out), color 0.2s ease;
+  }
+
+  .opp-title a:hover,
+  .opp-title a:focus-visible {
+    background-size: 100% 1px;
+    color: var(--color-gold-bright);
+  }
+
+  .opp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .tag-undergrad {
+    background: rgba(125, 211, 252, 0.12);
+    color: var(--color-cyan);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+  }
+
+  .tag-phd {
+    background: var(--color-gold-soft);
+    color: var(--color-gold-bright);
+    border: 1px solid rgba(212, 175, 111, 0.3);
+  }
+
+  .tag-postdoc {
+    background: rgba(167, 139, 250, 0.12);
+    color: #c4b5fd;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+  }
+
+  .tag-early-career {
+    background: rgba(110, 231, 183, 0.1);
+    color: #6ee7b7;
+    border: 1px solid rgba(110, 231, 183, 0.22);
+  }
+
+  .tag-loc {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text-subtle);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .opp-desc {
+    font-size: 0.93rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0 0 0.4rem;
+  }
+
+  .opp-deadline {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .deadline-icon {
+    font-size: 0.9em;
+    color: var(--color-gold);
+  }
+
+  .cta-block {
+    margin-top: var(--space-6);
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .cta-block p {
+    max-width: 480px;
+    margin: 0 auto var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .cat-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+
+    .cat-marker {
+      position: static;
+    }
+
+    .join-block {
+      padding: var(--space-3);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .opp-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLLIElement>('.opp-item');
+  const catBlocks = document.querySelectorAll<HTMLDivElement>('.cat-block');
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      btns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      items.forEach((item) => {
+        if (filter === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          const audience = item.dataset.audience?.split(' ') ?? [];
+          item.classList.toggle('hidden', !audience.includes(filter));
+        }
+      });
+
+      catBlocks.forEach((block) => {
+        const visible = block.querySelectorAll('.opp-item:not(.hidden)');
+        block.style.display = visible.length === 0 ? 'none' : '';
+      });
+    });
+  });
+</script>
