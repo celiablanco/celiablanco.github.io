@@ -13,7 +13,7 @@ type Opportunity = {
 const categories: { id: string; label: string; sublabel: string; items: Opportunity[] }[] = [
   {
     id: 'offered',
-    label: 'Positions I Advertise',
+    label: 'Paid Positions I Offer',
     sublabel: 'When I have funding or capacity, I recruit through these programs. Check the CSIC job board or contact me to express interest.',
     items: [
       {
@@ -51,6 +51,31 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         description:
           'Summer research internships for undergraduate students at CSIC institutes. I can host students at CAB for a 2–3 month project in astrobiology, prebiotic chemistry, or computational biology. Contact me before the call opens. Search "JAE Intro" on the CSIC website for the current call.',
         deadline: 'Typically opens in spring',
+      },
+    ],
+  },
+  {
+    id: 'unpaid',
+    label: 'Unpaid Research Experience',
+    sublabel: 'No contract or funding required — good for anyone looking to gain research experience. I am a BMSIS mentor and may have projects available in both programs.',
+    items: [
+      {
+        title: 'BMSIS Young Scientist Program',
+        href: 'https://bmsis.org/ysp/',
+        audience: ['undergrad'],
+        location: 'International (remote)',
+        description:
+          'Blue Marble Space Institute of Science mentored research program for undergraduate students and recent undergrads not yet in graduate school. Fully remote and unpaid; participants work on astrobiology and space science projects with BMSIS researchers. I am a BMSIS mentor and may have projects available.',
+        deadline: 'Typically spring (June–August)',
+      },
+      {
+        title: 'BMSIS Visiting Scholars Program',
+        href: 'https://bmsis.org/visitingscholars/',
+        audience: ['phd', 'postdoc', 'early-career'],
+        location: 'International (remote)',
+        description:
+          'One-year unpaid research appointments at BMSIS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMSIS YSP alumni. A good complement to a primary affiliation — fully remote and renewable. I am a BMSIS mentor and can supervise projects in my research areas.',
+        deadline: 'Rolling (contact a BMSIS Research Scientist)',
       },
     ],
   },
@@ -161,24 +186,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         description:
           'Network supporting early-career researchers working on the origins of life across theory and experiment. Organizes workshops, seminars, and collaborative initiatives. Search "OoLEN" for current events.',
         deadline: 'Ongoing events throughout the year',
-      },
-      {
-        title: 'BMSIS Young Scientist Program',
-        href: 'https://bmsis.org/ysp/',
-        audience: ['undergrad'],
-        location: 'International (remote)',
-        description:
-          'Blue Marble Space Institute of Science mentored research program for undergraduate students and recent undergrads not yet in graduate school. Fully remote and unpaid; participants work on astrobiology and space science projects with BMSIS researchers. I am a BMSIS mentor and may have projects available.',
-        deadline: 'Typically spring (June–August)',
-      },
-      {
-        title: 'BMSIS Visiting Scholars Program',
-        href: 'https://bmsis.org/visitingscholars/',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'International (remote)',
-        description:
-          'One-year unpaid research appointments at BMSIS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMSIS YSP alumni. A good complement to a primary affiliation — fully remote and renewable. I am a BMSIS mentor and can supervise projects in my research areas.',
-        deadline: 'Rolling (contact a BMSIS Research Scientist)',
       },
     ],
   },

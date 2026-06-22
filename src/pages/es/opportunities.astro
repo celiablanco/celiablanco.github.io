@@ -13,7 +13,7 @@ type Opportunity = {
 const categories: { id: string; label: string; sublabel: string; items: Opportunity[] }[] = [
   {
     id: 'offered',
-    label: 'Posiciones que ofrezco',
+    label: 'Posiciones remuneradas que ofrezco',
     sublabel: 'Cuando dispongo de financiación o capacidad, recluto a través de estos programas. Consulta el tablón de empleo del CSIC o contáctame para expresar tu interés.',
     items: [
       {
@@ -51,6 +51,31 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         description:
           'Prácticas de investigación estivales para estudiantes de grado en institutos del CSIC. Puedo acoger estudiantes en el CAB para proyectos de 2–3 meses en astrobiología, química prebiótica o biología computacional. Contáctame antes de que se abra la convocatoria. Busca "JAE Intro" en la web del CSIC.',
         deadline: 'Suele abrirse en primavera',
+      },
+    ],
+  },
+  {
+    id: 'unpaid',
+    label: 'Posiciones no remuneradas',
+    sublabel: 'Sin contrato ni financiación — una buena opción para quienes buscan ganar experiencia investigadora. Soy mentora del BMSIS y puedo tener proyectos disponibles en ambos programas.',
+    items: [
+      {
+        title: 'BMSIS Young Scientist Program',
+        href: 'https://bmsis.org/ysp/',
+        audience: ['undergrad'],
+        location: 'Internacional (remoto)',
+        description:
+          'Programa de investigación mentorizada del Blue Marble Space Institute of Science para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea y sin remuneración; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMSIS. Soy mentora del BMSIS y puedo tener proyectos disponibles.',
+        deadline: 'Normalmente en primavera (junio–agosto)',
+      },
+      {
+        title: 'BMSIS Visiting Scholars Program',
+        href: 'https://bmsis.org/visitingscholars/',
+        audience: ['phd', 'postdoc', 'early-career'],
+        location: 'Internacional (remoto)',
+        description:
+          'Nombramientos de investigadora visitante no remunerados de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable. Soy mentora del BMSIS y puedo supervisar proyectos en mis áreas de investigación.',
+        deadline: 'Convocatoria continua (contactar con un Research Scientist del BMSIS)',
       },
     ],
   },
@@ -161,24 +186,6 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         description:
           'Red de apoyo a investigadores en etapas tempranas que trabajan en el origen de la vida, desde la teoría hasta el experimento. Organiza talleres, seminarios e iniciativas colaborativas. Busca "OoLEN" para ver los eventos actuales.',
         deadline: 'Actividades durante todo el año',
-      },
-      {
-        title: 'BMSIS Young Scientist Program',
-        href: 'https://bmsis.org/ysp/',
-        audience: ['undergrad'],
-        location: 'Internacional (remoto)',
-        description:
-          'Programa de investigación mentorizada del Blue Marble Space Institute of Science para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea y sin remuneración; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMSIS. Soy mentora del BMSIS y puedo tener proyectos disponibles.',
-        deadline: 'Normalmente en primavera (junio–agosto)',
-      },
-      {
-        title: 'BMSIS Visiting Scholars Program',
-        href: 'https://bmsis.org/visitingscholars/',
-        audience: ['phd', 'postdoc', 'early-career'],
-        location: 'Internacional (remoto)',
-        description:
-          'Nombramientos de investigadora visitante no remunerados de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable. Soy mentora del BMSIS y puedo supervisar proyectos en mis áreas de investigación.',
-        deadline: 'Convocatoria continua (contactar con un Research Scientist del BMSIS)',
       },
     ],
   },
