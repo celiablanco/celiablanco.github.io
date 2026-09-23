@@ -1,0 +1,425 @@
+---
+/**
+ * Body of the Press page, shared by /press and /es/press. Follows the same
+ * block rhythm as the People and Opportunities pages: a sticky label on the
+ * left, the entries on the right.
+ */
+import PressIcon from './PressIcon.astro';
+import { interviews, coverage, profiles, type Outlet } from '../data/press';
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+
+/**
+ * A press release syndicated to several outlets produces the same headline
+ * several times over. Collapse those onto one line and let the outlet names
+ * do the distinguishing, rather than repeating the headline verbatim.
+ * Matching ignores case, since outlets differ on headline capitalisation.
+ */
+const groupOutlets = (outlets: Outlet[]) => {
+  const groups = new Map<string, { headline: string; items: Outlet[] }>();
+  for (const o of outlets) {
+    const text = o.headline ?? o.name;
+    const key = text.toLowerCase().replace(/\s+/g, ' ').replace(/[“”"'’.?!]/g, '').trim();
+    const seen = groups.get(key);
+    if (seen) seen.items.push(o);
+    else groups.set(key, { headline: text, items: [o] });
+  }
+  // The page's own language first, so a reader meets the pieces they can
+  // read before the rest. Stable within each language, so the order the CV
+  // records is preserved.
+  return [...groups.values()].sort((a, b) => {
+    const rank = (g: { items: Outlet[] }) => (g.items[0].lang === lang ? 0 : 1);
+    return rank(a) - rank(b);
+  });
+};
+
+const copy = {
+  en: {
+    eyebrow: 'Theoretical Astrobiology Group',
+    title: 'Press',
+    lede: `Interviews, coverage and profiles. Links go to the original pieces;
+      some may have moved or gone behind a paywall since publication.`,
+    interviewsHeading: 'Interviews and podcasts',
+    coverageHeading: 'Press coverage',
+    coverageNote: 'Grouped by the paper the coverage is about.',
+    profilesHeading: 'Profiles',
+    publicationsLink: 'All publications',
+    publicationsHref: '/publications',
+  },
+  es: {
+    eyebrow: 'Grupo de Astrobiología Teórica',
+    title: 'Prensa',
+    lede: `Entrevistas, cobertura y perfiles. Los enlaces llevan a las piezas
+      originales; algunas pueden haber cambiado de sitio o quedado tras un muro
+      de pago.`,
+    interviewsHeading: 'Entrevistas y pódcast',
+    coverageHeading: 'Cobertura en prensa',
+    coverageNote: 'Agrupada por el artículo del que habla.',
+    profilesHeading: 'Perfiles',
+    publicationsLink: 'Todas las publicaciones',
+    publicationsHref: '/es/publications',
+  },
+}[lang];
+---
+
+<section class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.title}</h1>
+    <p class="lede">{copy.lede}</p>
+    <p class="hero-more"><a href={copy.publicationsHref}>{copy.publicationsLink}</a></p>
+  </div>
+</section>
+
+<section class="section press-section">
+  <div class="container">
+
+    <!-- ── Interviews ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.interviewsHeading}</span>
+        <span class="block-rule"></span>
+      </div>
+      <div class="block-body">
+        <ul class="item-list">
+          {interviews.map((it) => (
+            <li class="item" id={it.id}>
+              <span class="item-icon"><PressIcon kind="podcast" /></span>
+              <div class="item-body">
+                <div class="item-header">
+                  <p class="item-title">
+                    <a href={it.href} target="_blank" rel="noopener">{it.title}</a>
+                  </p>
+                </div>
+                <p class="item-outlet">{it.outlet}</p>
+                <p class="item-note">{it.note[lang]} <span class="dot">·</span> {it.date[lang]}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Coverage ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.coverageHeading}</span>
+        <span class="block-rule"></span>
+        <p class="block-note">{copy.coverageNote}</p>
+      </div>
+      <div class="block-body">
+        <ul class="item-list">
+          {coverage.map((c) => (
+            <li class="item" id={c.id}>
+              <span class="item-icon" aria-hidden="true"></span>
+              <div class="item-body">
+                <div class="item-header">
+                  <p class="item-title plain">
+                    <a href={c.href} target="_blank" rel="noopener">{c.title}</a>
+                  </p>
+                </div>
+                <ul class="outlets">
+                  {groupOutlets(c.outlets).map((g) => (
+                    <li class="outlet">
+                      <span class="outlet-icon"><PressIcon kind="article" /></span>
+                      {g.items.length === 1 ? (
+                        <a class="outlet-headline" href={g.items[0].href} target="_blank" rel="noopener">
+                          {g.headline}
+                        </a>
+                      ) : (
+                        <p class="outlet-shared">
+                          <span class="shared-headline">{g.headline}</span>
+                          {g.items.map((o, i) => (
+                            <span class="shared-outlet">
+                              <span class="sep" aria-hidden="true">{i === 0 ? ' — ' : ' · '}</span>
+                              <a href={o.href} target="_blank" rel="noopener">{o.name}</a>
+                            </span>
+                          ))}
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Profiles ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.profilesHeading}</span>
+        <span class="block-rule"></span>
+      </div>
+      <div class="block-body">
+        <ul class="item-list">
+          {profiles.map((p) => (
+            <li class="item" id={p.id}>
+              <span class="item-icon"><PressIcon kind="profile" /></span>
+              <div class="item-body">
+                <div class="item-header">
+                  <p class="item-title">
+                    <a href={p.href} target="_blank" rel="noopener">{p.title[lang]}</a>
+                  </p>
+                </div>
+                <p class="item-outlet">{p.outlet}</p>
+                {p.note?.[lang] && <p class="item-note">{p.note[lang]}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .page-hero { padding: var(--space-6) 0 var(--space-4); }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 660px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .hero-more { margin: var(--space-3) 0 0; font-size: 0.88rem; }
+
+  .hero-more a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+
+  .hero-more a:hover,
+  .hero-more a:focus-visible {
+    color: var(--color-gold-bright);
+    border-color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  .press-section { padding-top: var(--space-4); }
+
+  /* ── Section blocks ── */
+  .group-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    align-items: start;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .block-marker {
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .block-label {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .block-rule { width: 40px; height: 1px; background: var(--color-border); }
+
+  .block-note {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    line-height: 1.55;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ── Entries ── */
+  .item-list { list-style: none; margin: 0; padding: 0; }
+
+  /* Icon sits in its own column so every entry lines up down the page, and a
+     title that wraps to two lines does not drag the icon with it. */
+  .item {
+    display: grid;
+    grid-template-columns: 1.7rem 1fr;
+    align-items: start;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .item-icon {
+    display: flex;
+    justify-content: flex-start;
+    /* nudges the icon onto the cap height of the first line of the title */
+    padding-top: 0.2em;
+    font-size: 1.05rem;
+    color: var(--color-text-subtle);
+  }
+
+  .item:first-child { padding-top: 0; }
+  .item:last-child { border-bottom: none; }
+
+  .item-header { margin: 0; }
+
+  .item-title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--color-text);
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .item-title a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-color: rgba(155, 199, 224, 0.4);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
+  }
+
+  .item-title a:hover,
+  .item-title a:focus-visible {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-link-hover);
+  }
+
+  .item-outlet {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0.3rem 0 0;
+    font-style: italic;
+  }
+
+  .item-note {
+    font-size: 0.86rem;
+    color: var(--color-text-subtle);
+    line-height: 1.6;
+    margin: 0.35rem 0 0;
+  }
+
+  .dot { opacity: 0.6; padding: 0 0.15rem; }
+
+  /* ── Outlets: a plain list of the headlines that ran. The publication is
+     left out on purpose; the headline is what tells you anything. ── */
+  .outlets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Same shape as an interview row: icon in a gutter, linked title beside it. */
+  .outlet {
+    display: grid;
+    grid-template-columns: 1.7rem 1fr;
+    align-items: start;
+    padding: 0.35rem 0;
+  }
+
+  .outlet-icon {
+    display: flex;
+    padding-top: 0.15em;
+    font-size: 0.95rem;
+    color: var(--color-text-subtle);
+  }
+
+  .outlet-headline {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-color: rgba(155, 199, 224, 0.25);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
+  }
+
+  .outlet-headline:hover,
+  .outlet-headline:focus-visible {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-link-hover);
+  }
+
+  /* One headline, several outlets: the headline is stated once and each
+     outlet becomes its own link after it. */
+  .outlet-shared {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .shared-headline { color: var(--color-text-muted); }
+
+  .outlet-shared .sep { color: var(--color-text-subtle); }
+
+  .outlet-shared a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-color: rgba(155, 199, 224, 0.25);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
+  }
+
+  .outlet-shared a:hover,
+  .outlet-shared a:focus-visible {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-link-hover);
+  }
+
+  /* The paper title links to the paper, but keeps the colour it had: the
+     headlines below are the blue links, and two competing link colours in one
+     block would be noise. The underline arrives on hover instead. */
+  .item-title.plain a {
+    color: var(--color-text);
+    text-decoration: none;
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-out), color 0.2s var(--ease);
+  }
+
+  .item-title.plain a:hover,
+  .item-title.plain a:focus-visible {
+    background-size: 100% 1px;
+    color: var(--color-gold-bright);
+  }
+
+  @media (max-width: 720px) {
+    .group-block { grid-template-columns: 1fr; gap: var(--space-2); }
+    .block-marker { position: static; }
+    .item { grid-template-columns: 1.4rem 1fr; }
+  }
+</style>
