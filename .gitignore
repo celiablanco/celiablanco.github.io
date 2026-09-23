@@ -25,10 +25,10 @@ pnpm-debug.log*
 # Photo originals and the variants tried while choosing a portrait. Kept on
 # disk so a different crop or background can be regenerated, but left out of
 # git: they run to ~22MB and only the resized web copy is ever served.
+# (headshot2026_web.jpg is deliberately NOT here — it is the live hero image.)
 public/img/blck bckgrnd.png
 public/img/headshot2026.png
 public/img/headshot2026_nobg.png
-public/img/headshot2026_web.jpg
 public/img/headshot2026_framed.jpg
 public/img/background_stars.png
 public/img/background_stars_bicolor.png
