@@ -20,7 +20,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="hero-portrait">
-        <img src="/img/profile_stars_2026_web.jpg" alt="Retrato de la Dra. Celia Blanco sobre un campo de estrellas" />
+        <img src="/img/headshot2026_web.jpg" alt="Retrato de la Dra. Celia Blanco sobre un campo de estrellas" />
       </div>
     </div>
   </section>
@@ -165,16 +165,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .hero-portrait {
+    position: relative;
     max-width: 280px;
     margin-left: auto;
     width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
   }
 
   .hero-portrait img {
     width: 100%;
     height: auto;
     display: block;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* The studio wall behind her is far brighter than this page, so the edges
+     are faded toward the page colour. Done in CSS rather than baked into the
+     file: the photograph itself stays exactly as it was shot. */
+  .hero-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 38%,
+      rgba(6, 8, 24, 0) 42%,
+      rgba(6, 8, 24, 0.62) 100%
+    );
   }
 
   @media (max-width: 880px) {
