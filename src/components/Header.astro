@@ -20,6 +20,7 @@ const navItemsByLang = {
     { label: 'Home', href: '/' },
     { label: 'Research', href: '/research' },
     { label: 'Publications', href: '/publications' },
+    { label: 'People', href: '/people' },
     { label: 'Opportunities', href: '/opportunities' },
     { label: 'Contact', href: '/contact' },
   ],
@@ -27,6 +28,7 @@ const navItemsByLang = {
     { label: 'Inicio', href: '/es' },
     { label: 'Investigación', href: '/es/research' },
     { label: 'Publicaciones', href: '/es/publications' },
+    { label: 'Miembros', href: '/es/people' },
     { label: 'Oportunidades', href: '/es/opportunities' },
     { label: 'Contacto', href: '/es/contact' },
   ],
@@ -61,6 +63,9 @@ const navToggleAria =
   <div class="container header-inner">
     <a href={lang === 'es' ? '/es' : '/'} class="brand">
       <span class="brand-name">Celia Blanco</span>
+      <span class="brand-group">
+        {lang === 'es' ? 'Grupo de Astrobiología Teórica' : 'Theoretical Astrobiology Group'}
+      </span>
     </a>
     <button class="nav-toggle" aria-label={navToggleAria} aria-expanded="false" aria-controls="primary-nav">
       <span></span><span></span><span></span>
@@ -126,7 +131,9 @@ const navToggleAria =
 
   .brand {
     display: inline-flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.15rem;
     color: var(--color-text);
     text-decoration: none;
     font-family: var(--font-sans);
@@ -141,6 +148,22 @@ const navToggleAria =
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+
+  /* The group sits under the name so both identities travel on every page. */
+  .brand-group {
+    font-size: 0.63rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1.1;
+    color: var(--color-gold);
+    transition: color 0.2s var(--ease);
+  }
+
+  .brand:hover .brand-group {
+    color: var(--color-gold-bright);
   }
 
   .primary-nav ul {
@@ -276,7 +299,7 @@ const navToggleAria =
     }
 
     .primary-nav.open {
-      max-height: 400px;
+      max-height: 480px;
     }
 
     .primary-nav ul {
@@ -311,6 +334,11 @@ const navToggleAria =
 
     .brand-name {
       font-size: 0.95rem;
+    }
+
+    .brand-group {
+      font-size: 0.56rem;
+      letter-spacing: 0.13em;
     }
   }
 </style>

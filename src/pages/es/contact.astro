@@ -3,10 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const emails = [
   { user: 'celia.blanco', domain: 'cab.inta-csic.es', label: 'Centro de Astrobiología (CAB, CSIC-INTA)' },
-  { user: 'celia.blanco', domain: 'bmsis.org', label: 'Blue Marble Space Institute of Science' },
+  { user: 'celia.blanco', domain: 'bmsis.org', label: 'Blue Marble Space' },
 ];
 ---
-<BaseLayout title="Contacto — Dra. Celia Blanco" description="Ponte en contacto con la Dra. Celia Blanco — Centro de Astrobiología (CAB, CSIC-INTA) y BMSIS.">
+<BaseLayout title="Contacto — Dra. Celia Blanco" description="Ponte en contacto con la Dra. Celia Blanco — Centro de Astrobiología (CAB, CSIC-INTA) y BMS.">
   <section class="page-hero">
     <div class="container">
       <h1>Contacto</h1>
@@ -38,7 +38,7 @@ const emails = [
                     <path d="M4 6h16v12H4z"/>
                     <polyline points="4 7 12 13 20 7"/>
                   </svg>
-                  <span class="email-text">{e.user}<span class="at" aria-hidden="true"> [at] </span>{e.domain}</span>
+                  <span class="email-text">{e.user}<span class="at" aria-hidden="true">(at)</span>{e.domain}</span>
                 </a>
                 <p class="email-affil">{e.label}</p>
               </li>
@@ -100,11 +100,9 @@ const emails = [
       const user = a.dataset.user;
       const domain = a.dataset.domain;
       if (user && domain) {
+        // Only the href gets the real address; the visible text keeps its
+        // `(at)` so the page never displays a harvestable address.
         a.href = `mailto:${user}@${domain}`;
-        const text = a.querySelector('.email-text');
-        if (text) {
-          text.textContent = `${user}@${domain}`;
-        }
       }
     });
   </script>

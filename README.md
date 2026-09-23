@@ -21,17 +21,26 @@ npm run preview   # serve the built dist/ locally
 ## Structure
 
 ```
-src/pages/          English pages (index, research, publications, opportunities, contact)
+src/pages/          English pages (index, research, publications, people,
+                    opportunities, contact)
 src/pages/es/       Spanish versions of the same pages
 src/layouts/        BaseLayout.astro (head, fonts, header, footer)
-src/components/     Header, Footer, Starfield
+src/components/     Header, Footer, Starfield, PeopleContent
+src/data/           people.ts (group roster, shared by both languages)
+                    i18n.ts (the { en, es } text pair type)
 src/styles/         global.css (colour and spacing tokens, shared styles)
 public/img/         images served as-is
+public/img/people/  member portraits
 scripts/            figure generation
 ```
 
 Every page exists in both languages. When you change content, update the
-English file and its `es/` counterpart together.
+English file and its `es/` counterpart together. The People page
+(`/people`, `/es/people`) is the exception: both languages render
+`src/components/PeopleContent.astro` from the shared roster in
+`src/data/people.ts`, so a member is added once. Its prose — the group
+description, section headings, join copy — lives in the `copy` object at the top
+of that component, with the two languages side by side.
 
 ## Updating content
 
@@ -40,6 +49,46 @@ English file and its `es/` counterpart together.
 entry has `authors`, `title`, `venue` (formatted as
 `Journal, volume(issue), pages`), a `doi.org` link in `href`, and optional
 `extras` for press links. Papers are listed newest first within each year.
+
+**Group members**: edit `src/data/people.ts`. `pi` is the principal
+investigator card, `members` the current roster, and `alumni` past members. A
+member entry needs only a `name`, a `role`, and a way to reach them — `profile`
+(their CAB staff page) and `email`:
+
+```ts
+{
+  id: 'first-last',
+  name: 'First Last',
+  role: 'phd',
+  profile: 'https://cab.inta-csic.es/personal/...',
+  email: 'someone@cab.inta-csic.es',
+}
+```
+
+**BMS affiliates**: `bmsCurrent` and `bmsPast` in the same file, kept
+apart from `members` because they are mentored remotely through the Blue Marble Space rather than based at CAB. Each person carries a list
+of `appointments` (`ysp`, `visiting`, `associate` plus years) since several have
+held more than one; `ongoing: true` renders as "2026–present". Programme names
+are translated once in `programLabels`. The source of record is
+<https://www.bluemarblespace.org/affiliates/celia-blanco>.
+
+Emails are written whole in `people.ts` but never served that way: the page
+splits them into data attributes, displays `user(at)domain`, and a small script
+restores a working `mailto:` in the browser. The contact page does the same.
+Keep the `(at)` spelling if you add an address anywhere else.
+
+Portraits go in `public/img/people/` and are set with `photo`; without one the
+card shows the astronaut placeholder (`src/components/Silhouette.astro`), so
+someone can be listed before a picture exists. Every card currently uses it,
+including the PI's — the line restoring her photo is commented in `people.ts`. Roles come from the `Role` union (`pi`, `postdoc`, `phd`, `assistant`,
+`masters`, `undergrad`, `visiting`) and are labelled by `roleLabels` in both
+languages. Use `assistant` for someone working with the group whose doctorate
+is supervised elsewhere — `phd` implies the thesis is supervised here.
+Spanish role names are gendered and the defaults use the neutral `-o/a` form;
+set `roleLabel: { en: ..., es: ... }` on a person to use the form they prefer.
+Fields that read differently per language (`position`, `topic`, `bio`, `now`,
+and the PI's `Dr.`/`Dra.` name) take an `{ en, es }` pair. The member count on
+the homepage reads from the same file.
 
 **Research areas**: edit the `research` array at the top of
 `src/pages/research.astro` and `src/pages/es/research.astro`. Each area has a

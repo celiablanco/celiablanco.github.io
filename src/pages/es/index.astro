@@ -20,7 +20,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="hero-portrait">
-        <img src="/img/profile-nobg.png" alt="Retrato de la Dra. Celia Blanco" />
+        <img src="/img/profile_stars_2026_web.jpg" alt="Retrato de la Dra. Celia Blanco sobre un campo de estrellas" />
       </div>
     </div>
   </section>
@@ -30,19 +30,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container">
       <div class="about-prose">
         <div class="about-text reveal">
-          <h2>Sobre mí</h2>
+          <h2>¡Bienvenidos al Grupo de Astrobiología Teórica!</h2>
           <p>
-            ¡Bienvenidos a mi rincón de la web! Soy física teórica y me apasionan
-            las grandes preguntas de la astrobiología. Si tiene que ver con el
-            origen o la evolución de la vida en el universo, me interesa.
+            Soy física teórica y me apasionan las grandes preguntas de la
+            astrobiología. Si tiene que ver con el origen o la evolución de la
+            vida en el universo, me interesa.
           </p>
           <p>
             Mi camino empezó en el <strong>Centro de Astrobiología (CAB,
             CSIC-INTA)</strong> y me llevó a Estados Unidos durante más de una
-            década, con paradas en UCLA, UC Santa Barbara y el Blue Marble Space
-            Institute of Science, donde tuve la suerte de trabajar con algunas
+            década, con paradas en UCLA, UC Santa Barbara y el Blue Marble Space, donde tuve la suerte de trabajar con algunas
             de las mentes más brillantes que he conocido. Ahora he cerrado el
-            círculo y vuelvo al CAB como investigadora Ramón y Cajal.
+            círculo y vuelvo al CAB como investigadora Ramón y Cajal, donde estoy
+            poniendo en marcha <a class="group-mention" href="/es/people">el grupo</a>.
           </p>
           <p>
             Mi investigación se sitúa en la intersección entre la biofísica y
@@ -165,7 +165,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .hero-portrait {
-    max-width: 320px;
+    max-width: 280px;
     margin-left: auto;
     width: 100%;
   }
@@ -174,7 +174,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
   }
 
   @media (max-width: 880px) {
@@ -221,6 +221,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   .about-text p {
     font-size: 1.05rem;
+  }
+
+  /* The group is named in the flow of the bio rather than in a box of its own,
+     so it needs to read as a proper noun without shouting. */
+  .group-mention {
+    color: var(--color-text);
+    font-weight: 500;
+    text-decoration: none;
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: color 0.2s var(--ease);
+  }
+
+  .group-mention:hover,
+  .group-mention:focus-visible {
+    color: var(--color-gold-bright);
+    text-decoration: none;
   }
 
   /* ============= INTERESTS — 3 on top, 2 on bottom (centered) ============= */

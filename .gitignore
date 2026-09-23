@@ -21,3 +21,20 @@ pnpm-debug.log*
 # editor
 .vscode/
 .idea/
+
+# Photo originals and the variants tried while choosing a portrait. Kept on
+# disk so a different crop or background can be regenerated, but left out of
+# git: they run to ~22MB and only the resized web copy is ever served.
+public/img/blck bckgrnd.png
+public/img/headshot2026.png
+public/img/headshot2026_nobg.png
+public/img/headshot2026_web.jpg
+public/img/headshot2026_framed.jpg
+public/img/background_stars.png
+public/img/background_stars_bicolor.png
+public/img/background_stars_bicolor_dim.png
+public/img/background_stars_planets.png
+public/img/profile_stars_2026.png
+public/img/profile_bicolor_2026_web.jpg
+public/img/profile_bicolor_dim_2026_web.jpg
+public/img/profile_bluestars_2026_web.jpg

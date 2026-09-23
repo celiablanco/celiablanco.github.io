@@ -53,7 +53,9 @@ const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWi
       ))}
     </ul>
     <p class="footer-meta">
-      &copy; {year} Celia Blanco · Centro de Astrobiología (CAB, CSIC-INTA)
+      &copy; {year} Celia Blanco · {isSpanish ? 'Grupo de Astrobiología Teórica' : 'Theoretical Astrobiology Group'}
+      <br />
+      Centro de Astrobiología (CAB, CSIC-INTA)
     </p>
     <p class="footer-meta footer-langnote">
       {isSpanish
@@ -118,6 +120,8 @@ const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWi
   .footer-meta {
     color: var(--color-text-subtle);
     font-size: 0.82rem;
+    line-height: 1.6;
+    text-align: center;
     margin: 0;
   }
 

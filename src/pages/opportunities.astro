@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import JoinCallout from '../components/JoinCallout.astro';
 
 type Opportunity = {
   title: string;
@@ -20,7 +21,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
         description:
-          'Predoctoral contracts tied to specific research projects funded by the Spanish Ministry of Science. When I have an FPI-eligible grant, I advertise the position — the contract is with my group at CAB. Keep an eye on the CSIC job board or contact me directly.',
+          'Predoctoral contracts tied to specific research projects funded by the Spanish Ministry of Science. When I have an FPI-eligible grant, I advertise the position. The contract is with my group at CAB. Keep an eye on the CSIC job board or contact me directly.',
         deadline: 'Advertised when a project has an open FPI slot',
       },
       {
@@ -44,7 +45,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
   {
     id: 'unpaid',
     label: 'Unpaid Research Experience',
-    sublabel: 'No contract or funding required — good for anyone looking to gain research experience. I am a BMSIS mentor and may have projects available in both programs.',
+    sublabel: 'No contract or funding required, so these suit anyone looking to gain research experience. I am a BMS mentor and may have projects available in both programs.',
     items: [
       {
         title: 'Bachelor\'s & Master\'s Thesis Supervision (TFG / TFM)',
@@ -53,34 +54,34 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
           'If you are considering a career in astrobiology or origins of life research and are looking for a supervisor for your final degree project (TFG or TFM), I am always open to discussing it. Reach out with a brief description of your background and interests.',
       },
       {
-        title: 'BMSIS Young Scientist Program',
+        title: 'BMS Young Scientist Program',
         href: 'https://bmsis.org/ysp/',
         audience: ['undergrad'],
         description:
-          'Blue Marble Space Institute of Science mentored research program for undergraduate students and recent undergrads not yet in graduate school. Fully remote and unpaid; participants work on astrobiology and space science projects with BMSIS researchers. I am a BMSIS mentor and may have projects available.',
+          'Blue Marble Space mentored research program for undergraduate students and recent undergrads not yet in graduate school. Fully remote and unpaid; participants work on astrobiology and space science projects with BMS researchers. I am a BMS mentor and may have projects available.',
         deadline: 'Typically spring (June–August)',
       },
       {
-        title: 'BMSIS Visiting Scholars Program',
+        title: 'BMS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
         audience: ['phd', 'postdoc'],
         description:
-          'One-year unpaid research appointments at BMSIS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMSIS YSP alumni. A good complement to a primary affiliation — fully remote and renewable. I am a BMSIS mentor and can supervise projects in my research areas.',
-        deadline: 'Rolling (contact a BMSIS Research Scientist)',
+          'One-year unpaid research appointments at BMS, supervised by a Research Scientist. Open to graduate students, degree holders, and BMS YSP alumni. A good complement to a primary affiliation, fully remote and renewable. I am a BMS mentor and can supervise projects in my research areas.',
+        deadline: 'Rolling (contact a BMS Research Scientist)',
       },
     ],
   },
   {
     id: 'phd',
     label: 'PhD Fellowships',
-    sublabel: 'You apply independently and, if successful, choose your host group. I can serve as host supervisor at CAB — contact me before you submit.',
+    sublabel: 'You apply independently and, if successful, choose your host group. I can serve as host supervisor at CAB. Contact me before you submit.',
     items: [
       {
         title: 'Comunidad de Madrid — Predoctoral Research Personnel Contracts',
         href: 'https://sede.comunidad.madrid/ayudas-becas-subvenciones/personal-investigador-predoctoral',
         audience: ['phd'],
         description:
-          'Regional predoctoral funding from the Comunidad de Madrid for research centers in the Madrid region. CAB is an eligible host institution. Applied for jointly by the student and the supervisor — no existing project funding required from my side. Contact me if you want to apply together.',
+          'Regional predoctoral funding from the Comunidad de Madrid for research centers in the Madrid region. CAB is an eligible host institution. Applied for jointly by the student and the supervisor, and no existing project funding is required from my side. Contact me if you want to apply together.',
         deadline: 'Typically announced in autumn',
       },
       {
@@ -112,14 +113,14 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
   {
     id: 'postdoc',
     label: 'Postdoctoral Fellowships',
-    sublabel: 'You apply with a host researcher. I can act as host PI at CAB — get in touch early so we can develop the project together.',
+    sublabel: 'You apply with a host researcher. I can act as host PI at CAB. Get in touch early so we can develop the project together.',
     items: [
       {
         title: 'Juan de la Cierva — Formación & Incorporación',
         href: 'https://www.ciencia.gob.es',
         audience: ['postdoc'],
         description:
-          '"Formación" supports 2-year training contracts for early postdocs (up to 2 years post-PhD); "Incorporación" supports 3-year contracts for more experienced researchers (2–5 years post-PhD). Applicants apply with a host institution — I can host at CAB.',
+          '"Formación" supports 2-year training contracts for early postdocs (up to 2 years post-PhD); "Incorporación" supports 3-year contracts for more experienced researchers (2–5 years post-PhD). Applicants apply with a host institution, and I can host at CAB.',
         deadline: 'Typically opens in autumn',
       },
       {
@@ -127,7 +128,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         href: 'https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships',
         audience: ['postdoc'],
         description:
-          'European fellowships for experienced researchers to carry out 1–2 year projects at a European host institution. Open to any nationality. I am happy to support strong applicants with the proposal — contact me well before the deadline.',
+          'European fellowships for experienced researchers to carry out 1–2 year projects at a European host institution. Open to any nationality. I am happy to support strong applicants with the proposal. Contact me well before the deadline.',
         deadline: 'Typically September',
       },
       {
@@ -157,9 +158,9 @@ const audienceLabel: Record<string, string> = {
     <div class="container">
       <h1>Opportunities</h1>
       <p class="lede">
-        Fellowships and calls for joining the group. Organized by who
-        advertises the position — me, or you. Deadlines change annually; always
-        verify on the official website.
+        Fellowships and calls for joining the group, organized by who
+        advertises the position: me, or you. Deadlines change annually, so
+        always verify on the official website.
       </p>
     </div>
   </section>
@@ -167,19 +168,7 @@ const audienceLabel: Record<string, string> = {
   <section class="section opp-section">
     <div class="container">
 
-      <!-- Join the group callout -->
-      <div class="join-block reveal">
-        <div class="join-inner">
-          <p class="join-eyebrow">Interested in joining the group?</p>
-          <p class="join-body">
-            I welcome inquiries from motivated students and researchers at all stages.
-            Whether you are looking for a PhD, postdoc, or short research visit, feel
-            free to reach out — and do mention any specific fellowship you plan to
-            apply for.
-          </p>
-          <a class="btn btn-ghost" href="/contact">Get in touch</a>
-        </div>
-      </div>
+      <JoinCallout lang="en" showOpportunities={false} />
 
       <!-- Filter bar -->
       <div class="filter-bar reveal">
@@ -262,32 +251,6 @@ const audienceLabel: Record<string, string> = {
 
   .opp-section {
     padding-top: var(--space-4);
-  }
-
-  /* ── Join the group ── */
-  .join-block {
-    margin-bottom: var(--space-5);
-    padding: var(--space-4) var(--space-5);
-    background: linear-gradient(135deg, rgba(212, 175, 111, 0.06), rgba(125, 211, 252, 0.04));
-    border: 1px solid rgba(212, 175, 111, 0.2);
-    border-radius: var(--radius-lg);
-  }
-
-  .join-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-gold);
-    margin: 0 0 var(--space-2);
-  }
-
-  .join-body {
-    max-width: 620px;
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-3);
-    font-size: 0.97rem;
   }
 
   /* ── Filter bar ── */
@@ -517,9 +480,6 @@ const audienceLabel: Record<string, string> = {
       position: static;
     }
 
-    .join-block {
-      padding: var(--space-3);
-    }
   }
 
   @media (max-width: 480px) {

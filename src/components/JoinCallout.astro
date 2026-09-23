@@ -1,0 +1,90 @@
+---
+/**
+ * The "join the group" invitation, shared by the People and Opportunities
+ * pages. Both used to carry their own near-identical copy; keeping one source
+ * means the invitation only has to be reworded once.
+ *
+ * On the Opportunities page itself the "see opportunities" button is dropped —
+ * `showOpportunities={false}` — since it would link to the page you are on.
+ */
+interface Props {
+  lang: 'en' | 'es';
+  showOpportunities?: boolean;
+}
+
+const { lang, showOpportunities = true } = Astro.props;
+
+const copy = {
+  en: {
+    heading: 'Join the group',
+    body: `I welcome inquiries from motivated students and researchers at all
+      stages, whether that is a PhD, a postdoc, a master's or undergraduate
+      project, or a short research visit.`,
+    opportunities: 'See opportunities',
+    contact: 'Get in touch',
+    opportunitiesHref: '/opportunities',
+    contactHref: '/contact',
+  },
+  es: {
+    heading: 'Únete al grupo',
+    body: `Recibo con interés consultas de estudiantes e investigadores en
+      cualquier etapa, ya sea un doctorado, un postdoctorado, un trabajo de
+      máster o grado, o una estancia breve.`,
+    opportunities: 'Ver oportunidades',
+    contact: 'Escríbeme',
+    opportunitiesHref: '/es/opportunities',
+    contactHref: '/es/contact',
+  },
+}[lang];
+---
+<div class="join-block reveal">
+  <p class="join-eyebrow">{copy.heading}</p>
+  <p class="join-body">{copy.body}</p>
+  <div class="join-actions">
+    {showOpportunities && (
+      <a class="btn" href={copy.opportunitiesHref}><span>{copy.opportunities}</span></a>
+    )}
+    <a class:list={['btn', { 'btn-ghost': showOpportunities }]} href={copy.contactHref}>
+      <span>{copy.contact}</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .join-block {
+    padding: var(--space-4) var(--space-5);
+    background: linear-gradient(135deg, rgba(212, 175, 111, 0.06), rgba(125, 211, 252, 0.04));
+    border: 1px solid rgba(212, 175, 111, 0.2);
+    border-radius: var(--radius-lg);
+  }
+
+  .join-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .join-body {
+    max-width: 620px;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+    font-size: 0.97rem;
+  }
+
+  .join-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  @media (max-width: 720px) {
+    .join-block {
+      padding: var(--space-3);
+    }
+  }
+</style>

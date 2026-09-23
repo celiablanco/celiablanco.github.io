@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JoinCallout from '../../components/JoinCallout.astro';
 
 type Opportunity = {
   title: string;
@@ -20,7 +21,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         href: 'https://www.ciencia.gob.es',
         audience: ['phd'],
         description:
-          'Contratos predoctorales vinculados a proyectos de investigación financiados por el Ministerio de Ciencia español. Cuando dispongo de una línea FPI en mi proyecto, anuncio la posición — el contrato es con mi grupo en el CAB. Consulta el tablón de empleo del CSIC o escríbeme directamente.',
+          'Contratos predoctorales vinculados a proyectos de investigación financiados por el Ministerio de Ciencia español. Cuando dispongo de una línea FPI en mi proyecto, anuncio la posición. El contrato es con mi grupo en el CAB. Consulta el tablón de empleo del CSIC o escríbeme directamente.',
         deadline: 'Se anuncia cuando el proyecto tiene una plaza FPI abierta',
       },
       {
@@ -44,7 +45,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
   {
     id: 'unpaid',
     label: 'Posiciones no remuneradas',
-    sublabel: 'Sin contrato ni financiación — una buena opción para quienes buscan ganar experiencia investigadora. Soy mentora del BMSIS y puedo tener proyectos disponibles en ambos programas.',
+    sublabel: 'Sin contrato ni financiación, son una buena opción para quienes buscan ganar experiencia investigadora. Soy mentora del BMS y puedo tener proyectos disponibles en ambos programas.',
     items: [
       {
         title: 'Supervisión de Trabajos de Fin de Grado y Fin de Máster (TFG / TFM)',
@@ -53,34 +54,34 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
           'Si te interesa una carrera en astrobiología o en investigación sobre el origen de la vida y buscas tutora para tu TFG o TFM, estoy siempre dispuesta a hablarlo. Escríbeme con una breve descripción de tu perfil e intereses.',
       },
       {
-        title: 'BMSIS Young Scientist Program',
+        title: 'BMS Young Scientist Program',
         href: 'https://bmsis.org/ysp/',
         audience: ['undergrad'],
         description:
-          'Programa de investigación mentorizada del Blue Marble Space Institute of Science para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea y sin remuneración; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMSIS. Soy mentora del BMSIS y puedo tener proyectos disponibles.',
+          'Programa de investigación mentorizada del Blue Marble Space para estudiantes de grado y recién graduados aún no matriculados en un posgrado. Totalmente en línea y sin remuneración; los participantes trabajan en proyectos de astrobiología y ciencias del espacio con investigadores del BMS. Soy mentora del BMS y puedo tener proyectos disponibles.',
         deadline: 'Normalmente en primavera (junio–agosto)',
       },
       {
-        title: 'BMSIS Visiting Scholars Program',
+        title: 'BMS Visiting Scholars Program',
         href: 'https://bmsis.org/visitingscholars/',
         audience: ['phd', 'postdoc'],
         description:
-          'Nombramientos de investigadora visitante no remunerados de un año en el BMSIS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMSIS YSP. Un buen complemento a una afiliación principal — totalmente en línea y renovable. Soy mentora del BMSIS y puedo supervisar proyectos en mis áreas de investigación.',
-        deadline: 'Convocatoria continua (contactar con un Research Scientist del BMSIS)',
+          'Nombramientos de investigadora visitante no remunerados de un año en el BMS, supervisados por un Research Scientist. Abierto a estudiantes de posgrado, titulados superiores y alumni del BMS YSP. Un buen complemento a una afiliación principal, totalmente en línea y renovable. Soy mentora del BMS y puedo supervisar proyectos en mis áreas de investigación.',
+        deadline: 'Convocatoria continua (contactar con un Research Scientist del BMS)',
       },
     ],
   },
   {
     id: 'phd',
     label: 'Becas de Doctorado',
-    sublabel: 'Las solicitas tú de forma independiente y, si las consigues, eliges el grupo de acogida. Puedo ser supervisora en el CAB — contáctame antes de presentar la solicitud.',
+    sublabel: 'Las solicitas tú de forma independiente y, si las consigues, eliges el grupo de acogida. Puedo ser supervisora en el CAB. Contáctame antes de presentar la solicitud.',
     items: [
       {
         title: 'Comunidad de Madrid — Contratos de Personal Investigador Predoctoral',
         href: 'https://sede.comunidad.madrid/ayudas-becas-subvenciones/personal-investigador-predoctoral',
         audience: ['phd'],
         description:
-          'Financiación predoctoral regional de la Comunidad de Madrid para centros de investigación de la región. El CAB es una institución elegible. Se solicita de forma conjunta entre el estudiante y el supervisor — no requiero financiación de proyecto propia. Contáctame si quieres solicitarlo juntos.',
+          'Financiación predoctoral regional de la Comunidad de Madrid para centros de investigación de la región. El CAB es una institución elegible. Se solicita de forma conjunta entre el estudiante y el supervisor, y no requiero financiación de proyecto propia. Contáctame si quieres solicitarlo juntos.',
         deadline: 'Suele anunciarse en otoño',
       },
       {
@@ -112,14 +113,14 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
   {
     id: 'postdoc',
     label: 'Becas Postdoctorales',
-    sublabel: 'Se solicitan con un investigador anfitrión. Puedo actuar como IP anfitriona en el CAB — contáctame con tiempo para desarrollar juntas el proyecto.',
+    sublabel: 'Se solicitan con un investigador anfitrión. Puedo actuar como IP anfitriona en el CAB. Contáctame con tiempo para desarrollar juntas el proyecto.',
     items: [
       {
         title: 'Juan de la Cierva — Formación e Incorporación',
         href: 'https://www.ciencia.gob.es',
         audience: ['postdoc'],
         description:
-          '"Formación" ofrece contratos de 2 años para investigadores hasta 2 años tras la defensa; "Incorporación" ofrece contratos de 3 años para investigadores con entre 2 y 5 años de experiencia postdoctoral. Se solicitan con una institución de acogida — puedo actuar como anfitriona en el CAB.',
+          '"Formación" ofrece contratos de 2 años para investigadores hasta 2 años tras la defensa; "Incorporación" ofrece contratos de 3 años para investigadores con entre 2 y 5 años de experiencia postdoctoral. Se solicitan con una institución de acogida, y puedo actuar como anfitriona en el CAB.',
         deadline: 'Suele abrirse en otoño',
       },
       {
@@ -127,7 +128,7 @@ const categories: { id: string; label: string; sublabel: string; items: Opportun
         href: 'https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships',
         audience: ['postdoc'],
         description:
-          'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. Puedo apoyar candidatos sólidos en la elaboración de la propuesta — contáctame con antelación.',
+          'Becas europeas para investigadores con experiencia que desean llevar a cabo proyectos de 1–2 años en una institución europea de acogida. Abiertas a cualquier nacionalidad. Puedo apoyar candidatos sólidos en la elaboración de la propuesta. Contáctame con antelación.',
         deadline: 'Normalmente en septiembre',
       },
       {
@@ -157,9 +158,9 @@ const audienceLabel: Record<string, string> = {
     <div class="container">
       <h1>Oportunidades</h1>
       <p class="lede">
-        Becas y convocatorias para incorporarse al grupo. Organizadas según quién
-        anuncia la plaza — yo, o tú. Los plazos cambian cada año; verifica
-        siempre en la web oficial.
+        Becas y convocatorias para incorporarse al grupo, organizadas según
+        quién anuncia la plaza: yo, o tú. Los plazos cambian cada año, así que
+        verifica siempre en la web oficial.
       </p>
     </div>
   </section>
@@ -167,19 +168,7 @@ const audienceLabel: Record<string, string> = {
   <section class="section opp-section">
     <div class="container">
 
-      <!-- Únete al grupo -->
-      <div class="join-block reveal">
-        <div class="join-inner">
-          <p class="join-eyebrow">¿Te interesa unirte al grupo?</p>
-          <p class="join-body">
-            Recibo con gusto consultas de estudiantes e investigadores en cualquier
-            etapa. Si buscas un doctorado, una estancia postdoctoral o una visita
-            de investigación, escríbeme — y menciona la beca a la que piensas
-            presentarte.
-          </p>
-          <a class="btn btn-ghost" href="/es/contact">Contáctame</a>
-        </div>
-      </div>
+      <JoinCallout lang="es" showOpportunities={false} />
 
       <!-- Filtro -->
       <div class="filter-bar reveal">
@@ -262,31 +251,6 @@ const audienceLabel: Record<string, string> = {
 
   .opp-section {
     padding-top: var(--space-4);
-  }
-
-  .join-block {
-    margin-bottom: var(--space-5);
-    padding: var(--space-4) var(--space-5);
-    background: linear-gradient(135deg, rgba(212, 175, 111, 0.06), rgba(125, 211, 252, 0.04));
-    border: 1px solid rgba(212, 175, 111, 0.2);
-    border-radius: var(--radius-lg);
-  }
-
-  .join-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-gold);
-    margin: 0 0 var(--space-2);
-  }
-
-  .join-body {
-    max-width: 620px;
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-3);
-    font-size: 0.97rem;
   }
 
   .filter-bar {
@@ -511,9 +475,6 @@ const audienceLabel: Record<string, string> = {
       position: static;
     }
 
-    .join-block {
-      padding: var(--space-3);
-    }
   }
 
   @media (max-width: 480px) {

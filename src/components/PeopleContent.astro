@@ -1,0 +1,663 @@
+---
+/**
+ * Body of the People page, shared by /people and /es/people.
+ *
+ * The roster itself lives in `src/data/people.ts` so a new member is added in
+ * one place; only the surrounding prose is duplicated per language here.
+ */
+import JoinCallout from './JoinCallout.astro';
+import Silhouette from './Silhouette.astro';
+import { pi, members, alumni, avatarHues, piHue, bmsCurrent, bmsPast, programLabels, yearPrefix, roleLabels, type Affiliate, type Bilingual, type Person, type Role } from '../data/people';
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    groupName: 'Theoretical Astrobiology Group',
+    lede: `We are a theory group at the Centro de Astrobiología (CAB, CSIC-INTA)
+      in Madrid. We use theoretical and computational models to study how life
+      begins and evolves, here and elsewhere in the universe.`,
+    researchLink: 'Research in detail',
+    piHeading: 'Principal Investigator',
+    membersHeading: 'Group members',
+    membersEmpty: `The group is newly formed and currently recruiting. If you are
+      a student or researcher who would like to work on these questions, the
+      positions and fellowships I can host are listed on the opportunities page.`,
+    bmsHeading: 'BMS affiliates',
+    bmsNote: `Researchers I mentor remotely through Blue Marble Space, separately from the group at CAB.`,
+    present: 'present',
+    alumniHeading: 'Alumni',
+    bmsAlumniHeading: 'BMS alumni',
+    bmsAlumniNote: `Visiting scholars and research associates who have finished
+      their appointments at Blue Marble Space.`,
+    alumniNow: 'Now:',
+    profileLabel: 'CAB profile',
+    emailAria: 'Email address',
+    researchHref: '/research',
+  },
+  es: {
+    groupName: 'Grupo de Astrobiología Teórica',
+    lede: `Somos un grupo teórico del Centro de Astrobiología (CAB, CSIC-INTA),
+      en Madrid. Usamos modelos teóricos y computacionales para estudiar cómo
+      surge y evoluciona la vida, aquí y en el resto del universo.`,
+    researchLink: 'La investigación en detalle',
+    piHeading: 'Investigadora Principal',
+    membersHeading: 'Miembros del grupo',
+    membersEmpty: `El grupo es de creación reciente y está en proceso de
+      incorporación. Si eres estudiante o investigador/a y te interesa trabajar
+      en estas preguntas, en la página de oportunidades están las plazas y becas
+      que puedo acoger.`,
+    bmsHeading: 'Afiliados BMS',
+    bmsNote: `Investigadores a quienes dirijo a distancia a través del Blue Marble Space, de forma independiente al grupo del CAB.`,
+    present: 'presente',
+    alumniHeading: 'Antiguos miembros',
+    bmsAlumniHeading: 'Antiguos afiliados BMS',
+    bmsAlumniNote: `Investigadores visitantes y asociados que ya han terminado
+      su estancia en Blue Marble Space.`,
+    alumniNow: 'Actualmente:',
+    profileLabel: 'Perfil CAB',
+    emailAria: 'Dirección de correo',
+    researchHref: '/es/research',
+  },
+}[lang];
+
+const roleLabel = (person: { role: Role; roleLabel?: Bilingual }) =>
+  person.roleLabel?.[lang] ?? roleLabels[person.role][lang];
+
+/** Names are usually one string, but the PI's honorific differs by language. */
+const displayName = (name: string | Bilingual) =>
+  typeof name === 'string' ? name : name[lang];
+
+/**
+ * Addresses are never written out whole in the markup. The two halves go in
+ * data attributes, the page shows `(at)`, and a small script below turns the
+ * link into a real mailto: once a browser is running — the same trick the
+ * contact page uses. It stops harvesters that just grep the HTML for an @.
+ */
+const emailParts = (email: string) => {
+  const [user, domain] = email.split('@');
+  return { user, domain };
+};
+
+/** 'Visiting Scholar, 2026–present' or 'Research Associate, YSP 2024' */
+const appointmentText = (a: { program: keyof typeof programLabels; years: string; ongoing?: boolean }) =>
+  `${programLabels[a.program][lang]}, ${yearPrefix[a.program] ?? ''}${a.years}` +
+  `${a.ongoing ? `–${copy.present}` : ''}`;
+
+const piPosition = pi.position?.[lang];
+const piBio = pi.bio?.[lang];
+---
+
+<section class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">{copy.groupName}</p>
+    <h1>{lang === 'es' ? 'Miembros' : 'People'}</h1>
+    <p class="lede">{copy.lede}</p>
+    <p class="hero-more"><a href={copy.researchHref}>{copy.researchLink}</a></p>
+  </div>
+</section>
+
+<section class="section people-section">
+  <div class="container">
+
+    <!-- ── Principal Investigator ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.piHeading}</span>
+        <span class="block-rule"></span>
+      </div>
+
+      <article class="pi-card">
+        <div class="pi-portrait">
+          {pi.photo
+            ? <img src={pi.photo} alt={displayName(pi.name)} loading="lazy" />
+            : <Silhouette hue={piHue} />}
+        </div>
+        <div class="pi-body">
+          <h2 class="person-name">{displayName(pi.name)}</h2>
+          <p class="person-role">{roleLabel(pi)}</p>
+          {piPosition && <p class="person-position">{piPosition}</p>}
+          {piBio && <p class="person-bio">{piBio}</p>}
+          {pi.links && pi.links.length > 0 && (
+            <ul class="person-links">
+              {pi.links.map((link) => (
+                <li>
+                  <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </article>
+    </div>
+
+    <!-- ── Current members ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.membersHeading}</span>
+        <span class="block-rule"></span>
+      </div>
+
+      <div class="block-body">
+        {members.length === 0 ? (
+          <p class="empty-note">{copy.membersEmpty}</p>
+        ) : (
+          <ul class="member-grid">
+            {members.map((person: Person, i: number) => (
+              <li class="member-card" id={person.id}>
+                <div class="member-portrait">
+                  {person.photo
+                    ? <img src={person.photo} alt={displayName(person.name)} loading="lazy" />
+                    : <Silhouette hue={avatarHues[i % avatarHues.length]} />}
+                </div>
+                <h3 class="person-name">{displayName(person.name)}</h3>
+                <p class="person-role">{roleLabel(person)}</p>
+                {person.position?.[lang] && (
+                  <p class="person-position">{person.position[lang]}</p>
+                )}
+                {person.topic?.[lang] && (
+                  <p class="person-topic">{person.topic[lang]}</p>
+                )}
+                {(person.profile || person.email || person.links?.length) && (
+                  <ul class="person-links">
+                    {person.profile && (
+                      <li>
+                        <a href={person.profile} target="_blank" rel="noopener">{copy.profileLabel}</a>
+                      </li>
+                    )}
+                    {person.email && (
+                      <li>
+                        <a
+                          class="email-link"
+                          href="#"
+                          data-user={emailParts(person.email).user}
+                          data-domain={emailParts(person.email).domain}
+                          aria-label={copy.emailAria}
+                        >
+                          {emailParts(person.email).user}<span class="at" aria-hidden="true">(at)</span>{emailParts(person.email).domain}
+                        </a>
+                      </li>
+                    )}
+                    {person.links?.map((link) => (
+                      <li>
+                        <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    <!-- ── BMS affiliates ── -->
+    <div class="group-block reveal">
+      <div class="block-marker">
+        <span class="block-label">{copy.bmsHeading}</span>
+        <span class="block-rule"></span>
+        <p class="block-note">{copy.bmsNote}</p>
+      </div>
+
+      <div class="block-body">
+        <ul class="affiliate-list">
+          {bmsCurrent.map((person: Affiliate) => (
+            <li class="affiliate" id={person.id}>
+              <p class="affiliate-name">{person.name}</p>
+              <ul class="appointments">
+                {person.appointments.map((a) => <li>{appointmentText(a)}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Alumni: past group members at CAB ── -->
+    {alumni.length > 0 && (
+      <div class="group-block reveal">
+        <div class="block-marker">
+          <span class="block-label">{copy.alumniHeading}</span>
+          <span class="block-rule"></span>
+        </div>
+
+        <div class="block-body">
+          <ul class="alumni-list">
+            {alumni.map((alum) => (
+              <li class="alum-item">
+                <div class="alum-header">
+                  <p class="alum-name">{displayName(alum.name)}</p>
+                  <span class="alum-years">{alum.years}</span>
+                </div>
+                <p class="alum-role">{roleLabel(alum)}</p>
+                {alum.topic?.[lang] && <p class="alum-topic">{alum.topic[lang]}</p>}
+                {alum.now?.[lang] && (
+                  <p class="alum-now"><span>{copy.alumniNow}</span> {alum.now[lang]}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    <!-- ── BMS alumni ── -->
+    {bmsPast.length > 0 && (
+      <div class="group-block reveal">
+        <div class="block-marker">
+          <span class="block-label">{copy.bmsAlumniHeading}</span>
+          <span class="block-rule"></span>
+          <p class="block-note">{copy.bmsAlumniNote}</p>
+        </div>
+
+        <div class="block-body">
+          <ul class="affiliate-list">
+            {bmsPast.map((person: Affiliate) => (
+              <li class="affiliate" id={person.id}>
+                <p class="affiliate-name">{person.name}</p>
+                <ul class="appointments">
+                  {person.appointments.map((a) => <li>{appointmentText(a)}</li>)}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    <!-- ── Join us ── -->
+    <JoinCallout lang={lang} />
+
+  </div>
+</section>
+
+<style>
+  /* ── Page hero ── */
+  .page-hero {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-2);
+  }
+
+  .page-hero h1 {
+    font-weight: 400;
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page-hero .lede {
+    max-width: 660px;
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+
+  .people-section {
+    padding-top: var(--space-4);
+  }
+
+  /* ── Section blocks (mirrors the opportunities page rhythm) ── */
+  .group-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    align-items: start;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .block-marker {
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .block-label {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .block-note {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    line-height: 1.55;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .block-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .hero-more {
+    margin: var(--space-3) 0 0;
+    font-size: 0.88rem;
+  }
+
+  .hero-more a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+
+  .hero-more a:hover,
+  .hero-more a:focus-visible {
+    color: var(--color-gold-bright);
+    border-color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  /* ── Shared person typography ── */
+  .person-name {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 0 0 0.3rem;
+  }
+
+  .person-role {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.4rem;
+  }
+
+  .person-position {
+    font-size: 0.88rem;
+    color: var(--color-text-subtle);
+    margin: 0 0 0.6rem;
+    line-height: 1.5;
+  }
+
+  .person-topic {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 0.6rem;
+  }
+
+  .person-bio {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 var(--space-2);
+    max-width: 62ch;
+  }
+
+  .person-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .person-links a {
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+
+  .person-links a:hover,
+  .person-links a:focus-visible {
+    color: var(--color-gold-bright);
+    border-color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  /* ── PI card ── */
+  .pi-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-4);
+    background: linear-gradient(135deg, rgba(212, 175, 111, 0.05), rgba(125, 211, 252, 0.03));
+    border: 1px solid rgba(212, 175, 111, 0.18);
+    border-radius: var(--radius-lg);
+  }
+
+  .pi-portrait {
+    overflow: hidden;
+    border-radius: var(--radius);
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .pi-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .pi-card .person-name {
+    font-size: 1.5rem;
+  }
+
+  /* ── Member grid ── */
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .member-card {
+    padding: var(--space-3);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.015);
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+
+  .member-card:hover {
+    border-color: rgba(212, 175, 111, 0.28);
+    transform: translateY(-2px);
+  }
+
+  .member-portrait {
+    width: 84px;
+    height: 84px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: var(--space-2);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .member-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .member-card .person-name {
+    font-size: 1.12rem;
+  }
+
+  .empty-note {
+    max-width: 62ch;
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Affiliate list: many people, little each, so a compact two-column
+     roll rather than cards. ── */
+  .affiliate-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: var(--space-3) var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .affiliate-name {
+    font-family: var(--font-sans);
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 0.15rem;
+  }
+
+  .appointments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .appointments li {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    line-height: 1.5;
+  }
+
+  .appointments li:first-child {
+    color: var(--color-text-muted);
+  }
+
+  /* ── Alumni ── */
+  .alumni-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .alum-item {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .alum-item:first-child { padding-top: 0; }
+  .alum-item:last-child { border-bottom: none; }
+
+  .alum-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem var(--space-2);
+  }
+
+  .alum-name {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .alum-years {
+    font-size: 0.82rem;
+    color: var(--color-text-subtle);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .alum-role {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0.2rem 0 0.4rem;
+  }
+
+  .alum-topic {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 0.3rem;
+  }
+
+  .alum-now {
+    font-size: 0.86rem;
+    color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  .alum-now span {
+    color: var(--color-text-muted);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .pi-card {
+      grid-template-columns: 140px 1fr;
+      gap: var(--space-3);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .group-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+
+    .block-marker {
+      position: static;
+    }
+
+    .pi-card {
+      grid-template-columns: 1fr;
+      padding: var(--space-3);
+    }
+
+    .pi-portrait {
+      width: 140px;
+      aspect-ratio: 1;
+    }
+
+    .join-block {
+      padding: var(--space-3);
+    }
+  }
+</style>
+
+<script>
+  // Give the obfuscated addresses a working mailto: without ever putting the
+  // whole address in the served HTML. The visible text keeps its `(at)`.
+  document.querySelectorAll<HTMLAnchorElement>('a.email-link').forEach((a) => {
+    const { user, domain } = a.dataset;
+    if (user && domain) a.href = `mailto:${user}@${domain}`;
+  });
+</script>

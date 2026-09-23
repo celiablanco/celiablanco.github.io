@@ -1,0 +1,54 @@
+---
+/**
+ * Placeholder avatar shown until a person has a portrait: a small astronaut,
+ * which suits an astrobiology group and looks deliberate while several cards
+ * are still waiting on photos.
+ *
+ * The suit is tinted per person so a row of them reads as several people
+ * rather than several copies of one. The visor stays dark in every case, which
+ * is what keeps the figure legible at the 84px thumbnail size.
+ */
+interface Props {
+  /** A colour from `avatarHues`. Omitted renders the neutral cream figure. */
+  hue?: string;
+}
+
+const { hue } = Astro.props;
+const fill = hue ?? 'currentColor';
+---
+<svg class="silhouette" viewBox="0 0 64 64" role="presentation" aria-hidden="true" focusable="false">
+  <!-- shoulders -->
+  <path
+    d="M32 43.5c-10.8 0-19.5 7.3-19.5 16.4V64h39v-4.1c0-9.1-8.7-16.4-19.5-16.4Z"
+    fill={fill} fill-opacity={hue ? 0.55 : 1}
+  />
+  <!-- helmet side packs -->
+  <rect x="12.8" y="21.6" width="4.6" height="9.4" rx="2.3" fill={fill} fill-opacity={hue ? 0.55 : 1} />
+  <rect x="46.6" y="21.6" width="4.6" height="9.4" rx="2.3" fill={fill} fill-opacity={hue ? 0.55 : 1} />
+  <!-- helmet -->
+  <circle cx="32" cy="26" r="15" fill={fill} fill-opacity={hue ? 0.55 : 1} />
+  <!-- visor -->
+  <rect x="21" y="19.4" width="22" height="14.6" rx="7.3" fill="var(--color-bg)" fill-opacity="0.85" />
+  <rect
+    x="21" y="19.4" width="22" height="14.6" rx="7.3"
+    fill="none" stroke={hue ?? 'var(--color-gold)'} stroke-opacity={hue ? 0.9 : 0.5} stroke-width="1"
+  />
+  <!-- glint on the visor -->
+  <path
+    d="M25.7 25.4a5.4 5.4 0 0 1 3.7-3.2"
+    fill="none" stroke={hue ?? 'var(--color-gold)'} stroke-opacity={hue ? 0.95 : 0.65}
+    stroke-width="1.7" stroke-linecap="round"
+  />
+</svg>
+
+<style>
+  .silhouette {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* The circle behind stays neutral for everyone, so the tints are compared
+       against a common ground and stay distinguishable. */
+    background: linear-gradient(140deg, rgba(212, 175, 111, 0.12), rgba(125, 211, 252, 0.07));
+    color: rgba(236, 231, 214, 0.42);
+  }
+</style>

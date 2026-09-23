@@ -20,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="hero-portrait">
-        <img src="/img/profile-nobg.png" alt="Portrait of Dr. Celia Blanco" />
+        <img src="/img/profile_stars_2026_web.jpg" alt="Portrait of Dr. Celia Blanco against a starfield" />
       </div>
     </div>
   </section>
@@ -30,19 +30,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="about-prose">
         <div class="about-text reveal">
-          <h2>About</h2>
+          <h2>Welcome to the Theoretical Astrobiology Group!</h2>
           <p>
-            Welcome to my corner of the web! I'm a theoretical physicist
-            fascinated by the big questions in astrobiology. If it has to do
-            with the origins or evolution of life in the universe, I'm all in.
+            I'm a theoretical physicist fascinated by the big questions in
+            astrobiology. If it has to do with the origins or evolution of life
+            in the universe, I'm all in.
           </p>
           <p>
             My path started at the <strong>Centro de Astrobiología (CAB,
             CSIC-INTA)</strong>, then took me across the U.S. for more than a
-            decade, with stops at UCLA, UC Santa Barbara, and the Blue Marble
-            Space Institute of Science, where I had the privilege of working
+            decade, with stops at UCLA, UC Santa Barbara, and the Blue Marble Space, where I had the privilege of working
             with some of the brightest minds I've ever met. Now I've come full
-            circle, back at CAB as a Ramón y Cajal Fellow.
+            circle, back at CAB as a Ramón y Cajal Fellow, where I am starting
+            <a class="group-mention" href="/people">the group</a>.
           </p>
           <p>
             My research sits at the intersection of biophysics and biomolecular
@@ -164,7 +164,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .hero-portrait {
-    max-width: 320px;
+    max-width: 280px;
     margin-left: auto;
     width: 100%;
   }
@@ -173,7 +173,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
   }
 
   @media (max-width: 880px) {
@@ -221,6 +221,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .about-text p {
     font-size: 1.05rem;
+  }
+
+  /* The group is named in the flow of the bio rather than in a box of its own,
+     so it needs to read as a proper noun without shouting. */
+  .group-mention {
+    color: var(--color-text);
+    font-weight: 500;
+    text-decoration: none;
+    background-image: linear-gradient(var(--color-gold), var(--color-gold));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: color 0.2s var(--ease);
+  }
+
+  .group-mention:hover,
+  .group-mention:focus-visible {
+    color: var(--color-gold-bright);
+    text-decoration: none;
   }
 
   /* ============= INTERESTS — 3 on top, 2 on bottom (centered) ============= */
