@@ -138,6 +138,17 @@ export const coverage: Coverage[] = [
 
 export const profiles: Profile[] = [
   {
+    id: 'our-narratives-2026',
+    year: '2026',
+    title: { en: 'The Loop and the Silence', es: 'The Loop and the Silence' },
+    href: 'https://ournarratives.net/the-loop-and-the-silence/',
+    outlet: 'Our Narratives',
+    note: {
+      en: 'On how life begins, how civilizations last, and why a quiet galaxy may not be an empty one.',
+      es: 'Sobre cómo empieza la vida, cuánto duran las civilizaciones y por qué una galaxia silenciosa puede no estar vacía.',
+    },
+  },
+  {
     id: 'scope-2024',
     year: '2024',
     title: { en: 'Researcher profile', es: 'Perfil de investigadora' },
