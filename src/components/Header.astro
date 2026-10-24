@@ -1,18 +1,14 @@
 ---
+import { langOf, mirrorOf, routeOf } from '../data/i18n';
+
 const { pathname } = Astro.url;
 
-const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWith('/es/');
-const lang: 'en' | 'es' = isSpanish ? 'es' : 'en';
+const lang = langOf(pathname);
+const route = routeOf(pathname);
 
 const isActive = (href: string) => {
-  // Normalize trailing slashes for both sides.
-  const norm = (s: string) => (s.length > 1 ? s.replace(/\/$/, '') : s);
-  const a = norm(pathname);
-  const b = norm(href);
-  if (b === '/' || b === '/es') {
-    return a === b || a === b + '/index' || a === b + '/index.html';
-  }
-  return a === b || a.startsWith(b + '/');
+  if (href === '/' || href === '/es') return route === href;
+  return route === href || route.startsWith(href + '/');
 };
 
 const navItemsByLang = {
@@ -38,22 +34,7 @@ const navItemsByLang = {
 
 const navItems = navItemsByLang[lang];
 
-// Map current path to its counterpart in the other language.
-function mirrorPath(p: string): string {
-  const trimmed = p.replace(/\/$/, '');
-  if (lang === 'es') {
-    // /es -> /
-    if (trimmed === '/es' || trimmed === '') return '/';
-    // /es/foo -> /foo
-    if (trimmed.startsWith('/es/')) return trimmed.slice(3) || '/';
-    return '/';
-  }
-  // EN -> ES
-  if (trimmed === '' || trimmed === '/') return '/es';
-  return '/es' + trimmed;
-}
-
-const otherLangHref = mirrorPath(pathname);
+const otherLangHref = mirrorOf(pathname);
 const otherLang: 'en' | 'es' = lang === 'es' ? 'en' : 'es';
 const toggleAria =
   lang === 'es' ? 'Switch to English' : 'Cambiar a español';

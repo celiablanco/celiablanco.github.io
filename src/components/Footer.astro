@@ -1,4 +1,6 @@
 ---
+import { langOf, mirrorOf } from '../data/i18n';
+
 const profiles = [
   {
     name: 'Google Scholar',
@@ -25,7 +27,8 @@ const profiles = [
 const year = new Date().getFullYear();
 
 const { pathname } = Astro.url;
-const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWith('/es/');
+const isSpanish = langOf(pathname) === 'es';
+const otherLangHref = mirrorOf(pathname);
 ---
 <footer class="site-footer">
   <div class="container footer-inner">
@@ -59,8 +62,8 @@ const isSpanish = pathname === '/es' || pathname === '/es/' || pathname.startsWi
     </p>
     <p class="footer-meta footer-langnote">
       {isSpanish
-        ? <>Also available in <a href="/">English</a>.</>
-        : <>También disponible en <a href="/es">español</a>.</>}
+        ? <>Also available in <a href={otherLangHref} hreflang="en">English</a>.</>
+        : <>También disponible en <a href={otherLangHref} hreflang="es">español</a>.</>}
     </p>
   </div>
 </footer>
