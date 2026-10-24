@@ -11,13 +11,16 @@
  */
 import type { Bilingual } from './i18n';
 
+/** Languages coverage has appeared in, as BCP 47 tags for the `lang` attribute. */
+export type PieceLang = 'en' | 'es' | 'fr' | 'de' | 'it' | 'pt' | 'zh';
+
 export type Outlet = {
   /** The publication. */
   name: string;
   href: string;
   /** Language the piece was published in; the page lists its own language
    *  first so a reader meets the ones they can read. */
-  lang: 'en' | 'es';
+  lang: PieceLang;
   /**
    * The headline that outlet ran, which says far more than the outlet name
    * alone. Fetched from the live pages. A few sites block automated requests
@@ -60,6 +63,8 @@ export type Profile = {
   href: string;
   outlet: string;
   note?: Bilingual;
+  /** The same piece published in another language. */
+  translations?: { lang: PieceLang; label: Bilingual; href: string }[];
 };
 
 export const interviews: Interview[] = [
@@ -97,7 +102,7 @@ export const coverage: Coverage[] = [
     href: 'https://arxiv.org/abs/2604.13774',
     outlets: [
       { name: 'El País', href: 'https://elpais.com/ciencia/2026-05-20/cuanto-tiempo-puede-vivir-una-civilizacion-antes-de-colapsar-las-utopias-estables-son-los-escenarios-menos-probables.html', lang: 'es', headline: '¿Cuánto tiempo puede vivir una civilización antes de colapsar? “Las utopías estables son los escenarios menos probables”' },
-      { name: 'El País (English)', href: 'https://elpais.com/science-tech/2026-05-21/how-long-can-a-civilization-survive-before-it-collapses-stable-utopias-are-the-least-likely-scenarios.html', lang: 'en' }, // TODO: this URL returns "página no encontrada o de acceso restringido" — check it
+      { name: 'El País (English)', href: 'https://english.elpais.com/science-tech/2026-05-21/how-long-can-a-civilization-survive-before-it-collapses-stable-utopias-are-the-least-likely-scenarios.html', lang: 'en', headline: 'How long can a civilization survive before it collapses? ‘Stable utopias are the least likely scenarios’' },
       { name: 'El Confidencial', href: 'https://www.elconfidencial.com/tecnologia/novaceno/2026-04-27/investigacion-civilizaciones-universo-humanos_4344882/', lang: 'es', headline: 'Los 10 futuros que provocarán el colapso de nuestra civilización, según un estudio de la astrobióloga española Celia Blanco' },
       { name: 'elDiario.es', href: 'https://www.eldiario.es/spin/quedan-futuros-viables-ocho-diez-escenarios-simulados-cientifica-espanola-no-garantizan-supervivencia-humana-pm_1_13269686.html', lang: 'es', headline: 'Solo quedan dos futuros viables: ocho de los diez escenarios simulados por una científica española no garantizan la supervivencia humana' },
       { name: 'Universe Today', href: 'https://www.universetoday.com/articles/which-types-of-civilizations-collapse-and-which-can-endure', lang: 'en', headline: 'Which Types of Civilizations Collapse and Which Can Endure?' },
@@ -108,6 +113,18 @@ export const coverage: Coverage[] = [
       { name: 'MuyMac', href: 'https://www.muymac.com/solo-2-de-cada-10-futuros-simulados-dejan-a-la-humanidad-viva-estudio-madrileno-descarta-utopias/', lang: 'es', headline: 'Solo 2 de cada 10 futuros simulados dejan a la humanidad viva: estudio madrileño descarta utopías' },
       { name: 'Teleamazonas', href: 'https://www.teleamazonas.com/tendencias/entretenimiento/ciencia/vivir-civilizacion-colapsar-recursos/', lang: 'es', headline: '¿Cuánto tiempo puede vivir una civilización antes de colapsar?' },
       { name: 'Above the Norm News', href: 'https://www.abovethenormnews.com/2026/08/17/human-civilization-collapse-simulations/', lang: 'en', headline: 'Scientists Ran 2,000 Simulations Of Humanity\'s Future. Most Ended In Collapse' },
+      // Listed on the Project Janus press page, janus.bluemarblespace.org/press-interviews.
+      { name: 'Rivista Studio', href: 'https://www.rivistastudio.com/crollo-civilta-consumo-risorse/', lang: 'it', headline: 'Una ricerca ha dimostrato che le civiltà non crollano per le catastrofi ma perché iniziano a consumare troppo, che è proprio quello che sta succedendo alla nostra civiltà' },
+      { name: 'Xataka Brasil', href: 'https://www.xataka.com.br/ciencia/cientistas-simulam-10-cenarios-possiveis-para-a-humanidade-e-constatam-apenas-2-chegam-ao-proximo-milenio-sem-entrar-em-colapso', lang: 'pt', headline: 'Cientistas simulam 10 cenários possíveis para a humanidade e constatam: apenas 2 chegam ao próximo milênio sem entrar em colapso' },
+      { name: 'ScienceAlert', href: 'https://www.sciencealert.com/a-1000-year-simulation-reveals-what-could-save-civilization-from-collapse', lang: 'en', headline: 'A 1,000-Year Simulation Reveals What Could Save Civilization From Collapse' },
+      { name: 'Olhar Digital', href: 'https://olhardigital.com.br/2026/09/18/ciencia-e-espaco/o-que-pode-salvar-uma-civilizacao-do-colapso-simulacao-de-mil-anos-aponta-dois-fatores-decisivos-para-o-futuro', lang: 'pt', headline: 'O que pode salvar uma civilização do colapso? Simulação de mil anos aponta dois fatores decisivos para o futuro' },
+      { name: 'scinexx', href: 'https://www.scinexx.de/news/gesellschaft/welche-zivilisationen-kollabieren-und-welche-ueberdauern/', lang: 'de', headline: 'Welche Zivilisationen kollabieren und welche überdauern?' },
+      { name: 'Everyeye Tech', href: 'https://tech.everyeye.it/notizie/civilta-collasso-simulazione-lunga-1000-anni-svela-come-evitare-umanita-901261.html', lang: 'it', headline: 'Civiltà al collasso: una simulazione lunga 1000 anni svela come evitare la fine dell\'umanità' },
+      { name: 'ZAP Notícias', href: 'https://zap.aeiou.pt/uma-simulacao-de-mil-anos-mostra-o-que-pode-salvar-a-nossa-civilizacao-do-colapso-765496', lang: 'pt', headline: 'Uma simulação de mil anos mostra o que pode salvar a nossa civilização do colapso' },
+      { name: 'Correio do Estado', href: 'https://correiodoestado.com.br/extra/cientista-simula-os-proximos-1000-anos-da-humanidade-e-encontra-unica/473354/', lang: 'pt', headline: 'Cientista simula os próximos 1.000 anos da humanidade e encontra única saída para o colapso' },
+      { name: 'Vistazo', href: 'https://www.vistazo.com/discover/cientificos-simulan-los-proximos-1-000-anos-de-la-tierra-y-solo-hay-una-posibilidad-de-que-la-humanidad-evite-el-colapso/', lang: 'es', headline: 'Científicos simulan los próximos 1.000 años de la Tierra y solo hay una posibilidad de que la humanidad evite el colapso' },
+      { name: 'Schwarzwälder Bote', href: 'https://www.schwarzwaelder-bote.de/wissen/wie-phoenix-aus-der-asche-warum-zivilisationen-kollabieren-und-welche-ueberdauern-79511387.html', lang: 'de', headline: 'Wie Phönix aus der Asche: Warum Zivilisationen kollabieren und welche überdauern' },
+      { name: 'Actu Alt Plus', href: 'https://www.actu-alt-plus.com/tech-ia-futur/dix-futurs-simules-mille-ans-effondrement-civilisation/37364/', lang: 'fr', headline: 'Effondrement de civilisation : dix futurs simulés' },
     ],
   },
   {
@@ -147,6 +164,9 @@ export const profiles: Profile[] = [
       en: 'On how life begins, how civilizations last, and why a quiet galaxy may not be an empty one.',
       es: 'Sobre cómo empieza la vida, cuánto duran las civilizaciones y por qué una galaxia silenciosa puede no estar vacía.',
     },
+    translations: [
+      { lang: 'zh', label: { en: 'Chinese version', es: 'Versión en chino' }, href: 'https://ournarratives.net/the-loop-and-the-silence-chinese/' },
+    ],
   },
   {
     id: 'scope-2024',

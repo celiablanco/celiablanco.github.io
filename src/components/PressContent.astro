@@ -127,12 +127,12 @@ const copy = {
                     <li class="outlet">
                       <span class="outlet-icon"><PressIcon kind="article" /></span>
                       {g.items.length === 1 ? (
-                        <a class="outlet-headline" href={g.items[0].href} target="_blank" rel="noopener">
+                        <a class="outlet-headline" href={g.items[0].href} target="_blank" rel="noopener" lang={g.items[0].lang} hreflang={g.items[0].lang}>
                           {g.headline}
                         </a>
                       ) : (
                         <p class="outlet-shared">
-                          <span class="shared-headline">{g.headline}</span>
+                          <span class="shared-headline" lang={g.items[0].lang}>{g.headline}</span>
                           {g.items.map((o, i) => (
                             <span class="shared-outlet">
                               <span class="sep" aria-hidden="true">{i === 0 ? ' — ' : ' · '}</span>
@@ -170,6 +170,11 @@ const copy = {
                 </div>
                 <p class="item-outlet">{p.outlet}</p>
                 {p.note?.[lang] && <p class="item-note">{p.note[lang]}</p>}
+                {p.translations?.map((t) => (
+                  <p class="item-note">
+                    <a href={t.href} target="_blank" rel="noopener" hreflang={t.lang}>{t.label[lang]}</a>
+                  </p>
+                ))}
               </div>
             </li>
           ))}
