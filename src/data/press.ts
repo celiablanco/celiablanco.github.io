@@ -42,6 +42,8 @@ export type Interview = {
   outlet: string;
   date: Bilingual;
   note: Bilingual;
+  /** A written Q&A rather than audio; shown with the article icon. */
+  written?: boolean;
 };
 
 export type Coverage = {
@@ -68,6 +70,19 @@ export type Profile = {
 };
 
 export const interviews: Interview[] = [
+  {
+    id: 'askastrobio-2026',
+    year: '2026',
+    title: 'Astrobiology Revealed #38: Celia Blanco',
+    href: 'https://askastrobio.org/articles/astrobiology-revealed-38',
+    outlet: 'AskAstrobio, Blue Marble Space',
+    date: { en: '20 Oct 2026', es: '20 de octubre de 2026' },
+    note: {
+      en: 'Written Q&A on integrating astrobiology into crewed space missions.',
+      es: 'Entrevista escrita sobre la integración de la astrobiología en las misiones espaciales tripuladas.',
+    },
+    written: true,
+  },
   {
     id: 'principio-de-incertidumbre-2026',
     year: '2026',

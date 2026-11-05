@@ -88,7 +88,7 @@ const copy = {
         <ul class="item-list">
           {interviews.map((it) => (
             <li class="item" id={it.id}>
-              <span class="item-icon"><PressIcon kind="podcast" /></span>
+              <span class="item-icon"><PressIcon kind={it.written ? 'article' : 'podcast'} /></span>
               <div class="item-body">
                 <div class="item-header">
                   <p class="item-title">
