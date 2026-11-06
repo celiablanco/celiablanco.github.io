@@ -114,7 +114,7 @@ export const coverage: Coverage[] = [
     id: 'technosphere-2026',
     year: '2026',
     title: "Projections of Earth's Technosphere: Civilization Collapse-Recovery Dynamics and Detectability",
-    href: 'https://arxiv.org/abs/2604.13774',
+    href: 'https://doi.org/10.1016/j.actaastro.2026.10.055',
     outlets: [
       { name: 'El País', href: 'https://elpais.com/ciencia/2026-05-20/cuanto-tiempo-puede-vivir-una-civilizacion-antes-de-colapsar-las-utopias-estables-son-los-escenarios-menos-probables.html', lang: 'es', headline: '¿Cuánto tiempo puede vivir una civilización antes de colapsar? “Las utopías estables son los escenarios menos probables”' },
       { name: 'El País (English)', href: 'https://english.elpais.com/science-tech/2026-05-21/how-long-can-a-civilization-survive-before-it-collapses-stable-utopias-are-the-least-likely-scenarios.html', lang: 'en', headline: 'How long can a civilization survive before it collapses? ‘Stable utopias are the least likely scenarios’' },

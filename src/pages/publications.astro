@@ -10,17 +10,18 @@ type Pub = {
 };
 
 const inProgress: Pub[] = [
-  {
-    authors: 'C. Blanco, J. Haqq-Misra, G. Profitiliotis',
-    title: 'Projections of Earth\'s Technosphere: Civilization Collapse-Recovery Dynamics and Detectability',
-    venue: 'Under review',
-  },
 ];
 
 const groups: { year: string; pubs: Pub[] }[] = [
   {
     year: '2026',
     pubs: [
+      {
+        authors: 'C. Blanco, J. Haqq-Misra, G. Profitiliotis',
+        title: 'Projections of Earth\'s Technosphere: Civilization Collapse-Recovery Dynamics and Detectability',
+        venue: 'Acta Astronautica (in press)',
+        href: 'https://doi.org/10.1016/j.actaastro.2026.10.055',
+      },
       {
         authors: 'C. Blanco, Y.-C. Lai, Y.J. Matsubara, A. Murugan, S.K. De, A. Wang, J.A. Choi, J. Derr, J.W. Szostak, B. Paegel, D. Blackmond, I.A. Chen',
         title: 'Amplification of selective permeability in multilamellar vesicles as a mechanism of prebiotic chemical enrichment',
@@ -370,24 +371,26 @@ const groups: { year: string; pubs: Pub[] }[] = [
   <section class="section pubs">
     <div class="container">
       <!-- In progress -->
-      <div class="year-block reveal">
-        <div class="year-marker">
-          <span class="year-num">In&nbsp;progress</span>
-          <span class="year-rule"></span>
+      {inProgress.length > 0 && (
+        <div class="year-block reveal">
+          <div class="year-marker">
+            <span class="year-num">In&nbsp;progress</span>
+            <span class="year-rule"></span>
+          </div>
+          <ul class="pub-list">
+            {inProgress.map((p) => (
+              <li class="pub">
+                <p class="pub-title">{p.title}</p>
+                <p class="pub-meta">
+                  <span class="authors">{p.authors}</span>
+                  <span class="sep">·</span>
+                  <span class="venue">{p.venue}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul class="pub-list">
-          {inProgress.map((p) => (
-            <li class="pub">
-              <p class="pub-title">{p.title}</p>
-              <p class="pub-meta">
-                <span class="authors">{p.authors}</span>
-                <span class="sep">·</span>
-                <span class="venue">{p.venue}</span>
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      )}
 
       {groups.map((g) => (
         <div class="year-block reveal" id={`y-${g.year}`}>
