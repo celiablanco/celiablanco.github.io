@@ -363,6 +363,16 @@ const groups: { year: string; pubs: Pub[] }[] = [
     ],
   },
 ];
+
+/**
+ * Within each year: accepted first, then in press, then published. The status
+ * is read from the venue text (English or Spanish), so a paper moves on its
+ * own when its venue is updated. The sort is stable, so papers with the same
+ * status keep the order they are written in above.
+ */
+const statusRank = (venue: string) =>
+  /\((accepted|aceptado)\)/i.test(venue) ? 0 : /\((in press|en prensa)\)/i.test(venue) ? 1 : 2;
+const byStatus = (pubs: Pub[]) => [...pubs].sort((a, b) => statusRank(a.venue) - statusRank(b.venue));
 ---
 <BaseLayout title="Publications — Dr. Celia Blanco" description="Peer-reviewed publications and preprints by Dr. Celia Blanco.">
   <section class="page-hero">
@@ -406,7 +416,7 @@ const groups: { year: string; pubs: Pub[] }[] = [
             <span class="year-rule"></span>
           </div>
           <ul class="pub-list">
-            {g.pubs.map((p) => (
+            {byStatus(g.pubs).map((p) => (
               <li class="pub">
                 <p class="pub-title">
                   {p.href ? <a href={p.href} target="_blank" rel="noopener">{p.title}</a> : p.title}
