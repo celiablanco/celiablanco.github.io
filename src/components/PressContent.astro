@@ -5,7 +5,7 @@
  * left, the entries on the right.
  */
 import PressIcon from './PressIcon.astro';
-import { interviews, coverage, profiles, type Outlet } from '../data/press';
+import { interviews, interviewFormatLabels, coverage, recognition, type InterviewFormat, type Outlet } from '../data/press';
 
 interface Props {
   lang: 'en' | 'es';
@@ -37,29 +37,32 @@ const groupOutlets = (outlets: Outlet[]) => {
   });
 };
 
+/** Audio gets the podcast mark; anything you read gets the article mark. */
+const interviewIcon = (format: InterviewFormat) => (format === 'radio' ? 'podcast' : 'article');
+
 const copy = {
   en: {
     eyebrow: 'Theoretical Astrobiology Group',
     title: 'Press',
-    lede: `Interviews, coverage and profiles. Links go to the original pieces;
+    lede: `Interviews, coverage and recognition. Links go to the original pieces;
       some may have moved or gone behind a paywall since publication.`,
-    interviewsHeading: 'Interviews and podcasts',
+    interviewsHeading: 'Interviews',
     coverageHeading: 'Press coverage',
     coverageNote: 'Grouped by the paper the coverage is about.',
-    profilesHeading: 'Profiles',
+    recognitionHeading: 'Awards and recognition',
     publicationsLink: 'All publications',
     publicationsHref: '/publications',
   },
   es: {
     eyebrow: 'Grupo de Astrobiología Teórica',
     title: 'Prensa',
-    lede: `Entrevistas, cobertura y perfiles. Los enlaces llevan a las piezas
+    lede: `Entrevistas, cobertura y reconocimientos. Los enlaces llevan a las piezas
       originales; algunas pueden haber cambiado de sitio o quedado tras un muro
       de pago.`,
-    interviewsHeading: 'Entrevistas y pódcast',
+    interviewsHeading: 'Entrevistas',
     coverageHeading: 'Cobertura en prensa',
     coverageNote: 'Agrupada por el artículo del que habla.',
-    profilesHeading: 'Perfiles',
+    recognitionHeading: 'Premios y reconocimientos',
     publicationsLink: 'Todas las publicaciones',
     publicationsHref: '/es/publications',
   },
@@ -88,7 +91,7 @@ const copy = {
         <ul class="item-list">
           {interviews.map((it) => (
             <li class="item" id={it.id}>
-              <span class="item-icon"><PressIcon kind={it.written ? 'article' : 'podcast'} /></span>
+              <span class="item-icon"><PressIcon kind={interviewIcon(it.format)} /></span>
               <div class="item-body">
                 <div class="item-header">
                   <p class="item-title">
@@ -96,7 +99,13 @@ const copy = {
                   </p>
                 </div>
                 <p class="item-outlet">{it.outlet}</p>
-                <p class="item-note">{it.note[lang]} <span class="dot">·</span> {it.date[lang]}</p>
+                <p class="item-note">{interviewFormatLabels[it.format][lang]} <span class="dot">·</span> {it.date[lang]}</p>
+                <p class="item-note">{it.note[lang]}</p>
+                {it.translations?.map((t) => (
+                  <p class="item-note">
+                    <a href={t.href} target="_blank" rel="noopener" hreflang={t.lang}>{t.label[lang]}</a>
+                  </p>
+                ))}
               </div>
             </li>
           ))}
@@ -151,15 +160,15 @@ const copy = {
       </div>
     </div>
 
-    <!-- ── Profiles ── -->
+    <!-- ── Recognition ── -->
     <div class="group-block reveal">
       <div class="block-marker">
-        <span class="block-label">{copy.profilesHeading}</span>
+        <span class="block-label">{copy.recognitionHeading}</span>
         <span class="block-rule"></span>
       </div>
       <div class="block-body">
         <ul class="item-list">
-          {profiles.map((p) => (
+          {recognition.map((p) => (
             <li class="item" id={p.id}>
               <span class="item-icon"><PressIcon kind="profile" /></span>
               <div class="item-body">
@@ -170,11 +179,6 @@ const copy = {
                 </div>
                 <p class="item-outlet">{p.outlet}</p>
                 {p.note?.[lang] && <p class="item-note">{p.note[lang]}</p>}
-                {p.translations?.map((t) => (
-                  <p class="item-note">
-                    <a href={t.href} target="_blank" rel="noopener" hreflang={t.lang}>{t.label[lang]}</a>
-                  </p>
-                ))}
               </div>
             </li>
           ))}

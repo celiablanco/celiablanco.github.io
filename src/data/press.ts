@@ -2,9 +2,11 @@
  * Media coverage, transcribed from `sections/media.tex` in the CV repo, which
  * stays the source of record. Three kinds of thing live here:
  *
- *   interviews — she spoke; a programme and a date
- *   coverage   — a paper was written about; one entry per paper, many outlets
- *   profiles   — a piece about her rather than about one result
+ *   interviews  — she spoke, in any format: on air, in a written Q&A, or in a
+ *                 feature built around an interview with her
+ *   coverage    — a paper was written about; one entry per paper, many outlets
+ *   recognition — an award or grant announced, where she is the subject but
+ *                 was not interviewed
  *
  * Outlet and programme names are proper nouns and are not translated. Only the
  * surrounding description takes an `{ en, es }` pair.
@@ -30,20 +32,35 @@ export type Outlet = {
   headline?: string;
 };
 
+/** The same piece published in another language. */
+export type Translation = { lang: PieceLang; label: Bilingual; href: string };
+
+/**
+ * How an interview reached its audience. Shown as a label beside the date, so
+ * a reader knows whether a link leads to audio or to text.
+ */
+export type InterviewFormat = 'radio' | 'written' | 'feature';
+
+export const interviewFormatLabels: Record<InterviewFormat, Bilingual> = {
+  radio: { en: 'Radio', es: 'Radio' },
+  written: { en: 'Written interview', es: 'Entrevista escrita' },
+  feature: { en: 'Interview feature', es: 'Reportaje con entrevista' },
+};
+
 export type Interview = {
   id: string;
-  /** Not displayed — the list is chronological and each entry carries a date
-   *  or is self-evidently recent. Kept because it is how the CV orders these. */
+  /** Not displayed — the list is newest first and each entry carries a date.
+   *  Kept because it is how the CV orders these. */
   year: string;
-  /** Episode title, in the language it was broadcast in. */
+  /** Title of the episode or piece, in the language it was published in. */
   title: string;
   href: string;
-  /** Programme and network. */
+  /** Programme, publication or network. */
   outlet: string;
+  format: InterviewFormat;
   date: Bilingual;
   note: Bilingual;
-  /** A written Q&A rather than audio; shown with the article icon. */
-  written?: boolean;
+  translations?: Translation[];
 };
 
 export type Coverage = {
@@ -58,15 +75,13 @@ export type Coverage = {
   outlets: Outlet[];
 };
 
-export type Profile = {
+export type Recognition = {
   id: string;
   year: string;
   title: Bilingual;
   href: string;
   outlet: string;
   note?: Bilingual;
-  /** The same piece published in another language. */
-  translations?: { lang: PieceLang; label: Bilingual; href: string }[];
 };
 
 export const interviews: Interview[] = [
@@ -76,12 +91,28 @@ export const interviews: Interview[] = [
     title: 'Astrobiology Revealed #38: Celia Blanco',
     href: 'https://askastrobio.org/articles/astrobiology-revealed-38',
     outlet: 'AskAstrobio, Blue Marble Space',
-    date: { en: '20 Oct 2026', es: '20 de octubre de 2026' },
+    format: 'written',
+    date: { en: '20 October 2026', es: '20 de octubre de 2026' },
     note: {
-      en: 'Written Q&A on integrating astrobiology into crewed space missions.',
-      es: 'Entrevista escrita sobre la integración de la astrobiología en las misiones espaciales tripuladas.',
+      en: 'With Aubrey Zerkle, on astrobiology during crewed lunar missions and planetary protection.',
+      es: 'Con Aubrey Zerkle, sobre la astrobiología en las misiones lunares tripuladas y la protección planetaria.',
     },
-    written: true,
+  },
+  {
+    id: 'our-narratives-2026',
+    year: '2026',
+    title: 'The Loop and the Silence',
+    href: 'https://ournarratives.net/the-loop-and-the-silence/',
+    outlet: 'Our Narratives',
+    format: 'feature',
+    date: { en: '7 October 2026', es: '7 de octubre de 2026' },
+    note: {
+      en: 'On how life begins, how civilizations last, and why a quiet galaxy may not be an empty one.',
+      es: 'Sobre cómo empieza la vida, cuánto duran las civilizaciones y por qué una galaxia silenciosa puede no estar vacía.',
+    },
+    translations: [
+      { lang: 'zh', label: { en: 'Chinese version', es: 'Versión en chino' }, href: 'https://ournarratives.net/the-loop-and-the-silence-chinese/' },
+    ],
   },
   {
     id: 'principio-de-incertidumbre-2026',
@@ -89,10 +120,11 @@ export const interviews: Interview[] = [
     title: 'El jardín de las civilizaciones que se bifurcan',
     href: 'https://podcasts.apple.com/podcast/id1070524537?i=1000770297370',
     outlet: 'Principio de Incertidumbre, Canal Extremadura',
+    format: 'radio',
     date: { en: '30 May 2026', es: '30 de mayo de 2026' },
     note: {
-      en: 'Interview on the technosphere collapse–recovery model.',
-      es: 'Entrevista sobre el modelo de colapso y recuperación de la tecnosfera.',
+      en: 'On the technosphere collapse–recovery model.',
+      es: 'Sobre el modelo de colapso y recuperación de la tecnosfera.',
     },
   },
   {
@@ -101,10 +133,27 @@ export const interviews: Interview[] = [
     title: '¿Cuánto tardaría una civilización en colapsar teniendo en cuenta su tecnología?',
     href: 'https://podcasts.apple.com/podcast/id468637823?i=1000769429134',
     outlet: 'La Rosa de los Vientos, Onda Cero',
+    format: 'radio',
     date: { en: '25 May 2026', es: '25 de mayo de 2026' },
     note: {
-      en: 'Interview on the technosphere collapse–recovery model.',
-      es: 'Entrevista sobre el modelo de colapso y recuperación de la tecnosfera.',
+      en: 'On the technosphere collapse–recovery model.',
+      es: 'Sobre el modelo de colapso y recuperación de la tecnosfera.',
+    },
+  },
+  {
+    id: 'bms-2023',
+    year: '2023',
+    title: 'Celia Blanco is Bridging Gaps Between Theoretical Physics, Astrobiology, and the Origins of Life',
+    // The original bmsis.org address now redirects to the Blue Marble Space
+    // home page and the piece is not on bluemarblespace.org, so this points at
+    // the Internet Archive copy until it is republished.
+    href: 'https://web.archive.org/web/20250121011152/https://bmsis.org/celia-blanco-is-bridging-gaps-between-theoretical-physics-astrobiology-and-the-origins-of-life/',
+    outlet: 'Blue Marble Space',
+    format: 'feature',
+    date: { en: '5 September 2023', es: '5 de septiembre de 2023' },
+    note: {
+      en: 'By Harvey Sapigao, on molecular homochirality, sequencing tools and the role of arginine in the origin of life.',
+      es: 'De Harvey Sapigao, sobre la homoquiralidad molecular, las herramientas de secuenciación y el papel de la arginina en el origen de la vida.',
     },
   },
 ];
@@ -168,37 +217,17 @@ export const coverage: Coverage[] = [
   },
 ];
 
-export const profiles: Profile[] = [
-  {
-    id: 'our-narratives-2026',
-    year: '2026',
-    title: { en: 'The Loop and the Silence', es: 'The Loop and the Silence' },
-    href: 'https://ournarratives.net/the-loop-and-the-silence/',
-    outlet: 'Our Narratives',
-    note: {
-      en: 'On how life begins, how civilizations last, and why a quiet galaxy may not be an empty one.',
-      es: 'Sobre cómo empieza la vida, cuánto duran las civilizaciones y por qué una galaxia silenciosa puede no estar vacía.',
-    },
-    translations: [
-      { lang: 'zh', label: { en: 'Chinese version', es: 'Versión en chino' }, href: 'https://ournarratives.net/the-loop-and-the-silence-chinese/' },
-    ],
-  },
+export const recognition: Recognition[] = [
   {
     id: 'scope-2024',
     year: '2024',
-    title: { en: 'Researcher profile', es: 'Perfil de investigadora' },
+    title: { en: 'NASA SCoPE seed grant: Vida en el Universo', es: 'Ayuda semilla NASA SCoPE: Vida en el Universo' },
     href: 'https://scope.asu.edu/celia-blanco',
     outlet: 'NASA SMD Community of Practice for Education (SCoPE)',
-  },
-  {
-    id: 'bms-2023',
-    year: '2023',
-    title: {
-      en: 'Celia Blanco is Bridging Gaps Between Theoretical Physics, Astrobiology, and the Origins of Life',
-      es: 'Celia Blanco is Bridging Gaps Between Theoretical Physics, Astrobiology, and the Origins of Life',
+    note: {
+      en: 'A 2024 seed grant to design bilingual learning experiences built on NASA astrobiology and planetary science.',
+      es: 'Ayuda semilla de 2024 para diseñar experiencias de aprendizaje bilingües basadas en la astrobiología y la ciencia planetaria de la NASA.',
     },
-    href: 'https://bmsis.org/celia-blanco-is-bridging-gaps-between-theoretical-physics-astrobiology-and-the-origins-of-life/',
-    outlet: 'Blue Marble Space',
   },
   {
     id: 'ucsb-2016',
