@@ -19,12 +19,12 @@ const groups: { year: string; pubs: Pub[] }[] = [
       {
         authors: 'C. Blanco, Y.-C. Lai, Y.J. Matsubara, A. Murugan, S.K. De, A. Wang, J.A. Choi, J. Derr, J.W. Szostak, B. Paegel, D. Blackmond, I.A. Chen',
         title: 'Amplification of selective permeability in multilamellar vesicles as a mechanism of prebiotic chemical enrichment',
-        venue: 'Nature Communications (accepted)',
+        venue: 'Nature Communications (accepted, in press)',
       },
       {
         authors: 'E. Alonso-Pintado, M. Moreno-Paz, P. Mustieles-del Ser, C. Blanco, M. García-Villadangos, M.Á. Lominchar, P. Rayo-Pizarroso, M.P. Martín-Redondo, M. Ruiz-Bermejo, V. Parro',
         title: 'Immunodetection of short peptides with stereochemical selectivity at the prebiotic–biotic transition: implications for extraterrestrial biomarker exploration',
-        venue: 'Frontiers in Astronomy and Space Sciences, 13 (accepted)',
+        venue: 'Frontiers in Astronomy and Space Sciences, 13 (accepted, in press)',
       },
       {
         authors: 'T. Noll-Walker, K. Elasri, C. Balkan, E. Jo, H.J. Cleaves II, M. Sandora, C. Blanco',
@@ -369,7 +369,7 @@ const groups: { year: string; pubs: Pub[] }[] = [
  * status keep the order they are written in above.
  */
 const statusRank = (venue: string) =>
-  /\((accepted|aceptado)\)/i.test(venue) ? 0 : /\((in press|en prensa)\)/i.test(venue) ? 1 : 2;
+  /\((accepted|aceptado)\b/i.test(venue) ? 0 : /\((in press|en prensa)\)/i.test(venue) ? 1 : 2;
 const byStatus = (pubs: Pub[]) => [...pubs].sort((a, b) => statusRank(a.venue) - statusRank(b.venue));
 ---
 <BaseLayout title="Publications — Dr. Celia Blanco" description="Peer-reviewed publications and preprints by Dr. Celia Blanco.">
